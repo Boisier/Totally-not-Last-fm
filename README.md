@@ -12,7 +12,7 @@ $ cd totally-not-last-fm/
 
 2. Init & start npm
 ```bash
-$ npm install && start
+$ npm install && npm start
 ```
 
 
