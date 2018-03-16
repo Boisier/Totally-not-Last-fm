@@ -5,8 +5,12 @@ matrix:
       node_js:
         - node
     -
-      install: "composer install"
+      install:
+        - "cd api"
+        - "composer install"
       language: php
+      php:
+        - "7.1"
       script:
         - "./vendor/bin/phpunit tests --testdox"
 notifications:
