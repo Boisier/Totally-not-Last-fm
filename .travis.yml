@@ -10,7 +10,7 @@ matrix:
         - "composer install"
       language: php
       php:
-        - "7.1"
+        - 7.1
       script:
         - "./vendor/bin/phpunit tests --testdox"
 notifications:
