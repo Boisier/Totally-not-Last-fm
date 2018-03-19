@@ -1,18 +1,14 @@
-//React
+// React
 import React, { Component } from 'react'
-//Scene dependencies
+// Scene dependencies
 import './App.css'
-//Scene componentts
+// Scene componentts
 import Header from './scenes/Header/Header'
 
-export default class extends Component
-{
-  render()
-  {
-    return (
-      <section className="App">
-        <Header/>
-      </section>
-    );
-  }
+export default class extends Component {
+  render = () => (
+    <section className="App">
+      <Header/>
+    </section>
+  )
 }
