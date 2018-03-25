@@ -1,7 +1,7 @@
 // React
 import React, { Component } from 'react'
 
-import api from 'Library/api'
+import api from 'library/api'
 
 export default class extends Component {
   constructor (props) {
