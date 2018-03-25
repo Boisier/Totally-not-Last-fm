@@ -1,7 +1,7 @@
 // React
 import React, { Component } from 'react'
 
-import api from 'library/api'
+import api from 'Library/api'
 
 export default class extends Component {
   constructor (props) {
@@ -30,7 +30,6 @@ export default class extends Component {
   }
 
   render = () => {
-    console.log(this.state)
     return (
       <section>
         <div>
