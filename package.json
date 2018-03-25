@@ -28,7 +28,7 @@
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "html-webpack-plugin": "2.29.0",
-    "jest": "20.0.4",
+    "jest": "^22.4.3",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
@@ -51,7 +51,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "coverage": "node scripts/test.js --env=jsdom --coverage"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -75,7 +76,11 @@
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
     "moduleNameMapper": {
-      "^react-native$": "react-native-web"
+      "^react-native$": "react-native-web",
+      "^@Library(.*)$": "<rootDir>/src/library$1",
+      "^@Scenes(.*)$": "<rootDir>/src/scenes$1",
+      "^@Containers(.*)$": "<rootDir>/src/containers$1",
+      "^@Assets(.*)$": "<rootDir>/src/assets$1"
     },
     "moduleFileExtensions": [
       "web.js",
