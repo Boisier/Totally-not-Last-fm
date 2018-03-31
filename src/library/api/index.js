@@ -56,7 +56,6 @@ export default class API {
    * @return {{success: boolean}}
    */
   static queryFailed (response) {
-    console.log(response)
     return {
       success: false
     }

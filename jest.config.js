@@ -39,5 +39,9 @@ module.exports = {
       'web.jsx',
       'jsx',
       'node'
-    ]
+    ],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/registerServiceWorker.js',
+    '<rootDir>/src/index.js'
+  ]
 }
