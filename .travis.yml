@@ -19,7 +19,7 @@ matrix:
         - "cd api"
         - "composer install"
       script:
-        - "./vendor/bin/phpunit tests --testdox --coverage-clover=coverage.xml"
+        - "./vendor/bin/phpunit --configuration='phpunit.xml' --testdox --coverage-clover=coverage.xml"
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 notifications:
