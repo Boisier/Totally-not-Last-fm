@@ -44,12 +44,37 @@ it('Response has correct format on POST success', () => {
   })
 })
 
+it('Response has correct format on PUT success', () => {
+  const testID = makeid()
+  return api.put('https://httpbin.org/put', { testID: testID }).then(response => {
+    expect(response).toEqual({
+      success: true,
+      status: expect.any(Number),
+      headers: expect.anything(),
+      body: expect.anything()
+    })
+  })
+})
+
+it('Response has correct format on DELETE success', () => {
+  const testID = makeid()
+  return api.delete('https://httpbin.org/delete', { testID: testID }).then(response => {
+    expect(response).toEqual({
+      success: true,
+      status: expect.any(Number),
+      headers: expect.anything(),
+      body: expect.anything()
+    })
+  })
+})
+
 function makeid() {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var text = ""
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
-  for (var i = 0; i < 5; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  for (var i = 0; i < 5; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length))
+  }
 
-  return text;
+  return text
 }
