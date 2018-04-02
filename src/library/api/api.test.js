@@ -15,7 +15,7 @@ it('Token is handled correctly', () => {
 })
 
 it('Failed queries have correct return value', () => {
-  expect(api.queryFailed("error")).toEqual({
+  expect(api.queryFailed('error')).toEqual({
     success: false
   })
 
@@ -34,7 +34,7 @@ it('Response has correct format on GET success', () => {
 
 it('Response has correct format on POST success', () => {
   const testID = makeid()
-  return api.post('https://httpbin.org/post', { testID: testID }).then(response => {
+  return api.post('https://httpbin.org/post', {testID: testID}).then(response => {
     expect(response).toEqual({
       success: true,
       status: expect.any(Number),
@@ -46,7 +46,7 @@ it('Response has correct format on POST success', () => {
 
 it('Response has correct format on PUT success', () => {
   const testID = makeid()
-  return api.put('https://httpbin.org/put', { testID: testID }).then(response => {
+  return api.put('https://httpbin.org/put', {testID: testID}).then(response => {
     expect(response).toEqual({
       success: true,
       status: expect.any(Number),
@@ -58,7 +58,7 @@ it('Response has correct format on PUT success', () => {
 
 it('Response has correct format on DELETE success', () => {
   const testID = makeid()
-  return api.delete('https://httpbin.org/delete', { testID: testID }).then(response => {
+  return api.delete('https://httpbin.org/delete', {testID: testID}).then(response => {
     expect(response).toEqual({
       success: true,
       status: expect.any(Number),
@@ -68,9 +68,9 @@ it('Response has correct format on DELETE success', () => {
   })
 })
 
-function makeid() {
-  var text = ""
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+function makeid () {
+  var text = ''
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
   for (var i = 0; i < 5; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length))
