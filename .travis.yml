@@ -18,6 +18,7 @@ matrix:
       install:
         - "cd api"
         - "composer install"
+        - "composer update"
       script:
         - "./vendor/bin/phpunit --configuration='phpunit.xml' --testdox --coverage-clover=coverage.xml"
 after_success:
