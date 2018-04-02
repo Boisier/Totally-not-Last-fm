@@ -13,6 +13,10 @@ import Footer from './scenes/Footer/Footer'
 import Home from './scenes/Home/Home'
 
 export default class extends Component {
+  constructor (props) {
+    super(props)
+    document.title = "Totally not Last fm"
+  }
   render = () => (
     <section className="App">
       <Header/>
