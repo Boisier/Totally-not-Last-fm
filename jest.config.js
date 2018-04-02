@@ -9,7 +9,6 @@ module.exports = {
       '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}',
       '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'
     ],
-  testEnvironment: 'node',
   testURL:
     'http://localhost',
   transform:
@@ -40,5 +39,9 @@ module.exports = {
       'web.jsx',
       'jsx',
       'node'
-    ]
+    ],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/registerServiceWorker.js',
+    '<rootDir>/src/index.js'
+  ]
 }

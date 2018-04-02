@@ -4,17 +4,24 @@ matrix:
       language: node_js
       node_js:
         - node
+      cache:
+        directories:
+          - $HOME/.npm
       script:
         - npm run coverage
-      after_success:
-        - bash <(curl -s https://codecov.io/bash)
     -
+      language: php
+      php: 7.1
+      cache:
+        directories:
+          - $HOME/.composer/cache/files
       install:
         - "cd api"
         - "composer install"
-      language: php
-      php: 7.1
+        - "composer update"
       script:
-        - "./vendor/bin/phpunit tests --testdox"
+        - "./vendor/bin/phpunit --configuration='phpunit.xml' --testdox --coverage-clover=coverage.xml"
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 notifications:
   email: false
