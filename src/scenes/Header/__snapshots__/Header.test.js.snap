@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders LinkBlock correctly 1`] = `
+<header>
+  <h1>
+    Totally not Last fm online
+  </h1>
+</header>
+`;
