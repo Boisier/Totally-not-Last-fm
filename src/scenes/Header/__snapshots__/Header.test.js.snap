@@ -3,7 +3,7 @@
 exports[`renders LinkBlock correctly 1`] = `
 <header>
   <h1>
-    Totally not Last fm online
+    Totally not Last fm
   </h1>
 </header>
 `;

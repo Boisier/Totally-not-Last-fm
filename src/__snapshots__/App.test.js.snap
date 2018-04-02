@@ -6,36 +6,64 @@ exports[`Renders correct page based on URL 1`] = `
 >
   <header>
     <h1>
-      Totally not Last fm online
+      Totally not Last fm
     </h1>
   </header>
   <section
-    className="home-page"
+    id="page-structure"
   >
-    <span>
-      CurrentlyListening
-    </span>
     <section
-      className="multiple-stats-periods"
+      className="home-page"
     >
-      <span>
-        Nav bar for stats periods
-      </span>
       <section
-        className="multiple-stats-periods-container"
+        className="currently-listening"
       >
-        <span>
-          StateSection
-        </span>
-        <span>
-          StateSection
-        </span>
-        <span>
-          StateSection
-        </span>
-        <span>
-          StateSection
-        </span>
+        CurrentlyListening
+      </section>
+      <section
+        className="multiple-stats-periods"
+      >
+        <nav
+          className="stats-period-nav"
+        >
+          Nav
+          <br />
+          bar
+          <br />
+          for
+          <br />
+          stats
+          <br />
+          periods
+        </nav>
+        <section
+          className="multiple-stats-periods-container"
+        >
+          <div
+            className="stats-section"
+          >
+            StateSection - 
+            day
+          </div>
+          <div
+            className="stats-section"
+          >
+            StateSection - 
+            week
+          </div>
+          <div
+            className="stats-section"
+          >
+            StateSection - 
+            month
+          </div>
+          <div
+            className="stats-section"
+          >
+            StateSection - 
+            year
+          </div>
+        </section>
       </section>
     </section>
   </section>
