@@ -18,7 +18,6 @@ it('Failed queries have correct return value', () => {
   expect(api.queryFailed('error')).toEqual({
     success: false
   })
-
 })
 
 it('Response has correct format on GET success', () => {
