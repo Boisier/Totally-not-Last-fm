@@ -1,0 +1,114 @@
+#landing-page
+{
+  width: 100%;
+  height: 100%;
+
+  .top-part
+  {
+    position: relative;
+    width: 100%;
+    height: 50%;
+
+    background-color: #ff0844;
+  }
+
+  .bottom-part
+  {
+    width: 100%;
+    height: 50%;
+
+    position: relative;
+
+    background-image: linear-gradient(to top, #434343 0%, black 100%);
+
+    color: #fff;
+
+    $side-margin: 5rem;
+
+    .caption
+    {
+      display: block;
+      margin: 0;
+      padding: 0;
+
+      position: absolute;
+      top: -8rem;
+      left: $side-margin;
+
+      text-transform: uppercase;
+      font-size: 1.25em;
+    }
+
+    .title
+    {
+      display: block;
+      margin: 0;
+      padding: 0;
+
+      position: absolute;
+
+      text-transform: uppercase;
+      font-size: 6em;
+      left: $side-margin;
+
+      &.line-1
+      {
+        top: -6.5rem;
+      }
+
+      &.line-2
+      {
+        top: .1rem;
+      }
+    }
+
+    .access-form
+    {
+      display: block;
+      width: 30rem;
+
+      position: absolute;
+      right: $side-margin;
+
+      input[type=text]
+      {
+        height: 6rem;
+        width: 30rem;
+
+        position: absolute;
+        top: -2.5rem;
+
+        padding: 1rem;
+
+        border: 10px solid #000;
+        outline: none;
+
+        font-size: 1.5rem;
+      }
+
+      input[type=button]
+      {
+        display: block;
+        width: 15rem;
+        height: 2rem;
+
+        position: absolute;
+        top: 4rem;
+        right: 10px;
+
+        border: 0;
+        background-color: #fff;
+
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        &:hover
+        {
+          color: #FFF;
+          background-color: #ff0844;
+        }
+      }
+    }
+  }
+}

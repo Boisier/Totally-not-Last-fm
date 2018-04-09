@@ -1,76 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders correct page based on URL 1`] = `
-<section
+<main
   className="App"
 >
-  <header>
-    <h1>
-      Totally not Last fm
-    </h1>
-  </header>
   <section
-    id="page-structure"
+    id="landing-page"
   >
-    <section
-      className="home-page"
+    <div
+      className="top-part"
+    />
+    <div
+      className="bottom-part"
     >
-      <section
-        className="currently-listening"
+      <h5
+        className="caption"
       >
-        CurrentlyListening
-      </section>
-      <section
-        className="multiple-stats-periods"
+        What does your music says about you ?
+      </h5>
+      <h1
+        className="title line-1"
       >
-        <nav
-          className="stats-period-nav"
-        >
-          Nav
-          <br />
-          bar
-          <br />
-          for
-          <br />
-          stats
-          <br />
-          periods
-        </nav>
-        <section
-          className="multiple-stats-periods-container"
-        >
-          <div
-            className="stats-section"
-          >
-            StateSection - 
-            day
-          </div>
-          <div
-            className="stats-section"
-          >
-            StateSection - 
-            week
-          </div>
-          <div
-            className="stats-section"
-          >
-            StateSection - 
-            month
-          </div>
-          <div
-            className="stats-section"
-          >
-            StateSection - 
-            year
-          </div>
-        </section>
-      </section>
-    </section>
+        Totally not
+      </h1>
+      <h1
+        className="title line-2"
+      >
+        Last fm
+      </h1>
+      <div
+        className="access-form"
+      >
+        <input
+          id="access-input-form"
+          placeholder="Enter your e-mail address"
+          type="text"
+        />
+        <input
+          type="button"
+          value="Find out now"
+        />
+      </div>
+    </div>
   </section>
-  <footer>
-    <span>
-      FOOTER
-    </span>
-  </footer>
-</section>
+</main>
 `;
