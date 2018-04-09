@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders correct page based on URL 1`] = `
+<section
+  className="App"
+>
+  <header>
+    <h1>
+      Totally not Last fm
+    </h1>
+  </header>
+  <section
+    id="page-structure"
+  >
+    <section
+      className="home-page"
+    >
+      <section
+        className="currently-listening"
+      >
+        CurrentlyListening
+      </section>
+      <section
+        className="multiple-stats-periods"
+      >
+        <nav
+          className="stats-period-nav"
+        >
+          Nav
+          <br />
+          bar
+          <br />
+          for
+          <br />
+          stats
+          <br />
+          periods
+        </nav>
+        <section
+          className="multiple-stats-periods-container"
+        >
+          <div
+            className="stats-section"
+          >
+            StateSection - 
+            day
+          </div>
+          <div
+            className="stats-section"
+          >
+            StateSection - 
+            week
+          </div>
+          <div
+            className="stats-section"
+          >
+            StateSection - 
+            month
+          </div>
+          <div
+            className="stats-section"
+          >
+            StateSection - 
+            year
+          </div>
+        </section>
+      </section>
+    </section>
+  </section>
+  <footer>
+    <span>
+      FOOTER
+    </span>
+  </footer>
+</section>
+`;

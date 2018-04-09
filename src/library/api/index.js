@@ -55,7 +55,7 @@ export default class API {
    * @param response
    * @return {{success: boolean}}
    */
-  static queryFailed (response) {
+  static queryFailed () {
     return {
       success: false
     }
