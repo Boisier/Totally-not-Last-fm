@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 
-import CurrentlyListening from './scenes/CurrentlyListening/CurrentlyListening'
-import MultipleStatsPeriodes from './scenes/MultipleStatsPeriodes/MultipleStatsPeriodes'
+import About from './scenes/About/About'
 
 export default class extends Component {
   render = () => (
     <section className="home-page">
-      <CurrentlyListening />
-      <MultipleStatsPeriodes />
+      <About />
     </section>
   )
 }
