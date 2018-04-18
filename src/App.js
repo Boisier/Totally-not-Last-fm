@@ -15,10 +15,10 @@ import Home from './scenes/Home/Home'
 export default class extends Component {
   constructor (props) {
     super(props)
-    document.title = "Totally not Last fm"
+    document.title = 'Totally not Last fm'
   }
   render = () => (
-    <section className="App">
+    <section className='App'>
       <Header/>
       <Structure>
         <Switch>

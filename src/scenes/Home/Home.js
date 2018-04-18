@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import CurrentlyListening from './scenes/CurrentlyListening/CurrentlyListening'
 import MultipleStatsPeriodes from './scenes/MultipleStatsPeriodes/MultipleStatsPeriodes'
+import User from './scenes/User/User'
 
 export default class extends Component {
   render = () => (
-    <section className="home-page">
-      <CurrentlyListening />
+    <section className='home-page'>
+      <User />
       <MultipleStatsPeriodes />
     </section>
   )
