@@ -1,26 +1,39 @@
 // React
 import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
 
 // Scene dependencies
 import './App.scss'
 
 // Scene components
+import Landing from './scenes/Landing/Landing'
+
 import Header from './scenes/Header/Header'
 import Footer from './scenes/Footer/Footer'
-import SignInForm from './scenes/SignInForm/SignInForm'
-import SignUpForm from './scenes/SignUpForm/SignUpForm'
+import Home from './scenes/Home/Home'
 
 export default class extends Component {
   constructor (props) {
     super(props)
     document.title = 'Totally not Last fm'
+
+    // Set state as not logged in
+    this.state = {
+      isUser: this.props.isConnected
+    }
   }
-  render = () => (
-    <section className='App'>
+
+  render = () => {
+    if (!this.state.isUser) {
+      return <Landing />
+    }
+
+    return <main>
       <Header/>
-      <SignInForm />
-      <SignUpForm />
-      <Footer />
-    </section>
-  )
+      <Switch>
+        <Route path='/' component={Home}/>
+      </Switch>
+      <Footer/>
+    </main>
+  }
 }

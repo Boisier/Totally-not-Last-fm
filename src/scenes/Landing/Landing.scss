@@ -3,111 +3,127 @@
   width: 100%;
   height: 100%;
 
+  overflow: hidden;
+
+  background-color: #ff0844;
+
   .top-part
   {
     position: relative;
     width: 100%;
     height: 50%;
 
-    background-color: #ff0844;
+    transition-duration: .25s;
+    transition-timing-function: ease-in-out;
+  }
+}
+
+#welcome-screen
+{
+  width: 100%;
+  height: 100%;
+
+  transition-duration: .25s;
+  transition-timing-function: ease-in-out;
+
+  &.hide
+  {
+    margin-top: 100%;
   }
 
-  .bottom-part
+  width: 100%;
+  height: 50%;
+
+  position: relative;
+
+  background-image: linear-gradient(to top, #434343 0%, black 100%);
+
+  color: #fff;
+
+  $side-margin: 5rem;
+
+  .caption
   {
-    width: 100%;
-    height: 50%;
+    display: block;
+    margin: 0;
+    padding: 0;
 
-    position: relative;
+    position: absolute;
+    top: -8rem;
+    left: $side-margin;
 
-    background-image: linear-gradient(to top, #434343 0%, black 100%);
+    text-transform: uppercase;
+    font-size: 1.25em;
+  }
 
-    color: #fff;
+  .title
+  {
+    display: block;
+    margin: 0;
+    padding: 0;
 
-    $side-margin: 5rem;
+    position: absolute;
 
-    .caption
+    text-transform: uppercase;
+    font-size: 6em;
+    left: $side-margin;
+
+    &.line-1
     {
-      display: block;
-      margin: 0;
-      padding: 0;
-
-      position: absolute;
-      top: -8rem;
-      left: $side-margin;
-
-      text-transform: uppercase;
-      font-size: 1.25em;
+      top: -6.5rem;
     }
 
-    .title
+    &.line-2
     {
-      display: block;
-      margin: 0;
-      padding: 0;
-
-      position: absolute;
-
-      text-transform: uppercase;
-      font-size: 6em;
-      left: $side-margin;
-
-      &.line-1
-      {
-        top: -6.5rem;
-      }
-
-      &.line-2
-      {
-        top: .1rem;
-      }
+      top: .1rem;
     }
+  }
 
-    .access-form
+  .access-form
+  {
+    display: block;
+    width: 30rem;
+
+    position: absolute;
+    right: $side-margin;
+
+    input[type=text]
     {
-      display: block;
+      height: 6rem;
       width: 30rem;
 
       position: absolute;
-      right: $side-margin;
+      top: -2.5rem;
 
-      input[type=text]
+      padding: 1rem;
+
+      border: 10px solid #000;
+      outline: none;
+
+      font-size: 1.5rem;
+    }
+
+    input[type=button]
+    {
+      display: block;
+      width: 15rem;
+      height: 2rem;
+
+      position: absolute;
+      top: 4rem;
+      right: 10px;
+
+      border: 0;
+      background-color: #fff;
+
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-weight: bold;
+
+      &:hover
       {
-        height: 6rem;
-        width: 30rem;
-
-        position: absolute;
-        top: -2.5rem;
-
-        padding: 1rem;
-
-        border: 10px solid #000;
-        outline: none;
-
-        font-size: 1.5rem;
-      }
-
-      input[type=button]
-      {
-        display: block;
-        width: 15rem;
-        height: 2rem;
-
-        position: absolute;
-        top: 4rem;
-        right: 10px;
-
-        border: 0;
-        background-color: #fff;
-
-        text-transform: uppercase;
-        font-size: 1.2rem;
-        font-weight: bold;
-
-        &:hover
-        {
-          color: #FFF;
-          background-color: #ff0844;
-        }
+        color: #FFF;
+        background-color: #ff0844;
       }
     }
   }
