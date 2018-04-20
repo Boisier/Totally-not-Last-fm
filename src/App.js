@@ -8,6 +8,7 @@ import './App.scss'
 import Header from './scenes/Header/Header'
 import Footer from './scenes/Footer/Footer'
 import SignInForm from './scenes/SignInForm/SignInForm'
+import SignUpForm from './scenes/SignUpForm/SignUpForm'
 
 export default class extends Component {
   constructor (props) {
@@ -17,8 +18,8 @@ export default class extends Component {
   render = () => (
     <section className='App'>
       <Header/>
-      <SignInForm>
-      </SignInForm>
+      <SignInForm />
+      <SignUpForm />
       <Footer />
     </section>
   )
