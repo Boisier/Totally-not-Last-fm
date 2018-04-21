@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import validator from 'validator'
-
 export default class extends Component {
   constructor (props) {
     super(props)
@@ -16,11 +14,7 @@ export default class extends Component {
   onEmailUpdated = (event) => {
     // If enter, check and sanitize email
     if (event.key === 'Enter') {
-      if (!validator.isEmail(this.state.email)) {
-        return
-      }
-
-      return this.props.verifyEmail(validator.normalizeEmail(this.state.email))
+      return this.props.verifyEmail(this.state.email)
     }
 
     // Otherwise udpate state

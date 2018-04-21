@@ -9,12 +9,12 @@ import Home from './scenes/Home/Home'
 const setup = propOverrides => {
   const props = Object.assign({
     url: '/',
-    loggedIn: true
+    forceLogin: true
   }, propOverrides)
 
   const wrapper = mount(
     <MemoryRouter initialEntries={[props.url]}>
-      <App isConnected={props.loggedIn}/>
+      <App forceLogin={props.forceLogin}/>
     </MemoryRouter>
   )
 
@@ -28,7 +28,7 @@ const setup = propOverrides => {
 describe('App display the correct page', () => {
   describe('When not connected', () => {
     it('/ => Landing page', () => {
-      const { landing } = setup({loggedIn: false})
+      const { landing } = setup({forceLogin: false})
       expect(landing.length).toBe(1)
     })
   })

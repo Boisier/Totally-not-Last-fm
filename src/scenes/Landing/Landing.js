@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import validator from 'validator'
+import cookies from 'browser-cookies'
 
 import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen'
 import SignUpForm from './components/SignUpForm/SignUpForm'
@@ -16,18 +18,6 @@ export default class extends Component {
 
       email: ''
     }
-  }
-
-  verifyEmail = (email) => {
-    console.log('checking ' + email + ' ...')
-
-    // TODO:Check email status with server
-
-    // Email unknown, display signUp form
-    this.setState({
-      email: email
-    })
-    this.showSignUp()
   }
 
   showLanding = () => {
@@ -54,6 +44,33 @@ export default class extends Component {
     })
   }
 
+  verifyEmail = (rawEmail) => {
+    // Checking email format
+    if (!validator.isEmail(rawEmail)) {
+      return // ignore bad emails
+    }
+
+    // Sanitize email
+    const email = validator.normalizeEmail(rawEmail)
+
+    // TODO:Check email status with server
+
+    // Email unknown, display signUp form
+    this.setState({
+      email: email
+    })
+    this.showSignUp()
+  }
+
+  onLogin = (token) => {
+    // Set a token cookie valid for 2 weeks
+    cookies.set('token', token, {
+      expires: 14 // days
+    })
+
+    this.props.checkLogin()
+  }
+
   render = () => {
     const topPartClass = this.state.showSignUpForm || this.state.showSignInForm ? 'expand' : ''
     return (
@@ -64,13 +81,15 @@ export default class extends Component {
             display={this.state.showSignUpForm}
             showLanding={this.showLanding}
             showSignUp={this.showSignUp}
-            showSignIn={this.showSignIn} />
+            showSignIn={this.showSignIn}
+            onLogin={this.onLogin} />
           <SignInForm
             email={this.state.email}
             display={this.state.showSignInForm}
             showLanding={this.showLanding}
             showSignUp={this.showSignUp}
-            showSignIn={this.showSignIn} />
+            showSignIn={this.showSignIn}
+            onLogin={this.onLogin} />
         </section>
         <WelcomeScreen
           verifyEmail={this.verifyEmail}
