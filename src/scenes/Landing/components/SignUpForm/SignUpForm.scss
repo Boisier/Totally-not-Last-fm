@@ -1,8 +1,12 @@
+$pink: #ffcdd2;
+$grey: #f8f9f9;
+$yellow: #a3e4d7;
+
 #signup-form
 {
   @import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
 
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255,255,255,0.85);
   padding:250px;
   width:50%;
   height:50%;
@@ -70,7 +74,8 @@
       opacity:0.9;
       padding: 1rem;
       outline: none;
-      border: solid 1px red;
+      box-shadow: 2px 2px red;
+      border: solid 1px $grey;
       border-radius: 5px;
       font-size: 1rem;
     }
@@ -83,7 +88,8 @@
       opacity:0.9;
       padding: 1rem;
       outline: none;
-      border: solid 1px red;
+      box-shadow: 2px 2px red;
+      border: solid 1px $grey;
       border-radius: 5px;
       font-size: 1rem;
     }
