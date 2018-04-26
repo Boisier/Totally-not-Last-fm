@@ -26,7 +26,7 @@ export default class extends Component {
 
     return (
       <section id="welcome-screen" className={displayClass}>
-        <h5 className="caption">What does your music says about you ?</h5>
+        <h6 className="caption">What does your music say about you ?</h6>
         <h1 className="title line-1">Totally not</h1>
         <h1 className="title line-2">Last fm</h1>
         <div className="access-form">
