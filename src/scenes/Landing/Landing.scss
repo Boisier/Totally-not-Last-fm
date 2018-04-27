@@ -12,12 +12,19 @@ $yellow: #a3e4d7;
   height: 100%;
 
   overflow: hidden;
-
+  /*
+  background-image: url('https://scontent-cdg2-1.xx.fbcdn.net/v/t1.15752-9/31437460_1911799875817421_1060852300727189504_n.jpg?_nc_cat=0&oh=981dbb6d4387a9cb2180c2c962d4bfb7&oe=5B518C18');
+  background-size: cover;
+  background-position: bottom;
+  background-blend-mode: soft-light;
+  */
+  
   background-image: url('http://4.bp.blogspot.com/_KckYYvB7Ge0/TJmFTb9XkhI/AAAAAAAAAaw/rjtOQ9I5EDA/s1600/headphones-.jpg'), url('https://i.pinimg.com/originals/96/aa/9e/96aa9e2d8ebdc6b0c66cd93a1ec56781.jpg');
   background-size: 30%, 30%;
   background-position:top right, bottom left;
   background-repeat: no-repeat;
   background-blend-mode: color-burn;
+  
   //background-image: linear-gradient(to top right,  #fce4ec 0%, $pink 100%);
   background-color: $pink;
   .top-part
