@@ -14,8 +14,8 @@ class CreateHoldTable extends Migration
     public function up()
     {
         Schema::create('hold', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('nationality_id_nationality');
+            $table->bigInteger('artist_id_artist');
         });
     }
 
