@@ -14,8 +14,8 @@ class CreateComposeTable extends Migration
     public function up()
     {
         Schema::create('compose', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('artist_id_artist', 255);
+            $table->increments('music_id_music', 255);
         });
     }
 
