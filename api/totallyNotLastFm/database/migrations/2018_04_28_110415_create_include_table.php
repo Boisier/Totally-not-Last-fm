@@ -14,8 +14,9 @@ class CreateIncludeTable extends Migration
     public function up()
     {
         Schema::create('include', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->integer('id');
+            $table->foreign('album_id_album')->references('music_id_music')->on('users');
+            
         });
     }
 
