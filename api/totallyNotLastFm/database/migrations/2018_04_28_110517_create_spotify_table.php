@@ -14,8 +14,8 @@ class CreateSpotifyTable extends Migration
     public function up()
     {
         Schema::create('spotify', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('spotify_user_id');
+          $table->integer('user_id_user');
         });
     }
 

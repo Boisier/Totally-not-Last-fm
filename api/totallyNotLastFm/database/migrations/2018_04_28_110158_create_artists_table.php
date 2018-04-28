@@ -14,8 +14,10 @@ class CreateArtistsTable extends Migration
     public function up()
     {
         Schema::create('artists', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('artist_id');
+            $table->char('artist_name',255);
+            $table->date('artist_birth_year');
+            $table->date('artist_death_year');
         });
     }
 

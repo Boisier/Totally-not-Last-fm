@@ -14,8 +14,8 @@ class CreateProduceTable extends Migration
     public function up()
     {
         Schema::create('produce', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->increments('artist_id_artist');
+            $table->integer('album_id_album');
         });
     }
 
