@@ -44,8 +44,7 @@ export default class extends Component {
     return (
       <section id="signup-form" className={displayClass}>
         <div className="access-form">
-          <input type="button" value="Sign up with Spotify"/>
-          <h5 className="caption">Or sign up with e-mail</h5>
+          <h5 className="caption">Join us</h5>
           <form method="post" action="" onSubmit={this.signUp}>
             <input
               type="text"

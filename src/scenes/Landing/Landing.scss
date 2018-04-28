@@ -1,12 +1,32 @@
+$pink: #ffcdd2;
+$grey: #f8f9f9;
+$yellow: #a3e4d7;
+
 #landing-page
 {
+  
+  @import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
+
+  font-family:'Rubik', sans-serif;
   width: 100%;
   height: 100%;
 
   overflow: hidden;
-
-  background-color: #ff0844;
-
+  /*
+  background-image: url('https://scontent-cdg2-1.xx.fbcdn.net/v/t1.15752-9/31437460_1911799875817421_1060852300727189504_n.jpg?_nc_cat=0&oh=981dbb6d4387a9cb2180c2c962d4bfb7&oe=5B518C18');
+  background-size: cover;
+  background-position: bottom;
+  background-blend-mode: soft-light;
+  */
+  
+  background-image: url('http://4.bp.blogspot.com/_KckYYvB7Ge0/TJmFTb9XkhI/AAAAAAAAAaw/rjtOQ9I5EDA/s1600/headphones-.jpg'), url('https://i.pinimg.com/originals/96/aa/9e/96aa9e2d8ebdc6b0c66cd93a1ec56781.jpg');
+  background-size: 30%, 30%;
+  background-position:top right, bottom left;
+  background-repeat: no-repeat;
+  background-blend-mode: color-burn;
+  
+  //background-image: linear-gradient(to top right,  #fce4ec 0%, $pink 100%);
+  background-color: $pink;
   .top-part
   {
     position: relative;
@@ -33,11 +53,17 @@
 
   position: relative;
 
-  background-image: linear-gradient(to top, #434343 0%, black 100%);
-
+  background-color: $grey;
   color: #fff;
 
   $side-margin: 5rem;
+
+  h6 
+  {
+    color: red;
+    font-weight:500;
+    font-size:2em;
+  }
 
   .caption
   {
@@ -58,20 +84,23 @@
     display: block;
     margin: 0;
     padding: 0;
-
+    font-weight: 900;
+    font-style: italic;
     position: absolute;
-
     text-transform: uppercase;
-    font-size: 6em;
+    font-size: 5em;
     left: $side-margin;
 
     &.line-1
     {
-      top: -6.5rem;
+      color:$grey;
+      top: -5.5rem;
+      text-shadow: -3px 3px #ff0000;
     }
 
     &.line-2
     {
+      color: #ff0000;
       top: .1rem;
     }
   }
@@ -86,41 +115,43 @@
 
     input[type=text]
     {
-      height: 6rem;
+      font-family:'Rubik';
+      height: 3rem;
       width: 30rem;
-
+      opacity:0.9;
       position: absolute;
-      top: -2.5rem;
-
+      top: -2.3rem;
       padding: 1rem;
-
-      border: 10px solid #000;
       outline: none;
-
-      font-size: 1.5rem;
+      box-shadow: 2px 2px red;
+      border: solid 1px $grey;
+      border-radius: 5px;
+      font-size: 1rem;
     }
 
     input[type=button]
     {
+      font-family:'Rubik';
       display: block;
       width: 15rem;
-      height: 2rem;
-
+      height: 3rem;
+      color: #fff;
       position: absolute;
-      top: 4rem;
+      top: 1.7rem;
       right: 10px;
 
       border: 0;
-      background-color: #fff;
+      background-color: red;
 
       text-transform: uppercase;
-      font-size: 1.2rem;
-      font-weight: bold;
+      font-size: 0.8rem;
+      font-weight:500;
+      cursor:pointer;
 
       &:hover
       {
         color: #FFF;
-        background-color: #ff0844;
+        background-color: red;
       }
     }
   }
