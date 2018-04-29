@@ -1,10 +1,10 @@
 // React
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import cookies from 'browser-cookies'
 
 // Scene dependencies
 import './App.scss'
+import auth from 'library/auth'
 
 // Scene components
 import Landing from './scenes/Landing/Landing'
@@ -39,25 +39,12 @@ export default class extends Component {
   }
 
   checkLogin = () => {
-    const token = cookies.get('token')
-
-    if (!token) { // missing token
-      return this.setState({isUser: false})
+    if (auth.isUser()) {
+      this.setState({
+        isUser: true,
+        token: auth.getToken()
+      })
     }
-
-    // Token found, let's check it against the server
-    // if the token is OK, let's store it in the app state
-    // The token will be send with every request to prove identity
-    // Also, refresh the token
-
-    cookies.set('token', token, {
-      expires: 14 // days
-    })
-
-    this.setState({
-      isUser: true,
-      token: token
-    })
   }
 
   render = () => {

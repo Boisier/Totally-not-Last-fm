@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import validator from 'validator'
-import cookies from 'browser-cookies'
 
 import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen'
 import SignUpForm from './components/SignUpForm/SignUpForm'
@@ -62,15 +61,6 @@ export default class extends Component {
     this.showSignUp()
   }
 
-  onLogin = (token) => {
-    // Set a token cookie valid for 2 weeks
-    cookies.set('token', token, {
-      expires: 14 // days
-    })
-
-    this.props.checkLogin()
-  }
-
   render = () => {
     const topPartClass = this.state.showSignUpForm || this.state.showSignInForm ? 'expand' : ''
     return (
@@ -82,14 +72,14 @@ export default class extends Component {
             showLanding={this.showLanding}
             showSignUp={this.showSignUp}
             showSignIn={this.showSignIn}
-            onLogin={this.onLogin} />
+            onLogin={this.props.checkLogin} />
           <SignInForm
             email={this.state.email}
             display={this.state.showSignInForm}
             showLanding={this.showLanding}
             showSignUp={this.showSignUp}
             showSignIn={this.showSignIn}
-            onLogin={this.onLogin} />
+            onLogin={this.props.checkLogin} />
         </section>
         <WelcomeScreen
           verifyEmail={this.verifyEmail}

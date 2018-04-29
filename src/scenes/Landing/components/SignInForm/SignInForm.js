@@ -1,6 +1,8 @@
 // React
 import React, { Component } from 'react'
 
+import auth from 'library/auth'
+
 import './SignInForm.scss'
 
 export default class extends Component {
@@ -29,7 +31,10 @@ export default class extends Component {
   signIn = () => {
     // Check validity of credentials against the server
     // if ok, a token will be retrived from the server
-    this.props.onLogin('testtoken')
+    if (auth.signIn(this.state.email, this.state.password)) {
+      auth.setToken('testtoken')
+      this.props.onLogin()
+    }
   }
 
   render = () => {
