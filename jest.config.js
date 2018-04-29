@@ -1,9 +1,10 @@
 module.exports = {
   collectCoverageFrom: ['src/**/*.{js,jsx,mjs}'],
-  testEnvironment: "jsdom",
+  testEnvironment: 'jsdom',
   setupFiles: [
     '<rootDir>/config/polyfills.js'
   ],
+  setupTestFrameworkScriptFile: '<rootDir>/enzyme.config.js',
   testMatch:
     [
       '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}',
@@ -29,7 +30,7 @@ module.exports = {
       '^@Containers(.*)$': '<rootDir>/src/containers$1',
       '^@Assets(.*)$': '<rootDir>/src/assets$1'
     },
-  modulePaths: ["<rootDir>/src/"],
+  modulePaths: ['<rootDir>/src/'],
   moduleFileExtensions:
     [
       'web.js',
