@@ -23,7 +23,7 @@ export default class extends Component {
       }
 
       this.setState(() => ({
-        IP: response.body.origin,
+        IP: response.data.origin,
         status: response.status
       }))
     })
