@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Conserve children prop 1`] = `
-<section
-  id="page-structure"
->
-  Content
-</section>
-`;
