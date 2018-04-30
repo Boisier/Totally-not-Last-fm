@@ -15,7 +15,7 @@ class CreateIncludeTable extends Migration
     {
         Schema::create('include', function (Blueprint $table) {
             $table->integer('id');
-            $table->foreign('album_id_album')->references('music_id_music')->on('users');
+            $table->integer('album_id_album')/*->references('music_id_music')->on('users')*/;
             
         });
     }

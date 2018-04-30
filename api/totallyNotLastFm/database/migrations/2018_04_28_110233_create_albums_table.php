@@ -16,7 +16,7 @@ class CreateAlbumsTable extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->increments('album_id_album', 255);
             $table->string('album_title_album', 255);
-            $table->integer('album_nb_tracks', 255);
+            $table->integer('album_nb_tracks');
         });
     }
 

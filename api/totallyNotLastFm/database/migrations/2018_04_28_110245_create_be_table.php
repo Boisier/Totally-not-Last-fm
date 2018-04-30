@@ -15,7 +15,7 @@ class CreateBeTable extends Migration
     {
         Schema::create('be', function (Blueprint $table) {
             $table->increments('genre_id_genre', 255);
-            $table->increments('music_id_music', 255);
+            $table->integer('music_id_music');
         });
     }
 

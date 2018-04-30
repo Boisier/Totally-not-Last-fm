@@ -15,7 +15,7 @@ class CreateBelongTable extends Migration
     {
         Schema::create('belong', function (Blueprint $table) {
             $table->increments('playlist_id_playlist_id', 255);
-            $table->increments('music_id_music', 255);
+            $table->integer('music_id_music');
         });
     }
 

@@ -15,7 +15,7 @@ class CreateContainTable extends Migration
     {
         Schema::create('contain', function (Blueprint $table) {
             $table->increments('music_id_music', 255);
-            $table->increments('history_id_history', 255);
+            $table->integer('history_id_history');
         });
     }
 
