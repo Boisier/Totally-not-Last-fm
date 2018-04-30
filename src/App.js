@@ -1,18 +1,60 @@
 // React
 import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
 
 // Scene dependencies
-import './App.css'
+import './App.scss'
+import auth from 'library/auth'
 
-// Scene componentts
+// Scene components
+import Landing from './scenes/Landing/Landing'
+
 import Header from './scenes/Header/Header'
-import REST from './scenes/RESTTest'
+import Footer from './scenes/Footer/Footer'
+import Home from './scenes/Home/Home'
 
 export default class extends Component {
-  render = () => (
-    <section className="App">
+  constructor (props) {
+    super(props)
+    document.title = 'Totally not Last fm'
+
+    // Set state as not logged in
+    this.state = {
+      isUser: false,
+      token: ''
+    }
+  }
+
+  componentWillMount () {
+    // Allow for automated connection for tests
+    // TODO: DO SOMETHING BETTER BECAUSE THIS IS BAD
+    if (this.props.forceLogin) {
+      auth.setToken('testtoken')
+    }
+
+    this.checkLogin()
+  }
+
+  checkLogin = () => {
+    if (auth.isUser()) {
+      this.setState({
+        isUser: true,
+        token: auth.getToken()
+      })
+    }
+  }
+
+  render = () => {
+    if (!this.state.isUser) {
+      return <Landing checkLogin={this.checkLogin}/>
+    }
+
+    return <main>
       <Header/>
-      <REST/>
-    </section>
-  )
+      <Switch>
+        <Route path='/' component={Home}/>
+      </Switch>
+      <Footer/>
+    </main>
+  }
 }
