@@ -2,13 +2,13 @@
 import React, { Component } from 'react'
 
 // Scene dependencies
-import './Header.scss'
+import 'style/scenes/Header.scss'
 
 export default class extends Component {
   render () {
     return (
       <header>
-        <h1>Totally not Last fm</h1>
+        <h3>Totally not <span className = "red">Last fm</span></h3>
       </header>
     )
   }

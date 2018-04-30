@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom'
 import './App.scss'
 import auth from 'library/auth'
 
-// Scene components
+// Scene scenes
 import Landing from './scenes/Landing/Landing'
 
 import Header from './scenes/Header/Header'
@@ -49,12 +49,14 @@ export default class extends Component {
       return <Landing checkLogin={this.checkLogin}/>
     }
 
-    return <main>
-      <Header/>
-      <Switch>
-        <Route path='/' component={Home}/>
-      </Switch>
-      <Footer/>
-    </main>
+    return (
+      <section className='App'>
+        <Header/>
+        <Switch>
+          <Route path='/' component={Home}/>
+        </Switch>
+        <Footer/>
+      </section>
+    )
   }
 }
