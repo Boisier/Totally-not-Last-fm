@@ -1,7 +1,8 @@
 // React
 import React, { Component } from 'react'
-
 import auth from 'library/auth'
+
+import FieldInput from 'containers/FieldInput/FieldInput'
 
 import './SignUpForm.scss'
 
@@ -52,22 +53,22 @@ export default class extends Component {
         <div className="access-form">
           <h5 className="caption">Join us</h5>
           <form method="post" action="" onSubmit={this.signUp}>
-            <input
+            <FieldInput
               type="text"
-              id="input-signin-email"
-              placeholder="Enter your e-mail address"
+              className="input-signin-email"
+              label="Enter your e-mail address"
               value={this.state.email}
               onChange={this.onInputUpdate.bind(this, 'email')}/>
-            <input
+            <FieldInput
               type="password"
-              id="input-signin-password"
-              placeholder="Enter your password"
+              className="input-signin-password"
+              label="Enter your password"
               value={this.state.password}
               onChange={this.onInputUpdate.bind(this, 'password')} />
-            <input
+            <FieldInput
               type="password"
-              id="input-signin-password"
-              placeholder="Confirm your password"
+              className="input-signin-password"
+              label="Confirm your password"
               value={this.state.confirmation}
               onChange={this.onInputUpdate.bind(this, 'confirmation')} />
             <input

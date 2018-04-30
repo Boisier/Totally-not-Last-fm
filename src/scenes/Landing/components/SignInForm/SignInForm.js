@@ -1,7 +1,8 @@
 // React
 import React, { Component } from 'react'
-
 import auth from 'library/auth'
+
+import FieldInput from 'containers/FieldInput/FieldInput'
 
 import './SignInForm.scss'
 
@@ -44,16 +45,16 @@ export default class extends Component {
       <section id="signin-form" className={displayClass}>
         <div className="access-form">
           <h5 className="caption">Plug in </h5>
-          <input
+          <FieldInput
             type="text"
-            id="input-signin-email"
-            placeholder="Enter your e-mail address"
+            className="input-signin-email"
+            label="Enter your e-mail address"
             value={this.state.email}
             onChange={this.onInputUpdate.bind(this, 'email')}/>
-          <input
+          <FieldInput
             type="password"
-            id="input-signin-password"
-            placeholder="Enter your password"
+            className="input-signin-password"
+            label="Enter your password"
             value={this.state.password}
             onChange={this.onInputUpdate(this, 'password')} />
           <input

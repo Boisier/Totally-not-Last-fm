@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import FieldInput from 'containers/FieldInput/FieldInput'
+
 export default class extends Component {
   constructor (props) {
     super(props)
@@ -30,10 +32,10 @@ export default class extends Component {
         <h1 className="title line-1">Totally not</h1>
         <h1 className="title line-2">Last fm</h1>
         <div className="access-form">
-          <input
+          <FieldInput
             type="text"
-            id="access-input-form"
-            placeholder="Enter your e-mail address"
+            className="access-input-form"
+            label="Enter your e-mail address"
             value={this.state.email}
             onKeyPress={this.onEmailUpdated}
             onChange={this.onInputChange}/>

@@ -4,8 +4,6 @@ import auth from './index'
 
 import cookies from 'browser-cookies'
 
-import settings from 'library/settings'
-
 describe('Checking Auth library behaviour', () => {
   it('Token is set correctly', () => {
     const token = makeid()
