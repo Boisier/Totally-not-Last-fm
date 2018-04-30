@@ -159,7 +159,13 @@ module.exports = {
           },
           {
             test: /\.(sass|scss)$/,
-            use: ['style-loader', 'css-loader', 'sass-loader']
+            use: [{
+              loader: 'style-loader'
+            }, {
+              loader: 'css-loader'
+            }, {
+              loader: 'sass-loader'
+            }]
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
