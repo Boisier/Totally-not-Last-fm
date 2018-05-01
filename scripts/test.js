@@ -23,4 +23,8 @@ if (!process.env.CI && argv.indexOf('--coverage') < 0) {
   argv.push('--watch', '--verbose')
 }
 
+if (process.env.CI) {
+  argv.push('--verbose')
+}
+
 jest.run(argv)
