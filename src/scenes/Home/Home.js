@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import User from './scenes/User/User'
+import User from '../User/User'
 
 export default class extends Component {
   render = () => (
