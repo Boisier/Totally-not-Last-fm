@@ -1,3 +1,7 @@
+$pink: #ffcdd2;
+$grey: #f8f9f9;
+$yellow: #a3e4d7;
+
 .App
 {
   display: block;
@@ -5,4 +9,5 @@
 
   height: 100%;
   width: 100%;
+  background-color: $grey;
 }
