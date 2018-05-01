@@ -1,15 +1,12 @@
-$pink: #ffcdd2;
-$grey: #f8f9f9;
-$yellow: #a3e4d7;
+@import '~style/root';
 
 .about-page
 {
-  @import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
-
   font-family:'Rubik', sans-serif;
-  display: block;
-  width: 100%;
-
+  width: 800px;
+  margin: 30px auto auto auto;
+  background-color:$grey;
+  
   .about-message {
     padding-top:0.4em;
     font-size:120px;
@@ -28,7 +25,7 @@ $yellow: #a3e4d7;
 
   .about-box {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 265px 265px 265px;
     align-items: stretch;
     background-color:white;
 

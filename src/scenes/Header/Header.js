@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 
 // Scene dependencies
-import 'style/scenes/Header.scss'
+import './Header.scss'
 
 export default class extends Component {
   render () {
