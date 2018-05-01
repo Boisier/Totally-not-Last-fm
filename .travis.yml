@@ -10,7 +10,7 @@ matrix:
           - $HOME/.npm
           - node_modules
       script:
-        - npm run test
+        - npm run coverage
     -
       language: php
       php: 7.1
@@ -24,7 +24,6 @@ matrix:
       script:
         - "./vendor/bin/phpunit --configuration='phpunit.xml' --testdox --coverage-clover=coverage.xml"
 after_success:
-  - npm run coverage
   - bash <(curl -s https://codecov.io/bash)
 notifications:
   email: false
