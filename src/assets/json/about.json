@@ -1,0 +1,39 @@
+{
+    "about": [
+      {
+        "name": "Laure Issa",
+        "role": "project jeffe",
+        "music": "Despacito"
+      },
+      {
+        "name": "Valentin Dufois",
+        "role": "frontend manager",
+        "music": "Despacito"
+      },
+      {
+        "name": "Marie-Lou Barbier",
+        "role": "frontend developer",
+        "music": "Despacito"
+      },
+      {
+        "name": "Guillaume Lollier",
+        "role": "backend manager",
+        "music": "Despacito"
+      },
+      {
+        "name": "Stella Poulain",
+        "role": "backend developer",
+        "music": "Despacito"
+      },
+      {
+        "name": "Nina De Castro",
+        "role": "backend developer",
+        "music": "Despacito"
+      },
+      {
+        "name": "Audrey Combe",
+        "role": "backend developer",
+        "music": "Despacito"
+      }
+    ]
+  }
