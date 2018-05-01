@@ -13,7 +13,7 @@ export default class extends Component {
           {
             aboutInformation.map((info) =>
               <div className="about-information-box">
-                <img className="about-image" alt={info.urlImg} src={'assets/images/' + info.urlImg } />
+                <img className="about-image" alt={info.urlImg} src={require('assets/images/' + info.urlImg)} />
                 <h3>{info.name}</h3>
                 <h4>{info.role}</h4>
                 <h5>{info.music[Math.floor(Math.random() * Math.floor(info.music.length))]}</h5>
