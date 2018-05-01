@@ -13,7 +13,7 @@ import App from './App'
 // Create the dom
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <App isConnected={false} />
   </BrowserRouter>, document.getElementById('root'))
 
 registerServiceWorker()
