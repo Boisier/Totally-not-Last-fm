@@ -3,32 +3,17 @@ import qs from 'querystring'
 
 import settings from '../settings.json'
 
-export default class API {
-  static authToken = null
-
+class API {
   /**
    * Instanciate the client and register predefined routes if needed
    */
-  static init () {
+  constructor () {
     axios.default.baseURL = settings.baseURL
-    axios.defaults.headers.common['auth-token'] = this.authToken
+    axios.defaults.headers.common['auth-token'] = ''
   }
 
-  /**
-   * Set the authentication token to be sent wgiith every request
-   * @param token
-   */
-  static setAuthToken (token) {
-    this.authToken = token
-    this.init()
-  }
-
-  /**
-   * Remove the authentication token
-   */
-  static removeAuthToken () {
-    this.authToken = null
-    this.init()
+  setToken (token) {
+    axios.defaults.headers.common['auth-token'] = token
   }
 
   //
@@ -40,7 +25,7 @@ export default class API {
    * Set-up handlers for response handling
    * @param options
    */
-  static sendRequest (options) {
+  sendRequest (options) {
     return axios(options)
   }
 
@@ -52,7 +37,7 @@ export default class API {
    * @param method String GET|POST|PUT|DELETE
    * @return Promise
    */
-  static sendComplex (url, data, multipart, method) {
+  sendComplex (url, data, multipart, method) {
     const headers = multipart ? {'content-type': 'application/x-www-form-urlencoded'} : {}
     return this.sendRequest({
       url: url,
@@ -70,7 +55,7 @@ export default class API {
    * @param url
    * @return Promise
    */
-  static get (url) {
+  get (url) {
     return this.sendRequest({
       url: url,
       method: 'get'
@@ -83,15 +68,18 @@ export default class API {
    * - TODO: POST for multipart form
    * @param url
    */
-  static post (url, data, multipart = false) {
+  post (url, data, multipart = false) {
     return this.sendComplex(url, data, multipart, 'post')
   }
 
-  static put (url, data, multipart = false) {
+  put (url, data, multipart = false) {
     return this.sendComplex(url, data, multipart, 'put')
   }
 
-  static delete (url, data, multipart = false) {
+  delete (url, data, multipart = false) {
     return this.sendComplex(url, data, multipart, 'delete')
   }
 }
+
+const api = new API()
+export default api

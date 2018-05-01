@@ -4,13 +4,22 @@
 
 import cookies from 'browser-cookies'
 import settings from '../settings'
+import api from '../api'
 
 /**
  * Tell if we are facing a user (true) or a visitor (false)
  * @return {boolean}
  */
-export default class {
-  static isUser () {
+class Auth {
+  constructor () {
+    if (!this.isUser()) {
+      return
+    }
+
+    api.setToken(this.getToken())
+  }
+
+  isUser () {
     const token = this.getToken()
 
     if (!token) { // missing token
@@ -35,7 +44,7 @@ export default class {
    * Tell if we are facing a visitor (true) or a user (false)
    * @return {boolean}
    */
-  static isVisitor () {
+  isVisitor () {
     return !this.isUser()
   }
 
@@ -43,7 +52,7 @@ export default class {
    * Check the current token against the server
    * @return {boolean}
    */
-  static tokenIsValid () {
+  tokenIsValid () {
     return true
   }
 
@@ -52,7 +61,7 @@ export default class {
    * May be an empty String if the user is a visitor
    * @return {String}
    */
-  static getToken () {
+  getToken () {
     return cookies.get('token')
   }
 
@@ -60,17 +69,26 @@ export default class {
    * Set the token with the given string
    * @param token
    */
-  static setToken (token) {
+  setToken (token) {
     cookies.set('token', token, {
       expires: settings.user.cookieDuration // days
     })
   }
 
-  static signUp (/* email, password, confirmation */) {
+  signUp (/* email, password, confirmation */) {
+    this.onLogin()
     return true
   }
 
-  static signIn (/* email, password */) {
+  signIn (/* email, password */) {
+    this.onLogin()
     return true
   }
+
+  onLogin () {
+    api.setToken(this.getToken())
+  }
 }
+
+const auth = new Auth()
+export default auth

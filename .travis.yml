@@ -6,9 +6,11 @@ matrix:
         - node
       cache:
         directories:
+          - $HOME/.node-gyp
           - $HOME/.npm
+          - node_modules
       script:
-        - npm run coverage
+        - npm run test
     -
       language: php
       php: 7.1
@@ -22,6 +24,7 @@ matrix:
       script:
         - "./vendor/bin/phpunit --configuration='phpunit.xml' --testdox --coverage-clover=coverage.xml"
 after_success:
+  - npm run coverage
   - bash <(curl -s https://codecov.io/bash)
 notifications:
   email: false

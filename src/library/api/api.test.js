@@ -3,18 +3,6 @@ import ReactDOM from 'react-dom'
 import api from './index'
 
 describe('Checking API library behaviour', () => {
-  it('Token is handled correctly', () => {
-    const token = makeid()
-
-    // Token setting
-    api.setAuthToken(token)
-    expect(api.authToken).toBe(token)
-
-    // Token removal
-    api.removeAuthToken()
-    expect(api.authToken).toBeNull()
-  })
-
   const standardResponse = {
     data: expect.anything(),
     status: 200,
