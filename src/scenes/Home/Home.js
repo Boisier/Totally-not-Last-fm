@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-import User from '../User/User'
+import StatsPeriodesNavBar from './scenes/StatsPeriodesNavBar/StatsPeriodesNavBar'
 
 export default class extends Component {
   render = () => (
     <section className='home-page'>
-      <User />
+      <StatsPeriodesNavBar />
     </section>
   )
 }

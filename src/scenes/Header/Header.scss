@@ -1,39 +1,108 @@
 @import '~style/root';
 
+// Hamburger & hamburger color
+$hamburger-layer-color: #ff0000;
+$hamburger-layer-width: 30px;
+$hamburger-layer-height: 3px;
+@import '~hamburgers/_sass/hamburgers/hamburgers';
+
+$header-transition: .15s;
+
 header
 {
-
   font-family:'Rubik', sans-serif;
-  display: block;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  overflow: hidden;
+
   position: fixed;
+  z-index:1000;
   top: 0;
   left: 0;
 
   height: $header-height;
   width: 100%;
-  z-index:1000;
+  padding: 0 5rem;
+
   background-color: $pink;
+
+  transition: $header-transition;
 
   h3
   {
-    width:23%;
+    display: block;
+    width: 80%;
+    height: $header-height;
+    margin: 0;
+
     color: $grey;
-    margin: 10px;
-    padding-left: 5em;
     text-align: left;
-    font-style: italic;
     text-transform: uppercase;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: $header-height;
+
+    transition: $header-transition;
+
     cursor: pointer;
 
     .red {
+      padding-left: .35rem;
       letter-spacing: -0.1em;
       color: red;
     }
-  }
-}
 
-// Update body with header height
-body
-{
-  //padding-top: $header-height;
+    .page-title {
+      padding-left: .35rem;
+      color: #000;
+    }
+  }
+
+  h5
+  {
+    height: $header-height;
+    margin: 0;
+
+    .hamburger
+    {
+      display: inline-block;
+      padding: 14px;
+
+      outline: none;
+
+      .hamburger-box
+      {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .hamburger-label
+      {
+        display: inline-block;
+        margin-left: .5rem;
+        vertical-align: middle;
+
+        color: $hamburger-layer-color;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+
+  &.menu-opened
+  {
+    height: 100%;
+
+    h3
+    {
+      padding-top: 1rem;
+      font-size: 3rem;
+    }
+
+    .page-title
+    {
+      opacity: 0;
+    }
+  }
 }
