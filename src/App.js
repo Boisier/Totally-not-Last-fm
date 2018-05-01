@@ -29,10 +29,7 @@ export default class extends Component {
     // Allow for automated connection for tests
     // TODO: DO SOMETHING BETTER BECAUSE THIS IS BAD
     if (this.props.forceLogin) {
-      return this.setState({
-        isUser: true,
-        token: 'testtoken'
-      })
+      auth.setToken('testtoken')
     }
 
     this.checkLogin()
