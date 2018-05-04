@@ -7,8 +7,7 @@ import './App.scss'
 import auth from 'library/auth'
 
 // Scene scenes
-import Header from './scenes/Header/Header'
-import Footer from './scenes/Footer/Footer'
+import Structure from './containers/Structure/Structure'
 
 import Landing from './scenes/Landing/Landing'
 import Home from './scenes/Home/Home'
@@ -52,15 +51,13 @@ export default class extends Component {
     }
 
     return (
-      <section className='App'>
-        <Header/>
-        <Switch>
+      <Structure>
+        <Switch >
           <Route path={'/about'} component={About} />
           <Route path={'/profile'} component={User} />
           <Route path={'/'} component={Home} />
         </Switch>
-        <Footer/>
-      </section>
+      </Structure>
     )
   }
 }

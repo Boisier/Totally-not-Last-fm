@@ -1,5 +1,33 @@
+/**
+  COLORS
+ */
 $pink: #ffcdd2;
 $grey: #f8f9f9;
 $red: red;
 
+/**
+  ANIMATIONS
+ */
+$transition-duration: .15s !default;
+$transition-animation: ease !default;
+$transition-delay: 0s !default;
+
+$global-transition: $transition-duration $transition-animation $transition-delay;
+
+/**
+  HEADER
+ */
 $header-height: 3rem;
+
+$hamburger-layer-color: #f00;
+$hamburger-layer-width: 30px;
+$hamburger-layer-height: 3px;
+
+$header-transition: $global-transition;
+
+@import '~hamburgers/_sass/hamburgers/hamburgers';
+
+/**
+  FOOTER
+ */
+$footer-height: 3rem;
