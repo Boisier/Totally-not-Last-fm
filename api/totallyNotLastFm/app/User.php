@@ -29,4 +29,25 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * An history can have one user
+     */
+    public function history(){
+        return $this->hasOne('App/History.php');
+    }
+
+    /**
+     * A user can have one spotify
+     */
+    public function spotify(){
+        return $this->hasOne('App/Spotify.php');
+    }
+
+    /**
+     * A user can have many playlist
+     */
+    public function playlist(){
+        return $this->hasMany('App/Playlist.php');
+    }
 }
