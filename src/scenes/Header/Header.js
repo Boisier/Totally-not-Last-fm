@@ -4,8 +4,11 @@ import { Route } from 'react-router-dom'
 
 // Scene dependencies
 import './Header.scss'
+<<<<<<< HEAD
 import pages from 'assets/json/pagesList'
 import Menu from './scenes/Menu/Menu'
+=======
+>>>>>>> feature/front/about
 
 export default class extends Component {
   constructor (props) {
