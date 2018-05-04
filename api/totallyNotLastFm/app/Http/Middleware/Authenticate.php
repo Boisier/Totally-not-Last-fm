@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use Illuminate\Http\Request;
+
 
 class Authenticate
 {
@@ -39,6 +41,7 @@ class Authenticate
             return response('Unauthorized.', 401);
         }
 
-        return $next($request);
+        // return $next($request); -> Stella shitwork
     }
+
 }

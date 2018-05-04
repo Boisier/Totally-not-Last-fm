@@ -17,4 +17,12 @@ class ExampleMiddleware
     {
         return $next($request);
     }
+
+    /* $app->get('/post/{id}', ['middleware' => 'auth', function (Request $request, $id) {
+    $user = Auth::user();
+
+    $user = $request->user();
+
+    }]);   -> Stella Shitwork */
+
 }
