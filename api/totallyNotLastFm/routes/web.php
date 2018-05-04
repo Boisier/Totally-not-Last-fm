@@ -19,3 +19,14 @@ $router->get('/', function () use ($router) {
 $router->get('/user/{name}', function ($name) {
     return $name;
 });
+
+/*******Albums*******/
+/*Return all the albums*/
+$router->get('/albums', 'AlbumController@index');
+
+/* Add an album 
+ Datas : 
+ 'album_title_album' => 'string'
+ 'album_nb_tracks' => 'integer'
+ */
+//$router->post('/albums', 'AlbumController@')
