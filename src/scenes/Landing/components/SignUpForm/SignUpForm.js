@@ -4,7 +4,7 @@ import auth from 'library/auth'
 
 import FieldInput from 'containers/FieldInput/FieldInput'
 
-import './SignUpForm.scss'
+import '../../SignForms.scss'
 
 export default class extends Component {
   constructor (props) {
@@ -55,26 +55,27 @@ export default class extends Component {
           <form method="post" action="" onSubmit={this.signUp}>
             <FieldInput
               type="text"
-              className="input-signin-email"
+              className="input-signup-email"
               label="Enter your e-mail address"
               value={this.state.email}
               onChange={this.onInputUpdate.bind(this, 'email')}/>
             <FieldInput
               type="password"
-              className="input-signin-password"
+              className="input-signup-password"
               label="Enter your password"
               value={this.state.password}
               onChange={this.onInputUpdate.bind(this, 'password')} />
             <FieldInput
               type="password"
-              className="input-signin-password"
+              className="input-signup-confirmation"
               label="Confirm your password"
               value={this.state.confirmation}
               onChange={this.onInputUpdate.bind(this, 'confirmation')} />
             <input
               type="submit"
-              value="Sign up"/>
-            <h6 onClick={this.props.showSignIn}>Click here to sign in</h6>
+              value="Sign up"
+              onClick={this.signUp}/>
+            <h6 onClick={this.props.showSignIn} className="clickable">Click here to sign in</h6>
           </form>
         </div>
       </section>

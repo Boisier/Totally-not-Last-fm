@@ -12,6 +12,10 @@
         "displayInHeader": true,
         "name": "Search"
     },
+    "settings": {
+        "displayInHeader": true,
+        "name": "Settings"
+    },
     "about": {
         "displayInHeader": true,
         "name": "About"

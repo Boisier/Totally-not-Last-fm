@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom'
 
 // Scene dependencies
 import './Header.scss'
-import pages from 'assets/json/pagesList'
+import pages from 'library/pagesList'
 import Menu from './scenes/Menu/Menu'
 
 export default class extends Component {

@@ -4,7 +4,7 @@ import StatsPeriodesNavBar from './scenes/StatsPeriodesNavBar/StatsPeriodesNavBa
 
 export default class extends Component {
   render = () => (
-    <section className='home-page'>
+    <section className="home-page">
       <StatsPeriodesNavBar />
     </section>
   )

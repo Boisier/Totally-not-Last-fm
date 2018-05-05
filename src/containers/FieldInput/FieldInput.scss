@@ -1,6 +1,4 @@
-$pink: #ffcdd2;
-$grey: #f8f9f9;
-$yellow: #a3e4d7;
+@import '~style/root';
 
 $field-height: 3rem;
 $field-font-size: 1rem;
@@ -14,7 +12,7 @@ $field-font-size: 1rem;
 {
   position: relative;
   height: $field-height;
-  width: 30rem;
+  width: 100%;
 
   font-family:'Rubik';
 
