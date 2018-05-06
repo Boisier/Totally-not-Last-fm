@@ -1,0 +1,120 @@
+$pink: #ffcdd2;
+$grey: #f8f9f9;
+$yellow: #a3e4d7;
+
+#signin-form
+{
+  @import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
+
+  background-color: rgba(255,255,255,0.85);
+  padding:200px;
+  width:50%;
+  height:50%;
+  font-family:'Rubik';
+
+  position: absolute;
+  left: 100%;
+  top:25%;
+  margin: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition-duration: .25s;
+  transition-timing-function: ease-in-out;
+
+  &.show
+  {
+    left: 25%;
+  }
+
+  h5 
+  {
+    padding:30px 30px 30px 0px;
+    text-transform:uppercase;
+    color: red;
+    font-weight:500;
+    font-size:2em;
+    font-style:italic;
+    font-weight:700;
+  }
+
+  h6 {
+    color: grey;
+    cursor : pointer;
+    text-align: right;
+    position:relative;
+    top:-2em;
+    left:2em;
+  }
+
+  .caption, input
+  {
+    display: block;
+    margin:20px;
+  }
+  
+  .access-form
+  {
+    display: block;
+    width: 30rem;
+
+    position: absolute;
+    //right: $side-margin;
+
+    input[type=text]
+    {
+      font-family:'Rubik';
+      height: 3rem;
+      width: 30rem;
+      opacity:0.9;
+      padding: 1rem;
+      outline: none;
+      box-shadow: 2px 2px red;
+      border: solid 1px $grey;
+      font-size: 1rem;
+    }
+
+    input[type=password]
+    {
+      font-family:'Rubik', sans-serif;
+      height: 3rem;
+      width: 30rem;
+      opacity:0.9;
+      padding: 1rem;
+      outline: none;
+      box-shadow: 2px 2px red;
+      border: solid 1px $grey;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    input[type=button]
+    {
+      font-family:'Rubik', sans-serif;
+      display: block;
+      width: 15rem;
+      height: 3rem;
+      color: #fff;
+      position: relative;
+      left: 50%;
+      border: 0;
+      background-color: red;
+
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight:500;
+      cursor:pointer;
+
+      &:hover
+      {
+        color: #FFF;
+        background-color: red;
+      }
+    }
+  }
+}
