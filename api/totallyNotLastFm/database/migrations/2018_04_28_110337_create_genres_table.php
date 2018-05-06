@@ -17,6 +17,7 @@ class CreateGenresTable extends Migration
       $table->engine = 'InnoDB';
       $table->increments('genre_id_genre', 255);
       $table->string('genre_name_genre', 255);
+      $table->nullableTimestamps();
     });
   }
 
