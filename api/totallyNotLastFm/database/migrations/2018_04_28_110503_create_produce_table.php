@@ -6,26 +6,28 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateProduceTable extends Migration
 {
-    /**
+  /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('produce', function (Blueprint $table) {
-            $table->increments('artist_id_artist');
-            $table->integer('album_id_album');
-        });
-    }
+  public function up()
+  {
+    Schema::create('produce', function (Blueprint $table) {
+      $table->engine = 'InnoDB';
+      $table->increments('artist_id_artist');
+      $table->integer('album_id_album');
+      $table->nullableTimestamps();
+    });
+  }
 
-    /**
+  /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('produce');
-    }
+  public function down()
+  {
+    Schema::dropIfExists('produce');
+  }
 }

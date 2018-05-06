@@ -6,26 +6,28 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBeTable extends Migration
 {
-    /**
+  /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('be', function (Blueprint $table) {
-            $table->increments('genre_id_genre', 255);
-            $table->integer('music_id_music');
-        });
-    }
+  public function up()
+  {
+    Schema::create('be', function (Blueprint $table) {
+      $table->engine = 'InnoDB';
+      $table->increments('genre_id_genre', 255);
+      $table->integer('music_id_music');
+      $table->nullableTimestamps();
+    });
+  }
 
-    /**
+  /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('be');
-    }
+  public function down()
+  {
+    Schema::dropIfExists('be');
+  }
 }

@@ -17,7 +17,7 @@ $factory->define(App\Album::class, function (Faker\Generator $faker) {
     'album_title_album' => $faker->title,
     'album_nb_tracks' => mt_rand(5,15),
     'album_updated_at'=> date("Y-m-d",mt_rand(1262055681,1262455681)),
-    'album_created_at'=> date("Y-m-d",mt_rand(1262055681,1262455681)),
+    'album_created_at'=> date("Y-m-d",mt_rand(1262055681,1262455681))
   ];
 });
 
@@ -63,7 +63,9 @@ $factory->define(App\Nationality::class, function(Faker\Generator $faker){
 
 $factory->define(App\Playlist::class, function(Faker\Generator $faker){
   return [
-    'playlist_id_playlist' => $faker->randomDigit
+    'playlist_id_playlist' => $faker->randomDigit,
+    'playlist_description' => $faker->name,
+    'playlist_name'=>$faker->name
     ];
 });
 
