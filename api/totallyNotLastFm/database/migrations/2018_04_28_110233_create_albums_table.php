@@ -17,6 +17,9 @@ class CreateAlbumsTable extends Migration
             $table->increments('album_id_album', 255);
             $table->string('album_title_album', 255);
             $table->integer('album_nb_tracks');
+            $table->date('album_updated_at');
+            $table->date('album_created_at');
+          
         });
     }
 
