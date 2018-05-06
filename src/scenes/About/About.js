@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import './About.scss'
 import aboutInformation from 'assets/json/about.json'
 
 export default class extends Component {

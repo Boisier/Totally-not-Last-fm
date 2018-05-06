@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import './Menu.scss'
-
 import pages from 'library/pagesList'
 
 export default class extends Component {

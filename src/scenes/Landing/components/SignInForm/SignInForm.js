@@ -4,8 +4,6 @@ import auth from 'library/auth'
 
 import FieldInput from 'containers/FieldInput/FieldInput'
 
-import '../../SignForms.scss'
-
 export default class extends Component {
   constructor (props) {
     super(props)

@@ -1,8 +1,6 @@
 // React
 import React, { Component } from 'react'
 
-import './Structure.scss'
-
 import Header from 'scenes/Header/Header'
 import Footer from 'scenes/Footer/Footer'
 

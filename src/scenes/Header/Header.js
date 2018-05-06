@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 // Scene dependencies
-import './Header.scss'
 import pages from 'library/pagesList'
 import Menu from './scenes/Menu/Menu'
 

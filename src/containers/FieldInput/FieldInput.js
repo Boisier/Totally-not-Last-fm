@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import uuidv4 from 'uuid/v4'
 
-import './FieldInput.scss'
-
 export default class extends Component {
   constructor (props) {
     super(props)

@@ -1,0 +1,25 @@
+// Main SCSS Stylesheet
+
+// Globals
+@import 'variables';
+@import 'fonts';
+@import 'helpers';
+
+// Containers
+@import '../containers/**/*.scss';
+
+// Scenes
+@import '../scenes/**/*.scss';
+
+/*
+  APP
+ */
+.App
+{
+  display: block;
+  position: relative;
+
+  height: 100%;
+  width: 100%;
+  background-color: $grey;
+}

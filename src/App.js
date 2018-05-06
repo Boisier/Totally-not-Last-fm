@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 // Scene dependencies
-import './App.scss'
+import './style/App.scss'
 import auth from 'library/auth'
 
 // Scene scenes
@@ -56,7 +56,7 @@ export default class extends Component {
         <Switch >
           <Route path={'/about'} component={About} />
           <Route path={'/profile'} component={User} />
-          <Route path={'settings'} component={Settings} />
+          <Route path={'/settings'} component={Settings} />
           <Route path={'/'} component={Home} />
         </Switch>
       </Structure>

@@ -1,8 +1,6 @@
 // React
 import React, { Component } from 'react'
 
-import './User.scss'
-
 export default class extends Component {
   render = () => (
     <section className='user-profile'>
