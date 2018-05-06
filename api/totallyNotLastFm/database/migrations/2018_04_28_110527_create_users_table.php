@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('user_password', 255);
             $table->date('user_birthday');
             $table->string('user_email', 255);
+            $table->string('user_username', 255);
         });
     }
 

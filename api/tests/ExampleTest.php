@@ -10,7 +10,7 @@ final class ExampleTests extends TestCase
 	public function testTestsAreWorking(): void
 	{
 		$this->assertEquals(
-			'I love you',
+			'J adore ce que tu fais',
 			testExample()
 		);
 	}

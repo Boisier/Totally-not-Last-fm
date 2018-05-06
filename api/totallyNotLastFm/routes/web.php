@@ -15,7 +15,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-
-$router->get('/user/{name}', function ($name) {
-    return $name;
-});
+$router->get('/user/{email}', function ($email)) {
+	return $email;
+}
