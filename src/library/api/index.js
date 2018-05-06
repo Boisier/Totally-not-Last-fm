@@ -1,25 +1,26 @@
-import Request from 'request-promise-native'
+import axios from 'axios'
+import qs from 'querystring'
+
+import settings from '../settings.json'
 
 export default class API {
   static authToken = null
 
   /**
-   * Instanciate the client and register predefined routes if nedded
+   * Instanciate the client and register predefined routes if needed
    */
-  /* static init () {
-    if (this.client !== null) {
-      return
-    }
-
-    // register routes
-  } */
+  static init () {
+    axios.default.baseURL = settings.baseURL
+    axios.defaults.headers.common['auth-token'] = this.authToken
+  }
 
   /**
-   * Set the authentication token to be sent with every request
+   * Set the authentication token to be sent wgiith every request
    * @param token
    */
   static setAuthToken (token) {
     this.authToken = token
+    this.init()
   }
 
   /**
@@ -27,38 +28,7 @@ export default class API {
    */
   static removeAuthToken () {
     this.authToken = null
-  }
-
-  //
-  // API response handling
-
-  static _include_headers (body, response) {
-    return {headers: response, body: JSON.parse(body)}
-  };
-
-  /**
-   * Called when the resquest has been correctly received
-   * @param response
-   * @return {{success: boolean, status: * | statusCode, header, body}}
-   */
-  static querySucceeded (response) {
-    return {
-      success: true,
-      status: response.headers.statusCode, // Easy access to response HTTP code
-      headers: response.headers,
-      body: response.body
-    }
-  }
-
-  /**
-   * Called when the query hasn't been properly received
-   * @param response
-   * @return {{success: boolean}}
-   */
-  static queryFailed (response) {
-    return {
-      success: false
-    }
+    this.init()
   }
 
   //
@@ -71,15 +41,7 @@ export default class API {
    * @param options
    */
   static sendRequest (options) {
-    return Request({
-      headers: {
-        'auth-token': this.authToken
-      },
-      simple: false,
-      transform: this._include_headers,
-      ...options
-    }).then(this.querySucceeded)
-      .catch(this.queryFailed)
+    return axios(options)
   }
 
   /**
@@ -91,12 +53,12 @@ export default class API {
    * @return Promise
    */
   static sendComplex (url, data, multipart, method) {
-    const dataHolder = multipart ? {formData: data} : {form: data}
-
+    const headers = multipart ? {'content-type': 'application/x-www-form-urlencoded'} : {}
     return this.sendRequest({
       url: url,
       method: method,
-      ...dataHolder
+      data: qs.stringify(data),
+      headers: headers
     })
   }
 
@@ -111,7 +73,7 @@ export default class API {
   static get (url) {
     return this.sendRequest({
       url: url,
-      method: 'GET'
+      method: 'get'
     })
   }
 
@@ -122,14 +84,14 @@ export default class API {
    * @param url
    */
   static post (url, data, multipart = false) {
-    return this.sendComplex(url, data, multipart, 'POST')
+    return this.sendComplex(url, data, multipart, 'post')
   }
 
   static put (url, data, multipart = false) {
-    return this.sendComplex(url, data, multipart, 'PUT')
+    return this.sendComplex(url, data, multipart, 'put')
   }
 
   static delete (url, data, multipart = false) {
-    return this.sendComplex(url, data, multipart, 'DELETE')
+    return this.sendComplex(url, data, multipart, 'delete')
   }
 }
