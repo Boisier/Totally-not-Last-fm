@@ -27,7 +27,7 @@ class HistoryController extends Controller{
 		$this->validateRequestHistory($request);
 
 		$history = History::create([
-			'history_playtime' => $request->get('history_playtime'),
+			'history_play_time' => $request->get('history_play_time'),
 			'user_id_user' => $request->get('user_id_user')
 		]);
 
@@ -53,7 +53,7 @@ class HistoryController extends Controller{
 
 		$this->validateRequestHistory($request);
 
-		$hsitory->history_playtime = $request->get('history_playtime');
+		$hsitory->history_playtime = $request->get('history_play_time');
 		$history->user_id_user = $request->get('user_id_user');
 
 		$history->save();
@@ -76,8 +76,8 @@ class HistoryController extends Controller{
 	//Validate request
 	public function validateRequestHistory(Request $request){
 		$rules = [
-			'history_playtime' => 'required',
-			'user_id_user' => 'required'
+			'history_play_time' => 'required|time',
+			'user_id_user' => 'required|numeric'
 		];
 
 		$this->validate($request, $rules);

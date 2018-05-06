@@ -78,7 +78,7 @@ class PlaylistController extends Controller{
 	//validate request
 	public function validateRequestPlaylist(Request $request){
 		$rules = [
-			'user_id_user' => 'required',
+			'user_id_user' => 'required|numeric',
 			'playlist_description' => 'required',
 			'playlist_name' => 'required'
 		];

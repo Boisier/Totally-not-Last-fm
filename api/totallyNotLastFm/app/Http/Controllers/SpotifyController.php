@@ -77,8 +77,8 @@ class SpotifyController extends Controller{
 	//validate request
 	public function validateRequestSpotify(Request $request){
 		$rules = [
-			'user_id_user' => 'required',
-			'spotify_our_id' => 'required'
+			'user_id_user' => 'required|numeric',
+			'spotify_our_id' => 'required|numeric'
 		];
 
 		$this->validate($request, $rules);

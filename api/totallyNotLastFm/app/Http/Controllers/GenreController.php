@@ -69,7 +69,7 @@ class GenreController extends Controller{
 		//validate request
 		public function validateRequestGenre(Request $request){
 			$rules = [
-				'genre_name_genre' => 'required'
+				'genre_name_genre' => 'required|alpha'
 			];
 
 			$this->validate($request, $rules);

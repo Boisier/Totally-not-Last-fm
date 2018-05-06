@@ -79,8 +79,8 @@ class ArtistController extends Controller{
 	public function validateRequestArtist(Request $request){
 		$rules = [
 			'artist_name' => 'required',
-			'artist_birth_year' => 'required',
-			'artist_death_year' => 'required'
+			'artist_birth_year' => 'required|numeric',
+			'artist_death_year' => 'required|numeric'
 		];
 
 		$this->validate($request, $rules);

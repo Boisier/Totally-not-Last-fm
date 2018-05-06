@@ -74,7 +74,7 @@ class NationalityController extends Controller{
 	//validate request
 	public function validateRequestNationality(Request $request){
 		$rules = [
-			'nationality_code' => 'required'	
+			'nationality_code' => 'required|alpha'	
 		];
 
 		$this->validate($request, $rules);

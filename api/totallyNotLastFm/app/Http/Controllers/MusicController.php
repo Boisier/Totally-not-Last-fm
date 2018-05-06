@@ -79,8 +79,8 @@ class MusicController extends Controller{
 	public function validateRequestMusic(Request $request){
 		$rules = [
 			'music_title' => 'required',
-			'music_duration' => 'required',
-			'music_release_date' => 'required'			
+			'music_duration' => 'required|time',
+			'music_release_date' => 'required|date'			
 		];
 
 		$this->validate($request, $rules);

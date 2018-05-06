@@ -77,7 +77,7 @@ class AlbumController extends Controller{
 	public function validateRequestAlbum(Request $request){
 		$rules = [
 			'album_title_album' => 'required',
-			'album_nb_tracks' => 'required'
+			'album_nb_tracks' => 'required|numeric'
 		];
 
 		$this->validate($request, $rules);
