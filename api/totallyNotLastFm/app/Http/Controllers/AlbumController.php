@@ -17,9 +17,11 @@ class AlbumController extends Controller{
 
 	//get All Albums
 	public function getAllAlbums(){
-		$albums = Album::all();
+	// 	$albums = Album::all();
 
-		return $this->success($albums, 200);
+	// 	return $this->success($albums, 200);
+
+		return $this->success("", 201);
 	}
 
 	//create Album
