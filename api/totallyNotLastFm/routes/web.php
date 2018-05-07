@@ -19,6 +19,7 @@ $app->get('/', function () use ($app) {
 $router->get('/user/{name}', function ($name) {
     return $name;
 });
+
 */
 
 
@@ -390,4 +391,5 @@ $app->put('/users/{user_id_user}', 'UserController@updateUser');
 /* DeleteUser
 */
 $app->delete('/users/{user_id_user}', 'UserController@deleteUser');
+
 
