@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 import './Dataviz.scss'
-import {Line} from 'react-chartjs-2'
+import {Bar} from 'react-chartjs-2'
 
 export default class extends Component {
   render = () => {
@@ -10,7 +10,13 @@ export default class extends Component {
       datasets: [{
         data: [12, 19, 3, 5, 2, 13, 18],
         backgroundColor: [
-          'rgba(255, 150, 150, 1)'
+          'rgba(150, 150, 255, 1)',
+          'rgba(150, 150, 255, 1)',
+          'rgba(150, 150, 255, 1)',
+          'rgba(150, 150, 255, 1)',
+          'rgba(150, 150, 255, 1)',
+          'rgba(150, 150, 255, 1)',
+          'rgba(150, 150, 255, 1)'
         ],
         borderColor: [
           'rgba(255,99,132,0)'
@@ -18,8 +24,8 @@ export default class extends Component {
         borderWidth: 0
       }]
     }
-    return <div className='graph-item line-graph'>
-      <Line
+    return <div className='graph-item bar-graph'>
+      <Bar
         data={data}
         width={50}
         height={10}
@@ -69,11 +75,9 @@ export default class extends Component {
           },
           elements: {
             point: {
-              radius: 3,
+              radius: 0,
               hitRadius: 25,
-              hoverRadius: 3,
-              borderWidth: 1,
-              borderColor: 'rgba(255, 0, 0, 1)'
+              hoverRadius: 3
             }
           }
         }}
