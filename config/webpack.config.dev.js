@@ -11,6 +11,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
 const getClientEnvironment = require('./env')
 const paths = require('./paths')
+const globImporter = require('node-sass-glob-importer')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -90,10 +91,10 @@ module.exports = {
       'react-native': 'react-native-web',
 
       // custom aliases
-      'Library': path.resolve(__dirname, "..", "src", "library"),
-      'Scenes': path.resolve(__dirname, "..", "src", "scenes"),
-      'Containers': path.resolve(__dirname, "..", "src", "containers"),
-      'Assets': path.resolve(__dirname, "..", "src", "assets")
+      'Library': path.resolve(__dirname, '..', 'src', 'library'),
+      'Scenes': path.resolve(__dirname, '..', 'src', 'scenes'),
+      'Containers': path.resolve(__dirname, '..', 'src', 'containers'),
+      'Assets': path.resolve(__dirname, '..', 'src', 'assets')
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -159,7 +160,19 @@ module.exports = {
           },
           {
             test: /\.(sass|scss)$/,
-            use: ['style-loader', 'css-loader', 'sass-loader']
+            use: [{
+              loader: 'style-loader'
+            }, {
+              loader: 'css-loader'
+            }, {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [
+                  require('path').resolve(__dirname, 'node_modules')
+                ],
+                importer: globImporter()
+              }
+            }]
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.

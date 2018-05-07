@@ -1,9 +1,8 @@
 // React
 import React, { Component } from 'react'
-
 import auth from 'library/auth'
 
-import './SignUpForm.scss'
+import FieldInput from 'containers/FieldInput/FieldInput'
 
 export default class extends Component {
   constructor (props) {
@@ -52,28 +51,29 @@ export default class extends Component {
         <div className="access-form">
           <h5 className="caption">Join us</h5>
           <form method="post" action="" onSubmit={this.signUp}>
-            <input
+            <FieldInput
               type="text"
-              id="input-signin-email"
-              placeholder="Enter your e-mail address"
+              className="input-signup-email"
+              label="Enter your e-mail address"
               value={this.state.email}
               onChange={this.onInputUpdate.bind(this, 'email')}/>
-            <input
+            <FieldInput
               type="password"
-              id="input-signin-password"
-              placeholder="Enter your password"
+              className="input-signup-password"
+              label="Enter your password"
               value={this.state.password}
               onChange={this.onInputUpdate.bind(this, 'password')} />
-            <input
+            <FieldInput
               type="password"
-              id="input-signin-password"
-              placeholder="Confirm your password"
+              className="input-signup-confirmation"
+              label="Confirm your password"
               value={this.state.confirmation}
               onChange={this.onInputUpdate.bind(this, 'confirmation')} />
             <input
               type="submit"
-              value="Sign up"/>
-            <h6 onClick={this.props.showSignIn}>Click here to sign in</h6>
+              value="Sign up"
+              onClick={this.signUp}/>
+            <h6 onClick={this.props.showSignIn} className="clickable">Click here to sign in</h6>
           </form>
         </div>
       </section>

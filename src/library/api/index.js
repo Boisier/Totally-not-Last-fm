@@ -1,64 +1,19 @@
-import Request from 'request-promise-native'
+import axios from 'axios'
+import qs from 'querystring'
 
-export default class API {
-  static authToken = null
+import settings from '../settings.json'
 
+class API {
   /**
-   * Instanciate the client and register predefined routes if nedded
+   * Instanciate the client and register predefined routes if needed
    */
-  /* static init () {
-    if (this.client !== null) {
-      return
-    }
-
-    // register routes
-  } */
-
-  /**
-   * Set the authentication token to be sent with every request
-   * @param token
-   */
-  static setAuthToken (token) {
-    this.authToken = token
+  constructor () {
+    axios.default.baseURL = settings.baseURL
+    axios.defaults.headers.common['auth-token'] = ''
   }
 
-  /**
-   * Remove the authentication token
-   */
-  static removeAuthToken () {
-    this.authToken = null
-  }
-
-  //
-  // API response handling
-
-  static _include_headers (body, response) {
-    return {headers: response, body: JSON.parse(body)}
-  };
-
-  /**
-   * Called when the resquest has been correctly received
-   * @param response
-   * @return {{success: boolean, status: * | statusCode, header, body}}
-   */
-  static querySucceeded (response) {
-    return {
-      success: true,
-      status: response.headers.statusCode, // Easy access to response HTTP code
-      headers: response.headers,
-      body: response.body
-    }
-  }
-
-  /**
-   * Called when the query hasn't been properly received
-   * @param response
-   * @return {{success: boolean}}
-   */
-  static queryFailed () {
-    return {
-      success: false
-    }
+  setToken (token) {
+    axios.defaults.headers.common['auth-token'] = token
   }
 
   //
@@ -70,16 +25,8 @@ export default class API {
    * Set-up handlers for response handling
    * @param options
    */
-  static sendRequest (options) {
-    return Request({
-      headers: {
-        'auth-token': this.authToken
-      },
-      simple: false,
-      transform: this._include_headers,
-      ...options
-    }).then(this.querySucceeded)
-      .catch(this.queryFailed)
+  sendRequest (options) {
+    return axios(options)
   }
 
   /**
@@ -90,13 +37,13 @@ export default class API {
    * @param method String GET|POST|PUT|DELETE
    * @return Promise
    */
-  static sendComplex (url, data, multipart, method) {
-    const dataHolder = multipart ? {formData: data} : {form: data}
-
+  sendComplex (url, data, multipart, method) {
+    const headers = multipart ? {'content-type': 'application/x-www-form-urlencoded'} : {}
     return this.sendRequest({
       url: url,
       method: method,
-      ...dataHolder
+      data: qs.stringify(data),
+      headers: headers
     })
   }
 
@@ -108,10 +55,10 @@ export default class API {
    * @param url
    * @return Promise
    */
-  static get (url) {
+  get (url) {
     return this.sendRequest({
       url: url,
-      method: 'GET'
+      method: 'get'
     })
   }
 
@@ -121,15 +68,18 @@ export default class API {
    * - TODO: POST for multipart form
    * @param url
    */
-  static post (url, data, multipart = false) {
-    return this.sendComplex(url, data, multipart, 'POST')
+  post (url, data, multipart = false) {
+    return this.sendComplex(url, data, multipart, 'post')
   }
 
-  static put (url, data, multipart = false) {
-    return this.sendComplex(url, data, multipart, 'PUT')
+  put (url, data, multipart = false) {
+    return this.sendComplex(url, data, multipart, 'put')
   }
 
-  static delete (url, data, multipart = false) {
-    return this.sendComplex(url, data, multipart, 'DELETE')
+  delete (url, data, multipart = false) {
+    return this.sendComplex(url, data, multipart, 'delete')
   }
 }
+
+const api = new API()
+export default api

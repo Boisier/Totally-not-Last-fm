@@ -1,0 +1,68 @@
+$field-height: 3rem;
+$field-font-size: 1rem;
+
+%reduced-label {
+  font-size: .7rem;
+  top: $field-height * .05;
+}
+
+.field-input
+{
+  position: relative;
+  height: $field-height;
+  width: 100%;
+
+  font-family:'Rubik';
+
+  background-color: #FFF;
+
+  box-shadow: 2px 2px red;
+  border: solid 1px $grey;
+  border-radius: 5px;
+
+  overflow: hidden;
+
+  input
+  {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 1rem 1rem .5rem;
+
+    opacity: 0.9;
+
+    outline: none;
+    border: none;
+
+    font-size: 1rem;
+
+    &:active + label,
+    &:focus + label
+    {
+      @extend %reduced-label;
+    }
+  }
+
+  label
+  {
+    position: absolute;
+    left: $field-height * .33;
+    top: ($field-height - ($field-font-size * 1.2)) / 2;
+
+    width: 100%;
+    height: 100%;
+
+    color: red;
+    font-size: $field-font-size;
+
+    transition-duration: .1s;
+    transition-timing-function: ease-in-out;
+
+    cursor: text;
+
+    &.reduced
+    {
+      @extend %reduced-label;
+    }
+  }
+}

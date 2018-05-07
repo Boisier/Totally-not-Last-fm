@@ -1,0 +1,33 @@
+menu
+{
+  display: block;
+  width: 100%;
+
+  transition: $header-transition;
+  overflow: hidden;
+
+  ul
+  {
+    margin: 0;
+    padding: 0 0 0 1rem;
+    list-style: none;
+
+    li>a
+    {
+      display: block;
+      color: $grey;
+      text-align: left;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-style: italic;
+      font-size: 4rem;
+      font-weight: bold;
+
+      &:hover
+      {
+        color: $red;
+        font-size: 8em;
+      }
+    }
+  }
+}
