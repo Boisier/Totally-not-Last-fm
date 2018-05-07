@@ -14,6 +14,7 @@ class CreateForeignKeys extends Migration
     public function up(){
 		/*-------tables-------*/
 		//history
+      /*
 		Schema::table('histories', function(Blueprint $table){
 			$table->foreign('user_id_user')
 				  ->references('user_id_user')
@@ -40,7 +41,7 @@ class CreateForeignKeys extends Migration
 				  ->onUpdate('restrict');
 		});
 
-		/*-------associations-------*/
+		/*-------associations-------
 		//be
 		Schema::table('be', function (Blueprint $table){
 			$table->foreign('genre_id_genre')
@@ -158,14 +159,14 @@ class CreateForeignKeys extends Migration
 				  ->on('artists')
 				  ->onDelete('restrict')
 				  ->onUpdate('restrict');
-		});
+		});*/
 	}
 
 	/*Reverse migrations*/
 	
 	public function down(){
 		//history
-		Schema::table('histories', function(Blueprint $table){
+		/*Schema::table('histories', function(Blueprint $table){
 			$table->dropForeign('histories_user_id_user_foreign');
 		});
 
@@ -240,6 +241,6 @@ class CreateForeignKeys extends Migration
 
 		Schema::table('produce', function(Blueprint $table){
 			$table->dropForeign('produce_album_id_album_foreign');
-		});
+		});*/
 	}
 }
