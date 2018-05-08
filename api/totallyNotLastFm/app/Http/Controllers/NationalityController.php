@@ -27,7 +27,7 @@ class NationalityController extends Controller{
 		$this->validateRequestNationality($request);
 
 		$nationality = Nationality::create([
-			'nationality_code' => $request->get('nationality_code');
+			'nationality_code' => $request->get('nationality_code')
 		]);
 
 		return $this->success("The nationality with id {$nationality->nationality_id_nationality} has been created", 201);
