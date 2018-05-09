@@ -11,7 +11,7 @@ export default class extends Component {
         <div className="about-box">
           {
             aboutInformation.map((info) =>
-              <div className="about-information-box">
+              <div className="about-information-box" key={info.name}>
                 <img className="about-image" alt={info.urlImg} src={require('assets/images/' + info.urlImg)} />
                 <h3>{info.name}</h3>
                 <h4>{info.role}</h4>

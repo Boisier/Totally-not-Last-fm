@@ -48,6 +48,8 @@ header
     .page-title {
       padding-left: .35rem;
       color: #000;
+
+      transition: opacity $header-transition;
     }
   }
   h5

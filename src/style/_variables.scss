@@ -15,6 +15,15 @@ $transition-delay: 0s !default;
 $global-transition: $transition-duration $transition-animation $transition-delay;
 
 /**
+  FORMS
+ */
+$field-height: 3rem !default;
+$field-font-size: 1rem !default;
+
+$button-height: $field-height!default;
+$button-width: $field-height * 5!default;
+
+/**
   HEADER
  */
 $header-height: 3rem;

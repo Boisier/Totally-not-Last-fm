@@ -1,5 +1,16 @@
 .text-
 {
+  &link
+  {
+    cursor: pointer;
+
+    &:hover
+    {
+      color: $red;
+      text-decoration: underline;
+    }
+  }
+
   &danger
   {
     color: $red!important;

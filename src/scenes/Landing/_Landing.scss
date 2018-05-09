@@ -103,32 +103,14 @@
     {
       position: absolute;
       top: -2.3rem;
+      width: 100%;
     }
 
     input[type=button]
     {
-      font-family:'Rubik';
-      display: block;
-      width: 15rem;
-      height: 3rem;
-      color: #fff;
       position: absolute;
       top: 1.7rem;
       right: 10px;
-
-      border: 0;
-      background-color: $red;
-
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      font-weight:500;
-      cursor:pointer;
-
-      &:hover
-      {
-        color: #FFF;
-        background-color: $red;
-      }
     }
   }
 }

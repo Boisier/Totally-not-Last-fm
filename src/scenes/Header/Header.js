@@ -17,8 +17,6 @@ export default class extends Component {
   mapUrlToPageName = (routeProps) => {
     const { params } = routeProps.match
 
-    console.log(routeProps)
-
     if (!params.pageName) {
       return null
     }
