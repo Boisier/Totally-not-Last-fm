@@ -18,8 +18,24 @@ header
   padding: 0 5rem;
 
   background-color: $pink;
+  box-shadow: 0 0 0 0 $red,
+              0 0 0 0 $grey,
+              0 0 0 0 black,
+              0 0 0 0 $red;
 
-  transition: $header-transition;
+  transition: $header-transition,
+              box-shadow ease-out .5s .25s;
+
+  &.menu-opened.closing-animation
+  {
+    box-shadow: 0 0 0 100vh  $red,
+                0 0 0 150vh  $grey,
+                0 0 0 175vh  black,
+                0 0 0 250vh  $red;
+
+    transition: $header-transition,
+                box-shadow ease-out 0s .15s;
+  }
 
   h3
   {

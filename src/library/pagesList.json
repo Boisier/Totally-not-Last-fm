@@ -4,10 +4,6 @@
         "displayInHeader": false,
         "name": "Home"
     },
-    "profile": {
-        "displayInHeader": true,
-        "name": "Profile"
-    },
     "search": {
         "displayInHeader": true,
         "name": "Search"

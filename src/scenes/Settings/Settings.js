@@ -3,6 +3,18 @@ import React, { Component } from 'react'
 import EditableFieldInput from 'containers/EditableFieldInput/EditableFieldInput'
 
 export default class extends Component {
+  constructor (props) {
+    super(props)
+    /*
+    Retrieve user infos from server
+     */
+    this.setState({
+      user: {
+        email: "test@test.fr",
+        spotifyLink: false
+      }
+    })
+  }
   updateEmail = (newEmail) => {
     console.log(newEmail)
     return newEmail
@@ -21,7 +33,7 @@ export default class extends Component {
         <EditableFieldInput
           type="text"
           label="Email address"
-          value={'valentin@dufois.fr'}
+          value={this.state.user.email}
           onConfirm={this.updateEmail} />
         <h3>Password</h3>
         <EditableFieldInput

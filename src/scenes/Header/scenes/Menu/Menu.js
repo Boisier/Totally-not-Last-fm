@@ -13,7 +13,7 @@ export default class extends Component {
               <li key={ pages[key].name }>
                 <Link
                   to={'/' + key}
-                  onClick={this.props.closeMenu} >
+                  onClick={this.props.closeMenu.bind(this, '/' + key)} >
                   { '_' + pages[key].name }
                 </Link>
               </li>
