@@ -53,8 +53,6 @@ header
 
     transition: $header-transition;
 
-    cursor: pointer;
-
     .red {
       padding-left: .35rem;
       letter-spacing: -0.1em;
@@ -68,6 +66,7 @@ header
       transition: opacity $header-transition;
     }
   }
+
   h5
   {
     height: $header-height;

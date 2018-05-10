@@ -3,7 +3,8 @@
   font-family:'Rubik', sans-serif;
 
   width: 800px;
-  margin: 30px auto auto auto;
+  margin: auto;
+  padding: 30px 0;
   background-color: $grey;
 
   h2
@@ -20,8 +21,45 @@
     text-transform: uppercase;
   }
 
+  .settings-section
+  {
+    margin: 25px;
+  }
+
   .editable-field-input
   {
     width: 60%;
+  }
+
+  .spotify-link
+  {
+    width: fit-content;
+    padding: 15px 20px;
+    border-radius: 100px;
+    background-color: $spotify-green;
+    color: #fff;
+
+    &.btn {
+
+      cursor: pointer;
+
+      transition: $global-transition;
+
+      &:hover {
+        color: $spotify-green;
+        background-color: black;
+      }
+    }
+  }
+
+  .remove-account-btn {
+  }
+
+  .settings-disclaimer
+  {
+    margin-top: 25px;
+
+    color: #444;
+    font-size: .8em;
   }
 }
