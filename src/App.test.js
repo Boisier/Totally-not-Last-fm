@@ -50,10 +50,6 @@ describe('App display the correct page', () => {
       const { home } = setup({url: '/'})
       expect(home.length).toBe(1)
     })
-    it('/profile => User page', () => {
-      const { user } = setup({url: '/profile'})
-      expect(user.length).toBe(1)
-    })
     it('/about => About page', () => {
       const { about } = setup({url: '/about'})
       expect(about.length).toBe(1)

@@ -55,7 +55,6 @@ export default class extends Component {
       <Structure>
         <Switch >
           <Route path={'/about'} component={About} />
-          <Route path={'/profile'} component={User} />
           <Route path={'/settings'} component={Settings} />
           <Route path={'/'} component={Home} />
         </Switch>
