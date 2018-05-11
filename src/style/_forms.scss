@@ -64,7 +64,7 @@ input[type=reset],
   color: #fff;
 
   border: 0;
-  background-color: $red;
+  background-color: $main-color;
 
   text-transform: uppercase;
   font-size: 0.8rem;
@@ -74,7 +74,7 @@ input[type=reset],
   &:hover
   {
     color: #FFF;
-    background-color: $red;
+    background-color: $main-color;
   }
 }
 

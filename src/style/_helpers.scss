@@ -6,13 +6,13 @@
 
     &:hover
     {
-      color: $red;
+      color: $main-color;
       text-decoration: underline;
     }
   }
 
   &danger
   {
-    color: $red!important;
+    color: $main-color !important;
   }
 }

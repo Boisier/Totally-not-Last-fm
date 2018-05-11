@@ -11,7 +11,7 @@
   background-position: top right, bottom left;
   background-repeat: no-repeat;
   background-blend-mode: color-burn;
-  background-color: $pink;
+  background-color: $background-color;
 
   .top-part
   {
@@ -39,14 +39,14 @@
 
   position: relative;
 
-  background-color: $grey;
+  background-color: $light-color;
   color: #fff;
 
   $side-margin: 5rem;
 
   h6
   {
-    color: $red;
+    color: $main-color;
     font-weight:500;
     font-size:2em;
   }
@@ -79,14 +79,14 @@
 
     &.line-1
     {
-      color:$grey;
+      color: $light-color;
       top: -5.5rem;
-      text-shadow: -3px 3px $red;
+      text-shadow: -3px 3px $main-color;
     }
 
     &.line-2
     {
-      color: $red;
+      color: $main-color;
       top: .1rem;
     }
   }

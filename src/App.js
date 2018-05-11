@@ -11,7 +11,6 @@ import Structure from './containers/Structure/Structure'
 
 import Landing from './scenes/Landing/Landing'
 import Home from './scenes/Home/Home'
-import User from './scenes/User/User'
 import About from './scenes/About/About'
 import Settings from './scenes/Settings/Settings'
 

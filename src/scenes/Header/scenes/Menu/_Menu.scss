@@ -15,7 +15,7 @@ menu
     li>a
     {
       display: block;
-      color: $grey;
+      color: $light-color;
       text-align: left;
       text-transform: uppercase;
       text-decoration: none;
@@ -25,7 +25,7 @@ menu
 
       &:hover
       {
-        color: $red;
+        color: $main-color;
         font-size: 8em;
       }
     }

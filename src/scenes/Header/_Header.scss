@@ -17,21 +17,21 @@ header
   width: 100%;
   padding: 0 5rem;
 
-  background-color: $pink;
-  box-shadow: 0 0 0 0 $red,
-              0 0 0 0 $grey,
+  background-color: $background-color;
+  box-shadow: 0 0 0 0 $main-color,
+              0 0 0 0 $light-color,
               0 0 0 0 black,
-              0 0 0 0 $red;
+              0 0 0 0 $main-color;
 
   transition: $header-transition,
               box-shadow ease-out .5s .25s;
 
   &.menu-opened.closing-animation
   {
-    box-shadow: 0 0 0 100vh  $red,
-                0 0 0 150vh  $grey,
+    box-shadow: 0 0 0 100vh $main-color,
+                0 0 0 150vh $light-color,
                 0 0 0 175vh  black,
-                0 0 0 250vh  $red;
+                0 0 0 250vh $main-color;
 
     transition: $header-transition,
                 box-shadow ease-out 0s .15s;
@@ -44,7 +44,7 @@ header
     height: $header-height;
     margin: 0;
 
-    color: $grey;
+    color: $light-color;
     text-align: left;
     text-transform: uppercase;
     font-style: italic;
