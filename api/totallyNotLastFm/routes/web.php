@@ -117,8 +117,7 @@ Rules:
     ];
 */
 $router->put('/genres/{genre_id_genre}', 'GenreController@updateGenre');
-/* DeleteGenre
-*/
+/* DeleteGenre */
 $router->delete('/genres/{genre_id_genre}', 'GenreController@deleteGenre');
 
 
@@ -191,40 +190,6 @@ $router->delete('/musics/{music_id_music}', 'MusicController@deleteMusic');
 
 
 
-
-
-
-/*-----------------Nationalities------------------*/
-/* GetAllNationalities
- * return all the nationaloties
- */
-$router->get('/nationalities', 'NationalityController@getAllNationalities');
-/* CreateNationality
-Rules:
-    $rules = [
-        'nationality_code' => 'required|alpha'
-    ];
-*/
-$router->post('/nationalities', 'NationalityController@createNationality');
- /* GetNationality
- * return a specific nationality */
-$router->get('/nationalities/{nationality_id_nationality}', 'NationalityController@getNationality');
-/* UpdateNationality
-* return modified nationality
-Rules:
-    $rules = [
-        'nationality_code' => 'required|alpha'
-    ];
-*/
-$router->put('/nationalities/{nationality_id_nationality}', 'NationalityController@updateNationality');
-/* DeleteNationality
-*/
-$router->delete('/nationalities/{nationality_id_nationality}', 'NationalityController@deleteNationality');
-
-
-
-
-
 /*-----------------Nationalities------------------*/
 /* GetAllNationalities
  * return all the nationaloties
@@ -287,41 +252,6 @@ $router->put('/playlists/{playlist_id_playlist}', 'PlaylistController@updatePlay
 /* DeletePlaylist
 */
 $router->delete('/playlists/{playlist_id_playlist}', 'PlaylistController@deletePlaylist');
-
-
-
-
-
-
-/*-----------------Spotify------------------*/
-/* GetAllSpotify
- * return all the spotify
- */
-$router->get('/spotify', 'SpotifyController@getAllSpotify');
-/* CreateSpotify
-Rules:
-    $rules = [
-        'spotify_our_id' => 'required|numeric',
-        'user_id_user' => 'required|numeric'
-    ];
-*/
-$router->post('/spotify', 'SpotifyController@createSpotify');
- /* GetSpotify
- * return a specific spotify */
-$router->get('/spotify/{spotify_id_spotify}', 'SpotifyController@getSpotify');
-/* UpdateSpotify
-* return modified spotify
-Rules:
-    $rules = [
-        'spotify_our_id' => 'required|numeric',
-        'user_id_user' => 'required|numeric'
-    ];
-*/
-$router->put('/spotify/{spotify_id_spotify}', 'SpotifyController@updateSpotify');
-/* DeleteSpotify
-*/
-$router->delete('/spotify/{spotify_id_spotify}', 'SpotifyController@deleteSpotify');
-
 
 
 
