@@ -15,8 +15,8 @@ class CreateProduceTable extends Migration
   {
     Schema::create('produce', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->increments('artist_id_artist');
-      $table->integer('album_id_album');
+      $table->unsignedBigInteger('artist_id_artist');
+      $table->unsignedBigInteger('album_id_album');
       $table->nullableTimestamps();
     });
   }

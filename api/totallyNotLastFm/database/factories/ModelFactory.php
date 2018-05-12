@@ -68,7 +68,7 @@ $factory->define(App\Spotify::class, function(Faker\Generator $faker){
   ];
 });
 
-$factory->define(App\Users::class, function(Faker\Generator $faker){
+$factory->define(App\User::class, function(Faker\Generator $faker){
   return [
   ];
 });

@@ -16,7 +16,7 @@ class CreateSpotifyTable extends Migration
     Schema::create('spotify', function (Blueprint $table) {
       $table->engine = 'InnoDB';
       $table->increments('spotify_user_id');
-      $table->integer('user_id_user');
+      $table->unsignedBigInteger('user_id_user');
       $table->nullableTimestamps();
     });
   }

@@ -15,8 +15,8 @@ class CreateBelongTable extends Migration
   {
     Schema::create('belong', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->increments('playlist_id_playlist_id', 255);
-      $table->integer('music_id_music');
+      $table->unsignedBigInteger('playlist_id_playlist');
+      $table->unsignedBigInteger('music_id_music');
       $table->nullableTimestamps();
     });
   }

@@ -13,9 +13,9 @@ class CreateGenresTable extends Migration
      */
   public function up()
   {
-    Schema::create('genres', function (Blueprint $table) {
+    Schema::create('genre', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->increments('genre_id_genre', 255);
+      $table->unsignedBigInteger('genre_id_genre', 255);
       $table->string('genre_name_genre', 255);
       $table->nullableTimestamps();
     });
@@ -28,6 +28,6 @@ class CreateGenresTable extends Migration
      */
   public function down()
   {
-    Schema::dropIfExists('genres');
+    Schema::dropIfExists('genre');
   }
 }

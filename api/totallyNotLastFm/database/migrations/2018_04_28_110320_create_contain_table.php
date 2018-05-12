@@ -15,8 +15,8 @@ class CreateContainTable extends Migration
   {
     Schema::create('contain', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->increments('music_id_music', 255);
-      $table->integer('history_id_history');
+      $table->unsignedBigInteger('music_id_music', 255);
+      $table->unsignedBigInteger('history_id_history');
       $table->nullableTimestamps();
     });
   }

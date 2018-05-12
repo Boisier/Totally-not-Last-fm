@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
   protected $fillable = [
     'user_id_user', 'user_mail', 'user_username', 'user_birthday'
   ];
-  protected $hidden = ['updated_at','created_at','password',];
+  protected $hidden = ['updated_at','created_at','user_password',];
 
   /**
      * The attributes excluded from the model's JSON form.

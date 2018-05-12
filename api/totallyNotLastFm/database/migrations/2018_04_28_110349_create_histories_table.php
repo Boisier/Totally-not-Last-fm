@@ -16,7 +16,7 @@ class CreateHistoriesTable extends Migration
     Schema::create('histories', function (Blueprint $table) {
       $table->engine = 'InnoDB';
       $table->increments('history_id_history');
-      $table->bigInteger('user_id_user');
+      $table->unsignedBigInteger('user_id_user');
       $table->time('history_play_time');
       $table->nullableTimestamps();
     });

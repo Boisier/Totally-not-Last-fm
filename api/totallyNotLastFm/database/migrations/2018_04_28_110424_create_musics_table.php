@@ -13,9 +13,9 @@ class CreateMusicsTable extends Migration
      */
   public function up()
   {
-    Schema::create('musics', function (Blueprint $table) {
+    Schema::create('music', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->increments('music_id_music');
+      $table->bigIncrements('music_id_music');
       $table->string('music_title', 255);
       $table->time('music_duration');
       $table->dateTime('music_release_date');
@@ -30,6 +30,6 @@ class CreateMusicsTable extends Migration
      */
   public function down()
   {
-    Schema::dropIfExists('musics');
+    Schema::dropIfExists('music');
   }
 }

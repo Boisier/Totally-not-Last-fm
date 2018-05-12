@@ -30,15 +30,15 @@ class DatabaseSeeder extends Seeder
     Model::reguard();*/
 
 
-    factory(App\Album::class,100)->create();
-    factory(App\Artist::class,100)->create();
-    factory(App\Genre::class,100)->create();
-    factory(App\History::class,100)->create();
-    factory(App\Music::class,100)->create();
-    factory(App\Nationality::class,100)->create();
-    factory(App\Playlist::class,100)->create();
-    factory(App\Spotify::class,100)->create();
-    factory(App\User::class,100)->create();
+    factory(App\Album::class,10)->create();
+    factory(App\Artist::class,10)->create();
+    factory(App\Genre::class,10)->create();
+    factory(App\History::class,10)->create();
+    factory(App\Music::class,10)->create();
+    factory(App\Nationality::class,10)->create();
+    factory(App\Playlist::class,10)->create();
+    factory(App\Spotify::class,10)->create();
+    factory(App\User::class,10)->create();
 
     //DB::statement('SET FOREIGN_KEY_CHECKS = 1');
   }

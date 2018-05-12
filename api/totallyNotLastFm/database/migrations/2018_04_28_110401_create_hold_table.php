@@ -15,8 +15,8 @@ class CreateHoldTable extends Migration
   {
     Schema::create('hold', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->increments('nationality_id_nationality');
-      $table->bigInteger('artist_id_artist');
+      $table->unsignedBigInteger('nationality_id_nationality');
+      $table->unsignedBigInteger('artist_id_artist');
       $table->nullableTimestamps();
     });
   }

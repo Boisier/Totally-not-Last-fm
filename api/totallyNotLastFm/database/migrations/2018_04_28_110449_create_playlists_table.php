@@ -13,11 +13,12 @@ class CreatePlaylistsTable extends Migration
      */
   public function up()
   {
-    Schema::create('playlists', function (Blueprint $table) {
+    Schema::create('playlist', function (Blueprint $table) {
       $table->engine = 'InnoDB';
       $table->increments('playlist_id_playlist');
-      $table->char('playlist_description');
-      $table->char('playlist_name');
+      $table->unsignedBigInteger('user_id_user');
+      $table->string('playlist_description');
+      $table->string('playlist_name');
       $table->nullableTimestamps();
     });
   }
@@ -29,6 +30,6 @@ class CreatePlaylistsTable extends Migration
      */
   public function down()
   {
-    Schema::dropIfExists('playlists');
+    Schema::dropIfExists('playlist');
   }
 }

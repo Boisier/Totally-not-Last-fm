@@ -15,8 +15,8 @@ class CreateBeTable extends Migration
   {
     Schema::create('be', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->increments('genre_id_genre', 255);
-      $table->integer('music_id_music');
+      $table->unsignedBigInteger('genre_id_genre');
+      $table->unsignedBigInteger('music_id_music');
       $table->nullableTimestamps();
     });
   }

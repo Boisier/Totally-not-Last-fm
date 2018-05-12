@@ -15,8 +15,8 @@ class CreateComposeTable extends Migration
   {
     Schema::create('compose', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->increments('artist_id_artist', 255);
-      $table->integer('music_id_music');
+      $table->unsignedBigInteger('artist_id_artist', 255);
+      $table->unsignedBigInteger('music_id_music');
       $table->nullableTimestamps();
     });
   }
