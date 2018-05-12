@@ -15,6 +15,11 @@ class UserController extends Controller{
 	}
 	*/
 
+	/* Récupère email + mdp et génère token si good */
+	public function authenticate(Request $request){
+		return $this->success(["token" => md5(time())], 200); //md5 = génère une chaine de charactère
+	}
+
 	//get all users
 	public function getAllUsers(){
 		$users = User::all();
@@ -88,47 +93,6 @@ class UserController extends Controller{
 		$this->validate($request, $rules);
 	}
 
-	/*
-	public function index(){
-		$Users = User::all();
-
-		return response()->json($Users);
-	}
-
-	//get Album
-	public function getUser($id){
-		$User = User::find($id);
-
-		return response()->json($User);
-	}
-
-	//create Album
-	public function createUser(Request $request){
-		$User = User::create($request->all());
-
-		return response()->json($User);
-	}
-
-	//delete Album
-	public function deleteUser($id){
-		$User = User::find($id);
-		$User->delete();
-
-		return response()->json('deleted');
-	}
-
-	//upadte Album
-	public function updateUser(Request $request, $id){
-		$User = User::find($id);
-		
-		$User->album_id_album = $request->input('album_id_album');
-		$User->album_title_album = $request->input('album_title_album');
-		$User->album_nb_tracks = $request->input('album_nb_tracks');
-		$User->save();
-
-		return response()->json($User);
-	}
-	*/
 }
 
 ?>

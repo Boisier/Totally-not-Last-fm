@@ -27,7 +27,7 @@ class NationalityController extends Controller{
 		$this->validateRequestNationality($request);
 
 		$nationality = Nationality::create([
-			'nationality_code' => $request->get('nationality_code');
+			'nationality_code' => $request->get('nationality_code')
 		]);
 
 		return $this->success("The nationality with id {$nationality->nationality_id_nationality} has been created", 201);
@@ -88,46 +88,7 @@ class NationalityController extends Controller{
 		return $this->autorizeUser($request, $resource, $nationality);
 	}
 
-	/*
-	public function index(){
-		$Nationalities = Nationality::all();
-
-		return response()->json($Nationalities);
-	}
-
-	//get nationality
-	public function getNationality($id){
-		$Nationality = Nationality::find($id);
-
-		return response()->json($Nationality);
-	}
-
-	//create nationality
-	public function createNationality(Request $request){
-		$Nationality = Nationality::create($request->all());
-
-		return response()->json($Nationality);
-	}
-
-	//delete nationality
-	public function deleteNationality($id){
-		$Nationality = Nationality::find($id);
-		$Nationality->delete();
-
-		return response()->json('deleted');
-	}
-
-	//update nationality
-	public function updateNationality(Request $request, $id){
-		$Nationality = Nationality::find($id);
-		
-		$Nationality->nationality_id_nationality = $request->input('nationality_id_nationality');
-		$Nationality->nationality_code = $request->input('nationality_code');
-		$Nationality->save();
-
-		return response()->json($Nationality);
-	}
-	*/
+	
 }
 
 ?>

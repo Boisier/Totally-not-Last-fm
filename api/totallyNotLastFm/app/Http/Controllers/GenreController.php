@@ -41,86 +41,48 @@ class GenreController extends Controller{
 			return $this->error("The genre with {$id} doesn't exist", 404);
 
 		return $this->success($genre, 200);
-
-		//update genre
-		public function updateGenre(Request $request, $id){
-			$genre = Genre::find($id);
-
-			if(!$genre)
-				return $this->error("The genre with {$id} doesn't exist", 404);
-
-			$this->validateRequestGenre($request);
-
-			$genre->genre_name_genre = $request->get('genre_name_genre');
-
-			$genre->save();
-
-			return $this->success("The genre with id {$genre->genre_id_genre} has been updated", 200);
-		}
-
-		//delete Genre
-		public function deleteGenre($id){
-			$genre = Genre::find($id);
-
-			if(!$genre)
-				return $this->error("The genre with {$id} has been deleted", 200);
-		}
-
-		//validate request
-		public function validateRequestGenre(Request $request){
-			$rules = [
-				'genre_name_genre' => 'required|alpha'
-			];
-
-			$this->validate($request, $rules);
-		}
-
-		//is authorized
-		public function isAuthorizedGenre(Request $request){
-			$resource = "genres";
-			$genre = Genre::find($this->getArgs($request)["genre_id_genre"]);
-
-			return $this->authorizeUser($request, $resource, $genre);
-		}
 	}
+	//update genre
+	public function updateGenre(Request $request, $id){
+		$genre = Genre::find($id);
 
-	/*public function index(){
-		$Genres = Genre::all();
+		if(!$genre)
+			return $this->error("The genre with {$id} doesn't exist", 404);
 
-		return response()->json($Genres);
-	}
+		$this->validateRequestGenre($request);
 
-	//get Genre
-	public function getGenre($id){
-		$Genre = Genre::find($id);
+		$genre->genre_name_genre = $request->get('genre_name_genre');
 
-		return response()->json($Genre);
-	}
+		$genre->save();
 
-	//create Genre
-	public function createGenre(Request $request){
-		$Genre = Genre::create($request->all());
-
-		return response()->json($Genre);
+		return $this->success("The genre with id {$genre->genre_id_genre} has been updated", 200);
 	}
 
 	//delete Genre
 	public function deleteGenre($id){
-		$Genre = Genre::find($id);
-		$Genre->delete();
+		$genre = Genre::find($id);
 
-		return response()->json('deleted');
+		if(!$genre)
+			return $this->error("The genre with {$id} has been deleted", 200);
 	}
 
-	//update Genre
-	public function updateGenre(Request $request, $id){
-		$Genre = Genre::find($id);
-		$Genre->genre_id_genre = $request->input('genre_id_genre');
-		$Genre->genre_name_genre = $request->input('genre_name_genre');
-		$Genre->save();
+	//validate request
+	public function validateRequestGenre(Request $request){
+		$rules = [
+			'genre_name_genre' => 'required|alpha'
+		];
 
-		return response()->json($Genre);
-	}*/
+		$this->validate($request, $rules);
+	}
+
+	//is authorized
+	public function isAuthorizedGenre(Request $request){
+		$resource = "genres";
+		$genre = Genre::find($this->getArgs($request)["genre_id_genre"]);
+
+		return $this->authorizeUser($request, $resource, $genre);
+	}
+
 }
 
 ?>
