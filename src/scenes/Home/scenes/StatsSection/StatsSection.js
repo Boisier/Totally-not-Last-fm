@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 
-// import stats from 'library/stats'
+import stats from 'library/stats'
 
 export default class extends Component {
-  render () {
-    /* console.log(this.props.period)
-    return (
-      <div>{ stats.periods[this.props.period].name.charAt(0).toUpperCase() }</div>
-    ) */
+  constructor (props) {
+    super(props)
+    this.state = {
+      periodName: stats.periods[this.props.period].name
+    }
+  }
 
-    return <div>statSection</div>
+  render () {
+    return (
+      <div>{ this.state.periodName }</div>
+    )
   }
 }
