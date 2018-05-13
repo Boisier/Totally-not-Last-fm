@@ -23,7 +23,8 @@ class UserController extends Controller{
 	//get all users
 	public function getAllUsers(){
 		$users = User::all();
-		return $this->success($users, 200);
+		
+        return response()->json(['data' => $users], 200);
 	}
 
 	//create user
@@ -37,7 +38,7 @@ class UserController extends Controller{
 			'user_password' => Hash::make($request->get('user_password'))
 		]);
 
-		return $this->success("The user with id {$user->user_id_user} has been created", 201);
+		return response()->json(['data' => "The user with id {$user->user_id_user} has been created"], 201);
 	}
 
 	//get User
@@ -45,9 +46,9 @@ class UserController extends Controller{
 		$user = User::find($id);
 
 		if(!$user)
-			return $this->error("The user with {$id} doesn't exist", 404);
+			return response()->json(['message' => "The user with id {$id} doesn't exist"], 404);
 
-		return $this->success($user, 200);
+		return response()->json(['data' => $user], 200);
 	}
 
 	//update User
@@ -55,7 +56,7 @@ class UserController extends Controller{
 		$user = User::find($id);
 
 		if(!$user)
-			return $this->error("The user with {$id} doesn't exist", 404);
+			return response()->json(['message' => "The user with id {$id} doesn't exist"], 404);
 
 		$this->validateRequestUser($request);
 
@@ -66,7 +67,7 @@ class UserController extends Controller{
 
 		$user->save();
 
-		return $this->success("The user with id {$user->user_id_user} has been updated", 200);	
+        return response()->json(['data' => "The user with id {$user->id} has been updated"], 200);
 	}
 
 	//delete User
@@ -74,11 +75,11 @@ class UserController extends Controller{
 		$user = User::find($id);
 
 		if(!$user)
-			return $this->error("The user with id {$id} doesn't exist", 404);
+			return response()->json(['message' => "The user with id {$id} doesn't exist"], 404);
 
 		$user->delete();
 
-		return $this->success("The user with id {$id} has been deleted", 200);
+		return response()->json(['data' => "The user with id {$id} has been deleted"], 200);
 	}
 
 	//validate request
@@ -86,7 +87,7 @@ class UserController extends Controller{
 		$rules = [
 			'user_username' => 'required',
 			'user_birthday' => 'required|date',
-			'user_mail' => 'required|email',
+			'user_mail' => 'required|email|unique:users',
 			'user_password' => 'required|min:6'
 		];
 

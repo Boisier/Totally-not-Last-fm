@@ -19,7 +19,7 @@ class ArtistController extends Controller{
 	public function getAllArtists(){
 		$artists = Artist::all();
 
-		return $this->success($artists, 200);
+        return response()->json(['data' => $artists], 200);
 	}
 
 	//create Artist
@@ -32,7 +32,7 @@ class ArtistController extends Controller{
 			'artist_death_year' => $request->get('artist_death_year')
 		]);
 
-		return $this->success("The artist with id {$artist->artist_id_artist} has been created", 201);
+        return response()->json(['data' => "The artist with id {$artist->artist_id_artist} has been created"], 201);
 	}
 
 	//get Artist
@@ -40,27 +40,27 @@ class ArtistController extends Controller{
 		$artist = Artist::find($id);
 
 		if(!$artist)
-			return $this->error("The artist with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
 
-		return $this->success($album, 200);
+        return response()->json(['data' => $artist], 200);
 	}
 
 	//update Artist
 	public function updateArtist(Request $request, $id){
-	$artist = Artist::find($id);
+		$artist = Artist::find($id);
 
-	if(!$artist)
-		return $this->error("The artist with {$id} doesn't exist", 404);
+		if(!$artist)
+	        return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
 
-	$this->validateRequestArtist($request);
+		$this->validateRequestArtist($request);
 
-	$artist->artist_name = $request->get('artist_name');
-	$artist->artist_birth_year = $request->get('artist_birth_year');
-	$artist->artist_death_year = $request->get('artist_death_year');
+		$artist->artist_name = $request->get('artist_name');
+		$artist->artist_birth_year = $request->get('artist_birth_year');
+		$artist->artist_death_year = $request->get('artist_death_year');
 
-	$artist->save();
+		$artist->save();
 
-	return $this->success("The album with id {$artist->artist_id_artist} has been updated", 200);
+	    return response()->json(['data' => "The artist with id {$artist->artist_id_artist} has been updated"], 200);
 	}
 
 	//delete Artist
@@ -68,11 +68,11 @@ class ArtistController extends Controller{
 		$artist = Artist::find($id);
 
 		if(!$artist)
-			return $this->error("The artist with {$id} doesn't exist", 404);
+			return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
 
 		$artist->delete();
 
-		return $this->success("The artist with {$id} has been deleted", 200);
+		return response()->json(['data' => "The artist with id {$id} has been deleted"], 200);
 	}
 
 	//validate request artist

@@ -19,7 +19,7 @@ class MusicController extends Controller{
 	public function getAllMusics(){
 		$musics = Music::all();
 
-		return $this->success($musics, 200);
+        return response()->json(['data' => $musics], 200);
 	}
 
 	//create Music
@@ -32,7 +32,7 @@ class MusicController extends Controller{
 			'music_release_date' => $request->get('music_release_date')
 		]);
 
-		return $this->success("The music with id {$music->music_id_music} has been created", 201);
+		return response()->json(['data' => "The music with id {$music->music_id_music} has been created"], 201);
 	}
 
 	//get Music
@@ -40,9 +40,9 @@ class MusicController extends Controller{
 		$music = Music::find($id);
 
 		if(!$music)
-			return $this->error("The music with {$id} doesn't exist", 404);
-
-		return $this->success($music, 200);
+            return response()->json(['message' => "The music with id {$id} doesn't exist"], 404);
+		
+        return response()->json(['data' => $music], 200);
 	}
 
 	//update Music
@@ -50,7 +50,7 @@ class MusicController extends Controller{
 		$music = Music::find($id);
 
 		if(!$music)
-			return $this->error("The music with {$id} doesn't exist", 404);
+			return $this->error("The music with id {$id} doesn't exist", 404);
 
 		$this->validateRequestMusic($request);
 
@@ -68,11 +68,11 @@ class MusicController extends Controller{
 		$music = Music::find($id);
 
 		if(!$music)
-			return $this->error("The music with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The music with id {$id} doesn't exist"], 404);
 
 		$music->delete();
 
-		return $this->success("The music with {$id} has been deleted", 200);
+        return response()->json(['data' => "The music with id {$id} has been deleted"], 200);
 	}
 
 	//validate request

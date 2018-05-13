@@ -19,7 +19,7 @@ class NationalityController extends Controller{
 	public function getAllNationalities(){
 		$nationalities = Nationality::all();
 
-		return $this->success($nationalities, 200);
+        return response()->json(['data' => $nationalities], 200);
 	}
 
 	//create Nationality
@@ -30,7 +30,7 @@ class NationalityController extends Controller{
 			'nationality_code' => $request->get('nationality_code')
 		]);
 
-		return $this->success("The nationality with id {$nationality->nationality_id_nationality} has been created", 201);
+        return response()->json(['data' => "The nationality with id {$nationality->nationality_id_nationality} has been created"], 201);
 	}
 
 	//get Nationality
@@ -38,9 +38,9 @@ class NationalityController extends Controller{
 		$nationality = Nationality::find($id);
 
 		if(!$nationality)
-			return $this->error("The nationality with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
 
-		return $this->success($nationality, 200);
+        return response()->json(['data' => $nationality], 200);
 	}
 
 	//update Nationality
@@ -48,7 +48,7 @@ class NationalityController extends Controller{
 		$nationality = Nationality::find($id);
 
 		if(!$nationality)
-			return $this->error("The nationality with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
 
 		$this->validateRequestNationality($request);
 
@@ -56,7 +56,7 @@ class NationalityController extends Controller{
 
 		$nationality->save();
 
-		return $this->success("The nationality with id {$nationality->nationality_id_nationality} has been updated", 200);
+        return response()->json(['data' => "The nationality with id {$nationality->nationality_id_nationality} has been updated"], 200);
 	}
 
 	//delete Nationality
@@ -64,11 +64,11 @@ class NationalityController extends Controller{
 		$nationality = Nationality::find($id);
 
 		if(!$nationality)
-			return $this->error("The nationality with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
 
 		$nationality->delete();
 
-		return $this->success("The ,nationality with {$id} has been deleted", 200);
+		return response()->json(['data' => "The nationality with id {$id} has been deleted"], 200);
 	}
 
 	//validate request

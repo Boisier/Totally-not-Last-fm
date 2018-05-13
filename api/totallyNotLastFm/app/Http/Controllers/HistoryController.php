@@ -19,7 +19,7 @@ class HistoryController extends Controller{
 	public function getAllHistories(){
 		$histories = History::all();
 
-		return $this->success($histories, 200);
+        return response()->json(['data' => $histories], 200);
 	}
 
 	//create History
@@ -31,7 +31,7 @@ class HistoryController extends Controller{
 			'user_id_user' => $request->get('user_id_user')
 		]);
 
-		return $this->success("the album with id {$history->history_id_history} has been created", 201);
+		return response()->json(['data' => "The history with id {$history->history_id_history} has been created"], 201);
 	}
 
 	//get History
@@ -39,7 +39,7 @@ class HistoryController extends Controller{
 		$history = History::find($id);
 
 		if(!$history)
-			return $this->error("The album with {$id} doesn't exist", 404);
+			return $this->error("The history with id {$id} doesn't exist", 404);
 		
 		return $this->success($history, 200);
 	}
@@ -49,7 +49,7 @@ class HistoryController extends Controller{
 		$history = History::find($id);
 
 		if(!$history)
-			return $this->error("The album with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The history with id {$id} doesn't exist"], 404);
 
 		$this->validateRequestHistory($request);
 
@@ -58,7 +58,7 @@ class HistoryController extends Controller{
 
 		$history->save();
 
-		return $this->success("The history with id {$history->history_id_history} has been updated", 200);
+        return response()->json(['data' => "The history with id {$history->history_id_history} has been updated"], 200);
 	}
 
 	//delete History
@@ -66,11 +66,11 @@ class HistoryController extends Controller{
 		$history = History::find($id);
 
 		if(!$history)
-			return $this->error("The history with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The history with id {$id} doesn't exist"], 404);
 
 		$history->delete();
 
-		return $this->success("The history with {$id} has been deleted", 200);
+		return response()->json(['data' => "The history with id {$id} has been deleted"], 200);
 	}
 
 	//Validate request

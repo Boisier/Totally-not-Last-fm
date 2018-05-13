@@ -19,7 +19,7 @@ class AlbumController extends Controller{
 	public function getAllAlbums(){
 		$albums = Album::all();
 
-		return $this->success($albums, 200);
+        return response()->json(['data' => $albums], 200);
 
 	}
 
@@ -32,7 +32,7 @@ class AlbumController extends Controller{
 			'album_nb_tracks' => $request->get('album_nb_tracks')
 		]);
 
-		return $this->success("The album with id {$album->album_id_album} has been created", 201);
+		return response()->json(['data' => "The album with id {$album->album_id_album} has been created"], 201);
 	}
 
 	//get Album
@@ -40,9 +40,9 @@ class AlbumController extends Controller{
 		$album = Album::find($id);
 
 		if(!$album)
-			return $this->error("The album with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The album with id {$id} doesn't exist"], 404);
 
-		return $this->success($album, 200);
+        return response()->json(['data' => $album], 200);
 	}
 
 	//update Album
@@ -50,7 +50,7 @@ class AlbumController extends Controller{
 		$album = Album::find($id);
 
 		if(!$album)
-			return $this->error("The album with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The album with id {$id} doesn't exist"], 404);
 
 		$this->validateRequestAlbum($request);
 
@@ -59,7 +59,7 @@ class AlbumController extends Controller{
 
 		$album->save();
 
-		return $this->success("The album with id {$album->album_id_album} has been updated", 200);
+        return response()->json(['data' => "The album with id {$album->album_id_album} has been updated"], 200);
 	}
 
 	//delete Album
@@ -67,11 +67,11 @@ class AlbumController extends Controller{
 		$album = Album::find($id);
 
 		if(!$album)
-			return $this->error("The album with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The album with id {$id} doesn't exist"], 404);
 
 		$album->delete();
 
-		return $this->success("The album with {$id} has been deleted", 200);
+        return response()->json(['data' => "The album with id {$id} has been deleted"], 200);
 	}
 
 	//validate request

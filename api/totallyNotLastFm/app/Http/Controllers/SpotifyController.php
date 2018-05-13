@@ -20,7 +20,7 @@ class SpotifyController extends Controller{
 	public function getAllSpotify(){
 		$spotify = Spotify::all();
 
-		return $this->success($spotify, 200);
+        return response()->json(['data' => $spotify], 200);
 	}
 
 	//create Spotify account in our database
@@ -32,7 +32,7 @@ class SpotifyController extends Controller{
 			'spotify_our_id' => $request->get('spotify_our_id')
 		]);
 
-		return $this->success("The spotify account with id {$spotify->spotify_user_id} has been created", 201);
+		return response()->json(['data' => "The spotify account with id {$spotify->spotify_user_id} has been created"], 201);
 	}
 
 	//get one Spotify account in our database
@@ -40,9 +40,9 @@ class SpotifyController extends Controller{
 		$spotify = Spotify::find($id);
 
 		if(!$spotify)
-			return $this->error("The spotify account with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The spotify account with id {$id} doesn't exist"], 404);
 
-		return $this->success($spotify, 200);
+        return response()->json(['data' => $spotify], 200);
 	}
 
 	//update Spotify account in our database
@@ -50,16 +50,16 @@ class SpotifyController extends Controller{
 		$spotify = Spotify::find($id);
 
 		if(!$spotify)
-			return $this->error("The spotify with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The spotify account with id {$id} doesn't exist"], 404);
 
 		$this->validateRequestSpotify($request);
 
 		$spotify->user_id_user = $request->get('user_id_user');
 		$album->spotify_our_id = $request->get('spotify_our_id');
 
-		$album->save();
+		$spotify->save();
 
-		return $this->success("The spotify account with id {$album->album_id_album} has been updated", 200);
+        return response()->json(['data' => "The spotify account with id {$album->album_id_album} has been updated"], 200);
 	}
 
 	//delete Spotify account in our database
@@ -67,11 +67,11 @@ class SpotifyController extends Controller{
 		$spotify = Spotify::find($id);
 
 		if(!$spotify)
-			return $this->error("The spotify with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The spotify account with id {$id} doesn't exist"], 404);
 
 		$spotify->delete();
 
-		return $this->success("The spotify with {$id} has been deleted", 200);
+		return response()->json(['data' => "The spotify account with id {$id} has been deleted"], 200);
 	}
 
 	//validate request

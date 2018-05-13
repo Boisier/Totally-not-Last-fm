@@ -19,7 +19,7 @@ class PlaylistController extends Controller{
 	public function getAllPlaylists(){
 		$playlists = Playlist::all();
 
-		return $this->success($playlists, 200);
+        return response()->json(['data' => $playlists], 200);
 	}
 
 	//create Playlist
@@ -32,7 +32,7 @@ class PlaylistController extends Controller{
 			'playlist_name' => $request->get('playlist_name')
 		]);
 
-		return $this->success("The playlist with id {$playlist->playlist_id_playlist} has been created", 201);
+		return response()->json(['data' => "The playlist with id {$playlist->playlist_id_playlist} has been created"], 201);
 	}
 
 	//get Playlist
@@ -40,9 +40,9 @@ class PlaylistController extends Controller{
 		$playlist = Playlist::find($id);
 
 		if(!$playlist)
-			return $this->error("The playlist with {$id} doesn't exist", 404);
+			return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
 
-		return $this->success($playlist, 200);
+        return response()->json(['data' => $playlist], 200);
 	}
 
 	//update Playlist
@@ -50,7 +50,7 @@ class PlaylistController extends Controller{
 		$playlist = Playlist::find($id);
 
 		if(!$playlist)
-			return $this->error("The playlist with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
 
 		$this->validateRequestPlaylist($request);
 
@@ -58,9 +58,9 @@ class PlaylistController extends Controller{
 		$album->playlist_description = $request->get('playlist_description');
 		$album->playlist_name = $request->get('playlist_name');
 
-		$album->save();
+		$playlist->save();
 
-		return $this->success("The playlist with id {$playlist->playlist_id_playlist} has been updated", 200);
+        return response()->json(['data' => "The playlist with id {$playlist->playlist_id_playlist} has been updated"], 200);
 	}
 
 	//delete Playlist
@@ -68,11 +68,11 @@ class PlaylistController extends Controller{
 		$playlist = Playlist::find($id);
 
 		if(!$playlist)
-			return $this->error("The playlist with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
 
 		$playlist->delete();
 
-		return $this->success("The playlist with {$id} has been deleted", 200);
+		return response()->json(['data' => "The playlist with id {$id} has been deleted"], 200);
 	}
 
 	//validate request

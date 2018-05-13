@@ -19,7 +19,7 @@ class GenreController extends Controller{
 	public function getAllGenres(){
 		$genres = Genre::all();
 
-		return $this->success($genres, 200);
+        return response()->json(['data' => $genres], 200);
 	}
 
 	//create Genre
@@ -30,7 +30,7 @@ class GenreController extends Controller{
 			'genre_name_genre' => $request->get('genre_name_genre')
 		]);
 
-		return $this->success("The genre with id {$genre->genre_id_genre} has been created", 201);
+        return response()->json(['data' => "The genre with id {$genre->genre_id_genre} has been created"], 201);
 	}
 
 	//get Genre
@@ -38,16 +38,16 @@ class GenreController extends Controller{
 		$genre = Genre::find($id);
 
 		if(!$genre)
-			return $this->error("The genre with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
 
-		return $this->success($genre, 200);
+        return response()->json(['data' => $genre], 200);
 	}
 	//update genre
 	public function updateGenre(Request $request, $id){
 		$genre = Genre::find($id);
 
 		if(!$genre)
-			return $this->error("The genre with {$id} doesn't exist", 404);
+            return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
 
 		$this->validateRequestGenre($request);
 
@@ -55,7 +55,7 @@ class GenreController extends Controller{
 
 		$genre->save();
 
-		return $this->success("The genre with id {$genre->genre_id_genre} has been updated", 200);
+        return response()->json(['data' => "The genre with id {$genre->genre_id_genre} has been updated"], 200);
 	}
 
 	//delete Genre
@@ -63,7 +63,9 @@ class GenreController extends Controller{
 		$genre = Genre::find($id);
 
 		if(!$genre)
-			return $this->error("The genre with {$id} has been deleted", 200);
+			return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
+
+		return response()->json(['data' => "The genre with id {$id} has been deleted"], 200);
 	}
 
 	//validate request
