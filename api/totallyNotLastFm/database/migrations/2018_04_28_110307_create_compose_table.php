@@ -6,26 +6,30 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateComposeTable extends Migration
 {
-    /**
+  /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('compose', function (Blueprint $table) {
-            $table->increments('artist_id_artist', 255);
-            $table->integer('music_id_music');
-        });
-    }
+  public function up()
+  {
+    Schema::create('compose', function (Blueprint $table) {
+      $table->engine = 'InnoDB';
+      $table->unsignedInteger('artist_id_artist');
+      $table->unsignedBigInteger('music_id_music');
+      $table->nullableTimestamps();
+    });
+  }
 
-    /**
+  /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('compose');
-    }
+  public function down()
+  {
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+    Schema::dropIfExists('compose');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+  }
 }

@@ -6,27 +6,32 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateIncludeTable extends Migration
 {
-    /**
+  /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('include', function (Blueprint $table) {
-            $table->integer('id');
-            $table->integer('album_id_album')/*->references('music_id_music')->on('users')*/;
-            
-        });
-    }
+  public function up()
+  {
+    Schema::create('include', function (Blueprint $table) {
+      $table->engine = 'InnoDB';
+      $table->unsignedBigInteger('include_id');
+      $table->unsignedInteger('album_id_album');
+      $table->unsignedBigInteger('music_id_music');
+      $table->nullableTimestamps();
 
-    /**
+    });
+  }
+
+  /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('include');
-    }
+  public function down()
+  {
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+    Schema::dropIfExists('include');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+  }
 }

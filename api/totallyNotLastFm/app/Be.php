@@ -8,29 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 
-class Playlist extends Model implements AuthenticatableContract, AuthorizableContract
+class Be extends Model implements AuthenticatableContract, AuthorizableContract
 {
   use Authenticatable, Authorizable;
-protected $table = 'playlist';
+
+  protected $table = 'be';
   /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-  protected $fillable = ['playlist_id_playlist','playlist_description','playlist_name'];
+  protected $fillable = ['genre_id_genre', 'music_id_music'];
+
   protected $hidden = ['updated_at','created_at'];
-  /**
-     * A playlist can have one user
-     */
-  public function user(){
-    return $this->belongsTo('App/User.php');
+
+  public function genre(){
+    return $this->hasMany('App/Genre.php');
   }
 
-  /**
-     * A playlist has many music
-     */
   public function music(){
     return $this->hasMany('App/Music.php');
   }
+  
 }
 ?>
