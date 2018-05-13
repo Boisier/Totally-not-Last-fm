@@ -34,7 +34,7 @@ export default class extends Component {
         <div className="settings-section">
           <h3>E-mail</h3>
           <EditableFieldInput
-            type="text"
+            type="email"
             label="Email address"
             value={this.state.user.email}
             onConfirm={this.updateEmail} />
