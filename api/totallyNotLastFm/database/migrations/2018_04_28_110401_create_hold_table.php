@@ -15,8 +15,8 @@ class CreateHoldTable extends Migration
   {
     Schema::create('hold', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->unsignedBigInteger('nationality_id_nationality');
-      $table->unsignedBigInteger('artist_id_artist');
+      $table->unsignedInteger('nationality_id_nationality');
+      $table->unsignedInteger('artist_id_artist');
       $table->nullableTimestamps();
     });
   }
@@ -28,6 +28,8 @@ class CreateHoldTable extends Migration
      */
   public function down()
   {
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
     Schema::dropIfExists('hold');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
   }
 }

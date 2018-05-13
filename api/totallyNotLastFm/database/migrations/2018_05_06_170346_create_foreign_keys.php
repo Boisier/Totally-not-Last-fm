@@ -18,27 +18,27 @@ class CreateForeignKeys extends Migration
     Schema::table('histories', function(Blueprint $table){
       $table->foreign('user_id_user')
         ->references('user_id_user')
-        ->on('users')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('user')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     //playlist
-    Schema::table('playlists', function(Blueprint $table){
+    Schema::table('playlist', function(Blueprint $table){
       $table->foreign('user_id_user')
         ->references('user_id_user')
-        ->on('users')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('user')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     //spotify
     Schema::table('spotify', function(Blueprint $table){
       $table->foreign('user_id_user')
         ->references('user_id_user')
-        ->on('users')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('user')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     /*-------associations------- */
@@ -46,51 +46,51 @@ class CreateForeignKeys extends Migration
     Schema::table('be', function (Blueprint $table){
       $table->foreign('genre_id_genre')
         ->references('genre_id_genre')
-        ->on('genres')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('genre')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('be', function (Blueprint $table){
       $table->foreign('music_id_music')
         ->references('music_id_music')
-        ->on('musics')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('music')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     //belong
     Schema::table('belong', function (Blueprint $table){
       $table->foreign('playlist_id_playlist')
         ->references('playlist_id_playlist')
-        ->on('playlists')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('playlist')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('belong', function (Blueprint $table){
       $table->foreign('music_id_music')
         ->references('music_id_music')
-        ->on('musics')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('music')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     //compose
     Schema::table('compose', function (Blueprint $table){
       $table->foreign('artist_id_artist')
-        ->references('artist_id_artist')
+        ->references('artist_id')
         ->on('artists')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('compose', function (Blueprint $table){
       $table->foreign('music_id_music')
         ->references('music_id_music')
-        ->on('musics')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('music')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     //contain
@@ -98,33 +98,33 @@ class CreateForeignKeys extends Migration
       $table->foreign('history_id_history')
         ->references('history_id_history')
         ->on('histories')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('contain', function (Blueprint $table){
       $table->foreign('music_id_music')
         ->references('music_id_music')
-        ->on('musics')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('music')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     //hold
     Schema::table('hold', function (Blueprint $table){
       $table->foreign('artist_id_artist')
-        ->references('artist_id_artist')
+        ->references('artist_id')
         ->on('artists')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('hold', function (Blueprint $table){
       $table->foreign('nationality_id_nationality')
         ->references('nationality_id_nationality')
         ->on('nationalities')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     //include
@@ -132,16 +132,16 @@ class CreateForeignKeys extends Migration
       $table->foreign('album_id_album')
         ->references('album_id_album')
         ->on('albums')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('include', function (Blueprint $table){
       $table->foreign('music_id_music')
         ->references('music_id_music')
-        ->on('musics')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->on('music')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     //produce
@@ -149,16 +149,16 @@ class CreateForeignKeys extends Migration
       $table->foreign('album_id_album')
         ->references('album_id_album')
         ->on('albums')
-        ->onDelete('restrict')
-        ->onUpdate('restrict');
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
     });
 
     Schema::table('produce', function (Blueprint $table){
       $table->foreign('artist_id_artist')
-        ->references('artist_id_artist')
+        ->references('artist_id')
         ->on('artists')
-        ->onDelete('restrict')  
-        ->onUpdate('restrict');
+        ->onDelete('cascade')  
+        ->onUpdate('cascade');
     });
   }
 
@@ -168,7 +168,7 @@ class CreateForeignKeys extends Migration
 
 
     //be
-    Schema::table('be', function(Blueprint $table){
+    /*Schema::table('be', function(Blueprint $table){
       $table->dropForeign('genre_id_genre');
     });
 
@@ -243,7 +243,7 @@ class CreateForeignKeys extends Migration
     //playlist
     Schema::table('spotify', function(Blueprint $table){
       $table->dropForeign('spotify_user_id_user_foreign');
-    });
+    });*/
 
   }
 }

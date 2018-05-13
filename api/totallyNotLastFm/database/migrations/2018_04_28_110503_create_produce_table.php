@@ -15,8 +15,8 @@ class CreateProduceTable extends Migration
   {
     Schema::create('produce', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->unsignedBigInteger('artist_id_artist');
-      $table->unsignedBigInteger('album_id_album');
+      $table->unsignedInteger('artist_id_artist');
+      $table->unsignedInteger('album_id_album');
       $table->nullableTimestamps();
     });
   }
@@ -28,6 +28,8 @@ class CreateProduceTable extends Migration
      */
   public function down()
   {
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
     Schema::dropIfExists('produce');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
   }
 }

@@ -16,7 +16,8 @@ class CreateIncludeTable extends Migration
     Schema::create('include', function (Blueprint $table) {
       $table->engine = 'InnoDB';
       $table->unsignedBigInteger('id');
-      $table->unsignedBigInteger('album_id_album')/*->references('music_id_music')->on('users')*/;
+      $table->unsignedInteger('album_id_album');
+      $table->unsignedBigInteger('music_id_music');
       $table->nullableTimestamps();
 
     });
@@ -29,6 +30,8 @@ class CreateIncludeTable extends Migration
      */
   public function down()
   {
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
     Schema::dropIfExists('include');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
   }
 }

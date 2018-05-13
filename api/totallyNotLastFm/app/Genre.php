@@ -12,6 +12,7 @@ class Genre extends Model implements AuthenticatableContract, AuthorizableContra
 {
   use Authenticatable, Authorizable;
 
+    protected $table = 'genre';
   /**
      * The attributes that are mass assignable.
      *

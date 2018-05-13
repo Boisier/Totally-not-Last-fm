@@ -12,6 +12,7 @@ class Music extends Model implements AuthenticatableContract, AuthorizableContra
 {
   use Authenticatable, Authorizable;
 
+    protected $table = 'music';
   /**
      * The attributes that are mass assignable.
      *

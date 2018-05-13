@@ -30,6 +30,8 @@ class CreateMusicsTable extends Migration
      */
   public function down()
   {
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
     Schema::dropIfExists('music');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
   }
 }

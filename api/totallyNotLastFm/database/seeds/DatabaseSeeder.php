@@ -21,15 +21,13 @@ class DatabaseSeeder extends Seeder
   public function run()
   {
     // $this->call('UsersTableSeeder');
-    //DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
 /*    Model::unguard();
 
     $this->call(DatabaseSeeder  ::class);
 
     Model::reguard();*/
-
-
     factory(App\Album::class,10)->create();
     factory(App\Artist::class,10)->create();
     factory(App\Genre::class,10)->create();
@@ -40,6 +38,6 @@ class DatabaseSeeder extends Seeder
     factory(App\Spotify::class,10)->create();
     factory(App\User::class,10)->create();
 
-    //DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
   }
 }

@@ -15,8 +15,8 @@ class CreateContainTable extends Migration
   {
     Schema::create('contain', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->unsignedBigInteger('music_id_music', 255);
-      $table->unsignedBigInteger('history_id_history');
+      $table->unsignedBigInteger('music_id_music');
+      $table->unsignedInteger('history_id_history');
       $table->nullableTimestamps();
     });
   }
@@ -28,6 +28,8 @@ class CreateContainTable extends Migration
      */
   public function down()
   {
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
     Schema::dropIfExists('contain');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
   }
 }

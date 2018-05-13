@@ -15,7 +15,7 @@ class CreateComposeTable extends Migration
   {
     Schema::create('compose', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->unsignedBigInteger('artist_id_artist', 255);
+      $table->unsignedInteger('artist_id_artist');
       $table->unsignedBigInteger('music_id_music');
       $table->nullableTimestamps();
     });
@@ -28,6 +28,8 @@ class CreateComposeTable extends Migration
      */
   public function down()
   {
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
     Schema::dropIfExists('compose');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
   }
 }
