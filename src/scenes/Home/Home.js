@@ -7,7 +7,12 @@ export default class extends Component {
   render = () => (
     <section className="home-page">
       <StatsPeriodesNavBar />
-      <StatsSection period="0" />
+      <section className="home-stats">
+        <StatsSection period="0" />
+        <StatsSection period="1" />
+        <StatsSection period="2" />
+        <StatsSection period="3" />
+      </section>
     </section>
   )
 }
