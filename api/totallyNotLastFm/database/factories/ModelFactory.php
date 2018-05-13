@@ -24,9 +24,36 @@ $factory->define(App\Artist::class, function(Faker\Generator $faker){
   return [
     'artist_name' => $faker->name,
     'artist_birth_year' => date("Y-m-d",mt_rand(1262055681,1262455681)),
-    'artist_death_year'=> 'NULL'
+    'artist_death_year' => 'NULL'
   ];
 });
+$factory->define(App\Be::class, function(Faker\Generator $faker){
+  return [
+    'genre_id_genre' => $faker->randomDigit,
+    'music_id_music' => $faker->randomDigit
+  ];
+});
+
+$factory->define(App\Belong::class, function(Faker\Generator $faker){
+  return [
+    'playlist_id_playlist' => $faker->randomDigit,
+    'music_id_music' => $faker->randomDigit
+  ];
+});
+$factory->define(App\Compose::class, function(Faker\Generator $faker){
+  return [
+    'artist_id_artist' => $faker->randomDigit,
+    'music_id_music' => $faker->randomDigit
+  ];
+});
+
+$factory->define(App\Contain::class, function(Faker\Generator $faker){
+  return [
+    'music_id_music' => $faker->randomDigit,
+    'history_id_history' => $faker->randomDigit
+  ];
+});
+
 
 $factory->define(App\Genre::class, function(Faker\Generator $faker){
   return [
@@ -38,6 +65,20 @@ $factory->define(App\History::class, function(Faker\Generator $faker){
   return [
     'user_id_user' => $faker->randomDigit,
     'history_play_time' => $faker->time()
+  ];
+});
+
+$factory->define(App\Hold::class, function(Faker\Generator $faker){
+  return [
+    'nationality_id_nationality' => $faker->randomDigit,
+    'artist_id_artist' => $faker->randomDigit 
+  ];
+});
+
+$factory->define(App\Includes::class, function(Faker\Generator $faker){
+  return [
+    'album_id_album' => $faker->randomDigit,
+    'music_id_music' => $faker->randomDigit 
   ];
 });
 
@@ -59,6 +100,13 @@ $factory->define(App\Playlist::class, function(Faker\Generator $faker){
   return [
     'playlist_description' => $faker->name,
     'playlist_name'=>$faker->name
+    ];
+});
+
+$factory->define(App\Produce::class, function(Faker\Generator $faker){
+  return [
+    'artist_id_artist' => $faker->randomDigit,
+    'album_id_album' => $faker->randomDigit 
     ];
 });
 
