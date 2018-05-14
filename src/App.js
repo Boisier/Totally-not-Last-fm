@@ -11,7 +11,6 @@ import Dataviz from './scenes/Dataviz/Dataviz'
 import Structure from './containers/Structure/Structure'
 
 import Home from './scenes/Home/Home'
-import User from './scenes/User/User'
 import About from './scenes/About/About'
 import Settings from './scenes/Settings/Settings'
 
@@ -55,7 +54,6 @@ export default class extends Component {
       <Structure>
         <Switch >
           <Route path={'/about'} component={About} />
-          <Route path={'/profile'} component={User} />
           <Route path={'/settings'} component={Settings} />
           <Route path={'/'} component={Home} />
         </Switch>

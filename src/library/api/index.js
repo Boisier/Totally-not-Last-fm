@@ -8,12 +8,24 @@ class API {
    * Instanciate the client and register predefined routes if needed
    */
   constructor () {
-    axios.default.baseURL = settings.baseURL
-    axios.defaults.headers.common['auth-token'] = ''
+    // axios.default.baseURL = settings.baseURL
+    // axios.defaults.headers.common['auth-token'] = ''
+
+    this.authToken = ''
   }
 
   setToken (token) {
-    axios.defaults.headers.common['auth-token'] = token
+    // axios.defaults.headers.common['auth-token'] = token
+    this.authToken = token
+  }
+
+  getDefaults () {
+    return {
+      baseURL: settings.baseURL,
+      headers: {
+        'auth-token': this.authToken
+      }
+    }
   }
 
   //
@@ -26,7 +38,10 @@ class API {
    * @param options
    */
   sendRequest (options) {
-    return axios(options)
+    return axios({
+      ...this.getDefaults(),
+      ...options
+    })
   }
 
   /**

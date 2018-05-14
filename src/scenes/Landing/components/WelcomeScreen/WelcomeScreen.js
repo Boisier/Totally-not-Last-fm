@@ -33,7 +33,7 @@ export default class extends Component {
         <h1 className="title line-2">Last fm</h1>
         <div className="access-form">
           <FieldInput
-            type="text"
+            type="email"
             className="access-input-form"
             label="Enter your e-mail address"
             value={this.state.email}

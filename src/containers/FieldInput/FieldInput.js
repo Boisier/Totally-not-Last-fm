@@ -23,13 +23,13 @@ export default class extends Component {
    */
   static defaultProps = {
     className: '',
-    onClick: () => {},
-    onChange: () => {},
-    onKeyDown: () => {},
-    onKeyUp: () => {},
-    onKeyPress: () => {},
-    onFocus: () => {},
-    onBlur: () => {}
+    onClick: null,
+    onChange: null,
+    onKeyDown: null,
+    onKeyUp: null,
+    onKeyPress: null,
+    onFocus: null,
+    onBlur: null
   }
 
   onChange = (e) => {

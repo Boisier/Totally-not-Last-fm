@@ -3,20 +3,59 @@
   font-family:'Rubik', sans-serif;
 
   width: 800px;
-  margin: 30px auto auto auto;
-  background-color: $grey;
+  margin: auto;
+  padding: 30px 0;
+  background-color: $light-color;
 
   h2
   {
-    margin: .5rem 0 0 0;
+    margin: .5rem 0 0;
     padding: 0;
 
     color: #000;
-    font-size: 3rem;
     font-weight: 600;
+    font-size: 5em;
     word-spacing: 0.2em;
-    font-size:5em;
 
     text-transform: uppercase;
+  }
+
+  .settings-section
+  {
+    margin: 25px;
+  }
+
+  .editable-field-input
+  {
+    width: 60%;
+  }
+
+  .spotify-link
+  {
+    width: fit-content;
+    padding: 15px 20px;
+    border-radius: 100px;
+    background-color: $spotify-green;
+    color: #fff;
+
+    &.btn {
+
+      cursor: pointer;
+
+      transition: $global-transition;
+
+      &:hover {
+        color: $spotify-green;
+        background-color: black;
+      }
+    }
+  }
+
+  .settings-disclaimer
+  {
+    margin-top: 25px;
+
+    color: #444;
+    font-size: .8em;
   }
 }

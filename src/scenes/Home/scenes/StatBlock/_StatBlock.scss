@@ -1,0 +1,14 @@
+.stat-block
+{
+  width: calc(50% - 20px);
+  margin:10px;
+
+  padding: 20px;
+
+  background-color: white;
+
+  &.wide
+  {
+    width: 100%;
+  }
+}

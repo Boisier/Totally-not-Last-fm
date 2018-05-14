@@ -2,8 +2,9 @@
 {
   font-family:'Rubik', sans-serif;
   width: 800px;
-  margin: 30px auto auto auto;
-  background-color:$grey;
+  margin: auto;
+  padding: 30px 0;
+  background-color: $light-color;
 
   .about-message {
     padding-top:0.4em;
@@ -15,6 +16,7 @@
     color:black;
     text-align:right;
     line-height: 0.8em;
+    margin-bottom: -.4rem;
 
     .grey {
       color:red;

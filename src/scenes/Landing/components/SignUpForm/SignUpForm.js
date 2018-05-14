@@ -52,7 +52,7 @@ export default class extends Component {
           <h5 className="caption">Join us</h5>
           <form method="post" action="" onSubmit={this.signUp}>
             <FieldInput
-              type="text"
+              type="email"
               className="input-signup-email"
               label="Enter your e-mail address"
               value={this.state.email}

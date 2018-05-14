@@ -58,4 +58,3 @@ describe('Field input', () => {
     expect(mock.mock.calls.length).toBe(1)
   })
 })
-

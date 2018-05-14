@@ -7,7 +7,6 @@ import { BrowserRouter } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 
 // Page structure imports
-import './index.css'
 import App from './App'
 
 // Create the dom

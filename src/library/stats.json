@@ -1,0 +1,24 @@
+{
+  "periods": [
+    {
+      "key": "DAILY",
+      "name": "daily",
+      "period": "day"
+    },
+    {
+      "key": "WEEKLY",
+      "name": "weekly",
+      "period": "week"
+    },
+    {
+      "key": "MONTHLY",
+      "name": "monthly",
+      "period": "month"
+    },
+    {
+      "key": "YEARLY",
+      "name": "yearly",
+      "period": "year"
+    }
+  ]
+}

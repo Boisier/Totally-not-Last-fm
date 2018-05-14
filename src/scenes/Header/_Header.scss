@@ -17,9 +17,25 @@ header
   width: 100%;
   padding: 0 5rem;
 
-  background-color: $pink;
+  background-color: $background-color;
+  box-shadow: 0 0 0 0 $main-color,
+              0 0 0 0 $light-color,
+              0 0 0 0 black,
+              0 0 0 0 $main-color;
 
-  transition: $header-transition;
+  transition: $header-transition,
+              box-shadow ease-out .5s .25s;
+
+  &.menu-opened.closing-animation
+  {
+    box-shadow: 0 0 0 100vh $main-color,
+                0 0 0 150vh $light-color,
+                0 0 0 175vh  black,
+                0 0 0 250vh $main-color;
+
+    transition: $header-transition,
+                box-shadow ease-out 0s .15s;
+  }
 
   h3
   {
@@ -28,7 +44,7 @@ header
     height: $header-height;
     margin: 0;
 
-    color: $grey;
+    color: $light-color;
     text-align: left;
     text-transform: uppercase;
     font-style: italic;
@@ -37,8 +53,6 @@ header
 
     transition: $header-transition;
 
-    cursor: pointer;
-
     .red {
       padding-left: .35rem;
       letter-spacing: -0.1em;
@@ -46,10 +60,15 @@ header
     }
 
     .page-title {
+      display: inline-block;
       padding-left: .35rem;
       color: #000;
+
+      transition: opacity $header-transition,
+                  width $header-transition;
     }
   }
+
   h5
   {
     height: $header-height;
@@ -94,6 +113,7 @@ header
     .page-title
     {
       opacity: 0;
+      width: 0;
     }
   }
 }

@@ -88,6 +88,11 @@ class Auth {
   onLogin () {
     api.setToken(this.getToken())
   }
+
+  onLogout () {
+    api.retToken('')
+    cookies.erase('token')
+  }
 }
 
 const auth = new Auth()

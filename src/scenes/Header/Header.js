@@ -1,23 +1,31 @@
 // React
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 
 // Scene dependencies
 import pages from 'library/pagesList'
 import Menu from './scenes/Menu/Menu'
 
-export default class extends Component {
+class Header extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      menuIsOpen: false
+      menuIsOpen: false,
+      lastPath: this.props.location.pathname,
+      animateClosing: true
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.setState({
+        lastPath: prevProps.location.pathname
+      })
     }
   }
 
   mapUrlToPageName = (routeProps) => {
     const { params } = routeProps.match
-
-    console.log(routeProps)
 
     if (!params.pageName) {
       return null
@@ -40,16 +48,30 @@ export default class extends Component {
     })
   }
 
-  closeMenu = () => {
+  closeMenu = (nextPath) => {
     this.setState({
       menuIsOpen: false
+    })
+
+    if (this.state.lastPath !== nextPath) {
+      return this.setState({
+        animateClosing: true
+      })
+    }
+
+    this.setState({
+      animateClosing: false
     })
   }
 
   render () {
     const toggleActive = this.state.menuIsOpen ? 'is-active' : ''
+    const headerClass =
+      (this.state.menuIsOpen ? 'menu-opened' : '') + ' ' +
+      (this.state.animateClosing ? 'closing-animation' : '')
+
     return (
-      <header className={this.state.menuIsOpen ? 'menu-opened' : ''}>
+      <header className={headerClass}>
         <h3>
           Totally not <span className="red">Last fm</span>
           <Route path="/:pageName" render={this.mapUrlToPageName} />
@@ -72,3 +94,5 @@ export default class extends Component {
     )
   }
 }
+
+export default withRouter(Header)
