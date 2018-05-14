@@ -27,8 +27,6 @@ export default class extends Component {
     return <div className='graph-item bar-graph'>
       <Bar
         data={data}
-        width={50}
-        height={10}
         options={{
           tooltips: {
             enabled: false

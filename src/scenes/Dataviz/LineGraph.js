@@ -15,14 +15,19 @@ export default class extends Component {
         borderColor: [
           'rgba(255,99,132,0)'
         ],
-        borderWidth: 0
+        borderWidth: 0,
+        pointBackgroundColor: 'rgba(0,0,0,0)',
+        pointBorderWidth: 0,
+        pointHoverRadius: 10,
+        pointHoverBackgroundColor: 'rgba(255,255,0,0.5)',
+        pointHoverBorderWidth: 0,
+        pointHoverBorderColor: 'rgba(0,0,0,0)'
       }]
     }
+
     return <div className='graph-item line-graph'>
       <Line
         data={data}
-        width={50}
-        height={10}
         options={{
           tooltips: {
             enabled: false
@@ -69,10 +74,10 @@ export default class extends Component {
           },
           elements: {
             point: {
-              radius: 3,
-              hitRadius: 25,
-              hoverRadius: 3,
-              borderWidth: 1,
+              radius: 0,
+              hitRadius: 5,
+              hoverRadius: 25,
+              borderWidth: 3,
               borderColor: 'rgba(255, 0, 0, 1)'
             }
           }
