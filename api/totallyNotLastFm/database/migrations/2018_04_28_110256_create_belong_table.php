@@ -6,26 +6,30 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBelongTable extends Migration
 {
-    /**
+  /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('belong', function (Blueprint $table) {
-            $table->increments('playlist_id_playlist_id', 255);
-            $table->integer('music_id_music');
-        });
-    }
+  public function up()
+  {
+    Schema::create('belong', function (Blueprint $table) {
+      $table->engine = 'InnoDB';
+      $table->unsignedInteger('playlist_id_playlist');
+      $table->unsignedBigInteger('music_id_music');
+      $table->nullableTimestamps();
+    });
+  }
 
-    /**
+  /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('belong');
-    }
+  public function down()
+  {
+    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+    Schema::dropIfExists('belong');
+    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+  }
 }
