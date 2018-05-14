@@ -15,7 +15,7 @@ class CreateIncludeTable extends Migration
   {
     Schema::create('include', function (Blueprint $table) {
       $table->engine = 'InnoDB';
-      $table->unsignedBigInteger('include_id');
+      $table->bigIncrements('include_id');
       $table->unsignedInteger('album_id_album');
       $table->unsignedBigInteger('music_id_music');
       $table->nullableTimestamps();

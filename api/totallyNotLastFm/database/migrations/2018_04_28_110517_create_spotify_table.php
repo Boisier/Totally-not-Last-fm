@@ -11,15 +11,6 @@ class CreateSpotifyTable extends Migration
      *
      * @return void
      */
-<<<<<<< HEAD
-    public function up()
-    {
-        Schema::create('spotify', function (Blueprint $table) {
-            $table->increments('spotify_user_id');
-            $table->integer('user_id_user');
-        });
-    }
-=======
   public function up()
   {
     Schema::create('spotify', function (Blueprint $table) {
@@ -29,7 +20,6 @@ class CreateSpotifyTable extends Migration
       $table->nullableTimestamps();
     });
   }
->>>>>>> feature/back/seeder
 
   /**
      * Reverse the migrations.
