@@ -28,6 +28,8 @@ export default class extends Component {
     return <div className='graph-item line-graph'>
       <Line
         data={data}
+        width={100}
+        height={100}
         options={{
           tooltips: {
             enabled: false

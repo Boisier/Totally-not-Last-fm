@@ -23,6 +23,8 @@ export default class extends Component {
     return <div className='graph-item donut-graph'>
       <Doughnut
         data={data}
+        width={100}
+        height={100}
         options={{
           tooltips: {
             enabled: false
