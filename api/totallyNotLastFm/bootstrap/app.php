@@ -5,7 +5,6 @@ require_once __DIR__.'/../vendor/autoload.php';
 try {
     (new Dotenv\Dotenv(__DIR__.'/../'))->load();
 } catch (Dotenv\Exception\InvalidPathException $e) {
-    //
 }
 
 /*
@@ -69,7 +68,7 @@ $app->routeMiddleware([
 /* End Vendor */
 
 $app->middleware([
-   App\Http\Middleware\ExampleMiddleware::class
+   App\Http\Middleware\Authenticate::class
 ]);
 
 $app->routeMiddleware([
@@ -91,9 +90,9 @@ $app->register(\LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider:
 $app->register(\LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class);
 /* End vendor */
 
-$app->register(App\Providers\AppServiceProvider::class);
+// $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
-$app->register(App\Providers\EventServiceProvider::class);
+// $app->register(App\Providers\EventServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
