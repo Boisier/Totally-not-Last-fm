@@ -7,9 +7,9 @@ import './style/App.scss'
 import auth from 'library/auth'
 
 // Scene scenes
+import Dataviz from './scenes/Dataviz/Dataviz'
 import Structure from './containers/Structure/Structure'
 
-import Landing from './scenes/Landing/Landing'
 import Home from './scenes/Home/Home'
 import About from './scenes/About/About'
 import Settings from './scenes/Settings/Settings'
@@ -47,7 +47,7 @@ export default class extends Component {
 
   render = () => {
     if (!this.state.isUser) {
-      return <Landing checkLogin={this.checkLogin}/>
+      return <Dataviz checkLogin={this.checkLogin}/>
     }
 
     return (
