@@ -3,7 +3,7 @@ import GraphEntity from './GraphEntity'
 
 import {Line} from 'react-chartjs-2'
 import lineStyle from './styles/line.json'
-import { lineTooltip } from './tooltips'
+import { graphTooltip } from './tooltips'
 
 export default class extends GraphEntity {
   genData () {
@@ -25,25 +25,12 @@ export default class extends GraphEntity {
 
   getGraphOption () {
     let graphOptions = lineStyle
-    graphOptions.tooltips.custom = lineTooltip
+    graphOptions.tooltips.custom = graphTooltip
 
     return graphOptions
   }
 
   render () {
-    return <div
-      className='graph-item line-graph'
-      onMouseOut={this.onMouseOut}>
-      <Line
-        data={this.dataSelector}
-        width={100}
-        height={50}
-        options={this.getGraphOption()}
-      />
-      <div
-        className="chartjs-tooltip"
-        id={'tooltip-' + this.props.graphID}>
-      </div>
-    </div>
+    return super.render(Line)
   }
 }

@@ -65,7 +65,7 @@ $stats-transition: $transition-duration ease-out;
 
   &.stats-wrapper-left-enter-active {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0);
   }
 }
 
@@ -74,7 +74,7 @@ $stats-transition: $transition-duration ease-out;
   position: absolute;
   top: 0;
   opacity: 1;
-  transform: translateX(0px);
+  transform: translateX(0);
 
   &.stats-wrapper-left-leave-active {
     opacity: 0;
@@ -89,7 +89,7 @@ $stats-transition: $transition-duration ease-out;
 
   &.stats-wrapper-right-enter-active {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0);
   }
 }
 
@@ -98,7 +98,7 @@ $stats-transition: $transition-duration ease-out;
   position: absolute;
   top: 0;
   opacity: 1;
-  transform: translateX(0px);
+  transform: translateX(0);
 
   &.stats-wrapper-right-leave-active {
     opacity: 0;

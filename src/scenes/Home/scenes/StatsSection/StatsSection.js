@@ -47,7 +47,7 @@ export default class extends Component {
               stats.periods[this.state.period].graphs.map(graph => (
                 <StatBlock
                   {...graph}
-                  period={stats.periods[this.props.period].key}
+                  period={stats.periods[this.props.period]}
                   section={this.state.currentSection}
                   key={this.state.period + '-' + this.state.currentSection + '-' + graph.route}
                 />

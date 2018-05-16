@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import Graph from 'containers/Graph/Graph'
-import moment from 'moment/moment'
+import labelGenerator from 'library/labelGenerator'
 
 export default class StatBlock extends Component {
   static propTypes = {
@@ -23,71 +23,9 @@ export default class StatBlock extends Component {
   }
 
   genLabels (period) {
-    const labels = []
-
     // Generate the labels for the current period
-    // If the period isn't over, determine up to wich to generate
-
-    switch (period) {
-      case 'DAILY':
-        let numOfHours = 24
-        if (this.props.section === 0) {
-          numOfHours = moment().hour()
-        }
-
-        for (let i = 0; i < numOfHours; ++i) {
-          labels[i] = moment().hour(i).format('h A')
-        }
-
-        if (this.props.section === 0) {
-          labels[labels.length] = 'Now'
-        }
-
-        break
-      case 'WEEKLY':
-        let numOfDays = 7
-        if (this.props.section === 0) {
-          numOfDays = moment().weekday()
-        }
-
-        for (let i = 0; i < numOfDays; ++i) {
-          labels[i] = moment().weekday(i + 1).format('dddd')
-        }
-
-        if (this.props.section === 0) {
-          labels[labels.length - 1] = 'Today'
-        }
-
-        break
-      case 'MONTHLY':
-        let numOfDaysInMonth
-
-        if (this.props.section === 0) {
-          numOfDaysInMonth = moment().date()
-        } else {
-          numOfDaysInMonth = moment().month(moment().month() - this.props.section + 1).date(0).date()
-        }
-
-        for (let i = 0; i < numOfDaysInMonth; ++i) {
-          labels[i] = moment().date(i + 1).format('Do')
-        }
-
-        if (this.props.section === 0) labels[labels.length - 1] = 'today'
-        break
-      case 'YEARLY':
-        let numOfMonths = 12
-        if (this.props.section === 0) {
-          numOfMonths = moment().month()
-        }
-
-        for (let i = 0; i <= numOfMonths; ++i) {
-          labels[i] = moment().month(i).format('MMMM')
-        }
-        break
-      default:
-    }
-
-    return labels
+    // If the period isn't over, determine up to when to generate
+    return labelGenerator[period.name](this.props.section)
   }
 
   render () {

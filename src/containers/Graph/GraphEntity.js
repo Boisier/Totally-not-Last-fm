@@ -47,4 +47,21 @@ export default class GraphEntity extends Component {
 
     return gradient
   }
+
+  render (Graph) {
+    return <div
+      className='graph-item bar-graph'
+      onMouseOut={this.onMouseOut}>
+      <Graph
+        data={this.dataSelector}
+        width={100}
+        height={50}
+        options={this.getGraphOption()}
+      />
+      <div
+        className="chartjs-tooltip"
+        id={'tooltip-' + this.props.graphID}>
+      </div>
+    </div>
+  }
 }

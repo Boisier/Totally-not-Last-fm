@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 // Used to generate and place the tooltip
 // Cannot be in the class due to the use of `this` by graph-js
-export function lineTooltip (tooltipModel) {
+export function graphTooltip (tooltipModel) {
   const tooltip = document.getElementById('tooltip-' + this._chart.id)
 
   if (!tooltipModel || !tooltipModel.opacity) return
