@@ -17,25 +17,25 @@ export default class extends Component {
   genSections () {
     const sections = []
 
-    switch (stats.periods[this.props.period].period) {
-      case 'day':
+    switch (stats.periods[this.props.period].key) {
+      case 'DAILY':
         sections[0] = 'today'
         sections[1] = 'yesterday'
         for (let i = 2; i < 7; ++i) {
           sections[i] = moment().weekday(-i).format('dddd')
         }
         break
-      case 'week':
+      case 'WEEKLY':
         for (let i = 0; i < 5; ++i) {
           sections[i] = 'W' + moment().week(moment().week() - i).format('ww')
         }
         break
-      case 'month':
+      case 'MONTHLY':
         for (let i = 0; i < 12; ++i) {
           sections[i] = moment().month(moment().month() - i).format('MMM')
         }
         break
-      case 'year':
+      case 'YEARLY':
         for (let i = 0; i < 10; ++i) {
           sections[i] = moment().year(moment().year() - i).format('YYYY')
         }
@@ -46,7 +46,7 @@ export default class extends Component {
     return sections
   }
 
-  setSection (index) {
+  setSection = (index) => {
     this.setState({
       currentSection: index
     })

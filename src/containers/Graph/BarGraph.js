@@ -1,40 +1,29 @@
 import React, {Component} from 'react'
 
-import './Dataviz.scss'
-import {Line} from 'react-chartjs-2'
+import {Bar} from 'react-chartjs-2'
 
 export default class extends Component {
   render = () => {
     const data = {
-      labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      labels: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'],
       datasets: [{
-        data: [12, 19, 3, 5, 2, 13, 18],
-        backgroundColor: [
-          'rgba(255, 150, 150, 1)'
-        ],
+        data: [12, 19, 3, 5, 2, 13, 18, 12, 19, 3, 5, 2, 13, 18, 12, 19, 3, 5, 2, 13, 18, 11, 4, 1],
+        backgroundColor: 'rgba(150, 150, 255, 1)',
         borderColor: [
           'rgba(255,99,132,0)'
         ],
-        borderWidth: 0,
-        pointBackgroundColor: 'rgba(0,0,0,0)',
-        pointBorderWidth: 0,
-        pointHoverRadius: 10,
-        pointHoverBackgroundColor: 'rgba(255,255,0,0.5)',
-        pointHoverBorderWidth: 0,
-        pointHoverBorderColor: 'rgba(0,0,0,0)'
+        borderWidth: 0
       }]
     }
-
-    return <div className='graph-item line-graph'>
-      <Line
+    return <div className='graph-item bar-graph'>
+      <Bar
         data={data}
         width={100}
-        height={100}
+        height={50}
         options={{
           tooltips: {
             enabled: false
           },
-          maintainAspectRatio: false,
           title: {
             display: false,
             text: 'Plays per day',
@@ -59,28 +48,27 @@ export default class extends Component {
               }
             }],
             xAxes: [{
-              display: false,
+              display: true,
               gridLines: {
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false
+                display: false,
+                drawOnChartArea: false,
+                drawTicks: false,
+                zeroLineColor: 'transparent'
               },
               ticks: {
-                display: false,
+                padding: 5,
+                display: true,
                 fontSize: 15,
                 fontColor: '#1e1e1e',
-                fontStyle: 'bold',
-                fontFamily: 'Arial'
+                fontFamily: 'sans-serif'
               }
             }]
           },
           elements: {
             point: {
               radius: 0,
-              hitRadius: 5,
-              hoverRadius: 25,
-              borderWidth: 3,
-              borderColor: 'rgba(255, 0, 0, 1)'
+              hitRadius: 25,
+              hoverRadius: 3
             }
           }
         }}
