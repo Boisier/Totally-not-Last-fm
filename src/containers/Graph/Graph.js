@@ -36,8 +36,9 @@ export default class extends Component {
       data={this.props.data}
       labels={this.props.labels}
       graphID={this.state.manager.addGraph()}
-      topColor={this.props.topColor}
-      bottomColor={this.props.bottomColor}
+      toColor={this.props.toColor}
+      fromColor={this.props.fromColor}
+      size={this.props.size}
     />
   }
 }

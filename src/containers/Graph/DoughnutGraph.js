@@ -23,7 +23,7 @@ export default class extends Component {
       <Doughnut
         data={data}
         width={100}
-        height={70}
+        height={50}
         options={{
           tooltips: {
             enabled: false

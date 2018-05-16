@@ -9,9 +9,34 @@ export default class GraphEntity extends Component {
     graphID: 0
   }
 
+  constructor (props) {
+    super(props)
+    this.state = {
+      graphData: {}
+    }
+
+    this.ctx = null
+  }
+
+  genData () {
+    throw new Error('You need to implement genData in child class')
+  }
+
+  dataSelector = (canvas) => {
+    // Store the graph ctx for the later use.
+    this.ctx = canvas.getContext('2d')
+    return this.state.graphData
+  }
+
+  componentDidMount () {
+    this.genData() // Generate data only when graph has been mounted
+  }
+
   onMouseOut = () => {
     // Hide tooltip on mouse out
     const tooltip = document.getElementById('tooltip-' + this.props.graphID)
+    if (!tooltip) return
+
     tooltip.style.opacity = 0
   }
 

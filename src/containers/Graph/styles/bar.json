@@ -27,9 +27,10 @@
       }
     }],
     "xAxes": [{
-      "display": false,
+      "display": true,
+      "barPercentage": 0.8,
       "gridLines": {
-        "display": true,
+        "display": false,
         "drawOnChartArea": false,
         "drawTicks": false
       },

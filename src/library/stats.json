@@ -12,19 +12,19 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
           }
         },
         {
-          "type": "line",
+          "type": "bar",
           "size": "small",
           "route": "/stats/listeningtime/da1y",
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         },
         {
@@ -34,8 +34,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         }
       ]
@@ -52,8 +52,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         },
         {
@@ -63,8 +63,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         },
         {
@@ -74,8 +74,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         }
       ]
@@ -92,8 +92,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         },
         {
@@ -103,8 +103,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         },
         {
@@ -114,8 +114,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         }
       ]
@@ -132,8 +132,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         },
         {
@@ -143,8 +143,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         },
         {
@@ -154,8 +154,8 @@
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "top": "red",
-            "bottom": "#F2DDDE"
+            "from": "#F2DDDE",
+            "to": "red"
           }
         }
       ]

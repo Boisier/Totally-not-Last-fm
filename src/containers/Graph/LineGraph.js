@@ -6,24 +6,11 @@ import lineStyle from './styles/line.json'
 import { lineTooltip } from './tooltips'
 
 export default class extends GraphEntity {
-  constructor (props) {
-    super(props)
-    this.state = {
-      graphData: {}
-    }
-
-    this.ctx = null // Stored outside the state to prevent unwanted re-render
-  }
-
-  componentDidMount () {
-    this.genData() // Generate data only when graph has been mounted
-  }
-
   genData () {
     // Create gradient
-    const gradient = this.getGradient(this.props.topColor, this.props.bottomColor, this.ctx.canvas.offsetHeight)
+    const gradient = this.getGradient(this.props.toColor, this.props.fromColor, this.ctx.canvas.offsetHeight)
 
-    this.setState({graphData: {
+    this.setState({ graphData: {
       labels: this.props.labels,
       datasets: [{
         data: this.props.data,
@@ -33,13 +20,7 @@ export default class extends GraphEntity {
       }]
     }})
 
-    document.getElementById('tooltip-' + this.props.graphID).style.backgroundColor = this.props.topColor
-  }
-
-  dataSelector = (canvas) => {
-    // Store the graph ctx for the later use.
-    this.ctx = canvas.getContext('2d')
-    return this.state.graphData
+    document.getElementById('tooltip-' + this.props.graphID).style.backgroundColor = this.props.toColor
   }
 
   getGraphOption () {

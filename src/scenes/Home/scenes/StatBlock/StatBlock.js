@@ -114,8 +114,9 @@ export default class StatBlock extends Component {
           type={ this.props.type }
           data={data}
           labels={this.genLabels(this.props.period)}
-          topColor={this.props.colors.top}
-          bottomColor={this.props.colors.nottom}
+          toColor={this.props.colors.to}
+          fromColor={this.props.colors.from}
+          size={this.props.size}
         />
       </div>
     )
