@@ -15,6 +15,9 @@ class UserController extends Controller{
 	}
 	*/
 
+	/*----------------------------Basic functions--------------------------*/
+	
+
 	/* Récupère email + mdp et génère token si good */
 	public function authenticate(Request $request){
 		return $this->success(["token" => md5(time())], 200); //md5 = génère une chaine de charactère
@@ -81,6 +84,11 @@ class UserController extends Controller{
 
 		return response()->json(['data' => "The user with id {$id} has been deleted"], 200);
 	}
+	/*----------------------------Stats functions--------------------------*/
+
+
+	/*----------------------------Annex functions--------------------------*/
+
 
 	//validate request
 	public function validateRequestUser(Request $request){

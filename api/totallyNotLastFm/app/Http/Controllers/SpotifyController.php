@@ -16,6 +16,9 @@ class SpotifyController extends Controller{
 	}
 	*/
 
+	/*----------------------------Basic functions--------------------------*/
+
+
 	//get All Spotify of our database
 	public function getAllSpotify(){
 		$spotify = Spotify::all();
@@ -73,6 +76,11 @@ class SpotifyController extends Controller{
 
 		return response()->json(['data' => "The spotify account with id {$id} has been deleted"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+
+	/*----------------------------Annex functions--------------------------*/
+	
 
 	//validate request
 	public function validateRequestSpotify(Request $request){

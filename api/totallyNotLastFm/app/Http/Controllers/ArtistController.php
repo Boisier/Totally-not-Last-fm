@@ -15,6 +15,8 @@ class ArtistController extends Controller{
 	}
 	*/
 
+	/*----------------------------Basic functions--------------------------*/
+
 	//get All Artists
 	public function getAllArtists(){
 		$artists = Artist::all();
@@ -74,6 +76,21 @@ class ArtistController extends Controller{
 
 		return response()->json(['data' => "The artist with id {$id} has been deleted"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+	//Get the list of all albums of one Artist
+	public function getAlbumListFromArtist($id_artist){
+		$albums = DB::table('albums')
+		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
+		->join('artist', 'artists.artist_id_artist', '=', 'produce.artist_id_artist')
+		->select('albums.*')
+		->where('artists.artist_id_artist', '=', $id_artist)
+		->get();
+
+		return $this->success($albums, 200);
+	}
+
+	/*----------------------------Annex functions--------------------------*/
 
 	//validate request artist
 	public function validateRequestArtist(Request $request){

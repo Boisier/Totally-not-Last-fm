@@ -15,6 +15,8 @@ class GenreController extends Controller{
 	}
 	*/
 
+	/*----------------------------Basic functions--------------------------*/
+
 	//get all Genres
 	public function getAllGenres(){
 		$genres = Genre::all();
@@ -67,6 +69,11 @@ class GenreController extends Controller{
 
 		return response()->json(['data' => "The genre with id {$id} has been deleted"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+	
+	/*----------------------------Annex functions--------------------------*/
+
 
 	//validate request
 	public function validateRequestGenre(Request $request){

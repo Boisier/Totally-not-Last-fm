@@ -15,6 +15,9 @@ class MusicController extends Controller{
 	}
 	*/
 
+	/*----------------------------Basic functions--------------------------*/
+
+
 	//get All Musics
 	public function getAllMusics(){
 		$musics = Music::all();
@@ -74,6 +77,11 @@ class MusicController extends Controller{
 
         return response()->json(['data' => "The music with id {$id} has been deleted"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+	
+	/*----------------------------Annex functions--------------------------*/
+
 
 	//validate request
 	public function validateRequestMusic(Request $request){

@@ -15,6 +15,8 @@ class AlbumController extends Controller{
 	}
 	*/
 
+	/*----------------------------Basic functions--------------------------*/
+
 	//get All Albums
 	public function getAllAlbums(){
 		$albums = Album::all();
@@ -73,6 +75,26 @@ class AlbumController extends Controller{
 
         return response()->json(['data' => "The album with id {$id} has been deleted"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+	//Get the list of all music titles of one Album
+	public function getTrackListOfAlbum($id_album){
+		$musics = DB::table('albums')
+		->join('includes', 'albums.album_id_album', '=', 'includes.album_id_album')
+		->join('musics', 'musics.music_id_music', '=', 'includes.music_id_music')
+		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
+		->join('artists', 'artists.artist_id_artist', '=', 'produce.artist_id_artist')
+		->select('musics.id', 'musics.music_title', 'artists.artist_id_artist', 'artists.name') 
+		->where('albums.album_id_album', '=', $id_album)
+		->get();
+
+		return $this->success($musics, 200);
+	}
+
+
+
+
+	/*----------------------------Annex functions--------------------------*/
 
 	//validate request
 	public function validateRequestAlbum(Request $request){
