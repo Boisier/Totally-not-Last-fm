@@ -1,108 +1,68 @@
-import React, {Component} from 'react'
-import _ from 'lodash'
+import React from 'react'
+import GraphEntity from './GraphEntity'
 
 import {Line} from 'react-chartjs-2'
 import lineStyle from './styles/line.json'
+import { lineTooltip } from './tooltips'
 
-export default class extends Component {
+export default class extends GraphEntity {
   constructor (props) {
     super(props)
-
-    this.ctx = null
-    this.canvasHolder = React.createRef()
-
     this.state = {
-      mounted: false
+      graphData: {}
     }
+
+    this.ctx = null // Stored outside the state to prevent unwanted re-render
   }
 
   componentDidMount () {
-    // Stylize graph
-    this.setState({
-      mounted: true
-    })
-  }
-
-  dataSelector = (canvas) => {
-    this.ctx = canvas.getContext('2d')
-
-    if (!this.state.mounted) return {}
-
-    return this.genData()
+    this.genData() // Generate data only when graph has been mounted
   }
 
   genData () {
-    const gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvasHolder.current.offsetHeight)
-    gradient.addColorStop(0, 'red')
-    gradient.addColorStop(1, '#F2DDDE')
+    // Create gradient
+    const gradient = this.getGradient(this.props.topColor, this.props.bottomColor, this.ctx.canvas.offsetHeight)
 
-    return {
+    this.setState({graphData: {
       labels: this.props.labels,
       datasets: [{
         data: this.props.data,
         backgroundColor: gradient,
         pointBackgroundColor: 'transparent',
-        borderColor: [
-          'rgba(255,99,132,0)'
-        ],
-        borderWidth: 0,
-        pointBorderWidth: 0,
-        pointHoverRadius: 0
+        borderColor: 'transparent'
       }]
-    }
+    }})
+
+    document.getElementById('tooltip-' + this.props.graphID).style.backgroundColor = this.props.topColor
   }
 
-  onMouseOut = () => {
-    const tooltip = document.getElementById('tooltip-' + this.props.graphID)
-    tooltip.style.opacity = 0
+  dataSelector = (canvas) => {
+    // Store the graph ctx for the later use.
+    this.ctx = canvas.getContext('2d')
+    return this.state.graphData
   }
 
-  render = () => {
-    let graphOptions = {}
+  getGraphOption () {
+    let graphOptions = lineStyle
+    graphOptions.tooltips.custom = lineTooltip
 
-    if (this.state.mounted) {
-      graphOptions = Object.assign(lineStyle,
-        { elements: { point: {
-          hitRadius: this.ctx.canvas.offsetWidth / (this.props.labels.length * 2)
-        }}}
-      )
-    } else graphOptions = lineStyle
+    return graphOptions
+  }
 
-    graphOptions.tooltips.custom = customTooltip
-
+  render () {
     return <div
-      ref={this.canvasHolder}
       className='graph-item line-graph'
       onMouseOut={this.onMouseOut}>
       <Line
         data={this.dataSelector}
         width={100}
         height={50}
-        options={graphOptions}
+        options={this.getGraphOption()}
       />
       <div
         className="chartjs-tooltip"
         id={'tooltip-' + this.props.graphID}>
-        { this.props.graphID }
       </div>
     </div>
   }
-}
-
-function customTooltip (tooltipModel) {
-  const tooltip = document.getElementById('tooltip-' + this._chart.id)
-
-  if (!tooltipModel || !tooltipModel.opacity) return
-  if (!tooltipModel.dataPoints.length) return
-
-  tooltipModel.dataPoints.forEach(datapoint => {
-    const content = `<span class="label">` + datapoint.xLabel + `</span>
-                     <span class="value">` + datapoint.yLabel + `</span>`
-    tooltip.innerHTML = content
-
-    const posX = _.clamp(datapoint.x, 60, this._chart.canvas.offsetWidth - 60)
-
-    tooltip.style.left = posX + 'px'
-    tooltip.style.opacity = 1
-  })
 }
