@@ -4,14 +4,19 @@ import StatsPeriodesNavBar from './scenes/StatsPeriodesNavBar/StatsPeriodesNavBa
 import StatsSection from './scenes/StatsSection/StatsSection'
 
 export default class extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {period: 0}
+  }
+  showPeriodStats = (period) => {
+    this.setState({period: period})
+  }
+  
   render = () => (
     <section className="home-page">
-      <StatsPeriodesNavBar />
+      <StatsPeriodesNavBar showPeriodStats={this.showPeriodStats}/>
       <section className="home-stats">
-        <StatsSection period="0" />
-        <StatsSection period="1" />
-        <StatsSection period="2" />
-        <StatsSection period="3" />
+        <StatsSection period={this.state.period} />
       </section>
     </section>
   )

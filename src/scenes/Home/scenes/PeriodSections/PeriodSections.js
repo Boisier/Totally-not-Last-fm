@@ -13,7 +13,7 @@ export default class extends Component {
       currentSection: this.props.section
     }
   }
-
+  
   genSections () {
     const sections = []
 

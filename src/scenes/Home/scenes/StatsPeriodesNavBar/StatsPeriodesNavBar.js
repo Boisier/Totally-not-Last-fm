@@ -9,8 +9,8 @@ export default class extends Component {
       </div>
       <ul className="side-nav">
         {
-          stats.periods.map(p => (
-            <li key={p.key}>
+          stats.periods.map((p, i) => (
+            <li key={p.key} onClick={this.props.showPeriodStats.bind(this, i)}>
               { p.name.charAt(0) }
               <span>{ p.name.substr(1) }</span>
             </li>
