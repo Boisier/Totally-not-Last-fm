@@ -38,7 +38,9 @@ class NationalityController extends Controller{
 
 	//get Nationality
 	public function getNationality($id){
-		$nationality = Nationality::find($id);
+		$nationality = DB::table('nationalities')
+		->where('nationality_id_nationality', '=', $id);
+		->get();
 
 		if(!$nationality)
             return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
@@ -81,7 +83,7 @@ class NationalityController extends Controller{
 	//validate request
 	public function validateRequestNationality(Request $request){
 		$rules = [
-			'nationality_code' => 'required|alpha'	
+			'nationality_code' => 'required|alpha'
 		];
 
 		$this->validate($request, $rules);
@@ -95,7 +97,7 @@ class NationalityController extends Controller{
 		return $this->autorizeUser($request, $resource, $nationality);
 	}
 
-	
+
 }
 
 ?>
