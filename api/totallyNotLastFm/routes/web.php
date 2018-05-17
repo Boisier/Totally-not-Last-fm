@@ -324,9 +324,7 @@ $router->delete('/users/{user_id_user}', 'UserController@deleteUser');
 
 /*$router->post('/auth', 'UserController@authenticate');*/
 
-$router->post(
-    'auth/login',
-    [
-       'uses' => 'AuthController@authenticate'
-    ]
-);
+$router->group(['prefix' => 'auth'], function($router) {
+	$router->post('/login', 'AuthController@login');
+	$router->post('/logout', 'AuthController@logout');
+});

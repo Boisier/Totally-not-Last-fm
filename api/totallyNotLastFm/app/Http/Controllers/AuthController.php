@@ -1,81 +1,69 @@
 <?php
-
-
 namespace App\Http\Controllers;
-use Validator;
-use App\User;
-use Firebase\JWT\JWT;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Firebase\JWT\ExpiredException;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Lumen\Routing\Controller as BaseController;
-
-class AuthController extends BaseController {
+use Tymon\JWTAuth\JWTAuth;
+use App\User;
+use App\Http\Controllers\Controller;
+class AuthController extends Controller
+{
     /**
-     * The request instance.
-     *
-     * @var \Illuminate\Http\Request
+     * @var \Tymon\JWTAuth\JWTAuth
      */
-    private $request;
-    /**
-     * Create a new controller instance.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     */
-    public function __construct(Request $request) {
-        $this->request = $request;
+    protected $jwt;
+    public function __construct(JWTAuth $jwt) {
+        $this->jwt = $jwt;
     }
-    /**
-     * Create a new token.
-     *
-     * @param  \App\User   $user
-     * @return string
-     */
-    protected function jwt(User $user) {
-        $payload = [
-            'iss' => "lumen-jwt", // Issuer of the token
-            'sub' => $user->id, // Subject of the token
-            'iat' => time(), // Time when JWT was issued.
-            'exp' => time() + 60*60 // Expiration time
-        ];
-
-        // As you can see we are passing `JWT_SECRET` as the second parameter that will
-        // be used to decode the token in the future.
-        return JWT::encode($payload, env('JWT_SECRET'));
-    }
-    /**
-     * Authenticate a user and return the token if the provided credentials are correct.
-     *
-     * @param  \App\User   $user
-     * @return mixed
-     */
-    public function authenticate(User $user) {
-        $this->validate($this->request, [
-            'email'     => 'required|email',
-            'password'  => 'required'
+    public function login(Request $request) {
+        $this->validate($request, [
+            'user_username' => 'required',
+            'user_password' => 'required',
         ]);
-        // Find the user by email
-        $user = User::where('email', $this->request->input('email'))->first();
-        if (!$user) {
-            // You wil probably have some sort of helpers or whatever
-            // to make sure that you have the same response format for
-            // differents kind of responses. But let's return the
-            // below respose for now.
-            return response()->json([
-                'error' => 'Email does not exist.'
-            ], 400);
+        try {
+            if (!$token = $this->jwt->attempt($request->only('user_username', 'user_password'))) {
+                return response()->json(['user_not_found'], 404);
+            }
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['token_expired'], 500);
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['token_invalid'], 500);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['token_absent' => $e->getMessage()], 500);
         }
-        // Verify the password and generate the token
-        if (Hash::check($this->request->input('password'), $user->password)) {
-            return response()->json([
-                'token' => $this->jwt($user)
-            ], 200);
-        }
-        // Bad Request response
+        return $this->respondWithToken($token);
+    }
+    /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return response()->json(['message' => 'Successfully logged out'], 200);
+    }
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        return $this->respondWithToken(Auth::refresh());
+    }
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithToken($token)
+    {
         return response()->json([
-            'error' => 'Email or password is wrong.'
-        ], 400);
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => Auth::factory()->getTTL() * 60
+        ], 200);
     }
 }
-?>

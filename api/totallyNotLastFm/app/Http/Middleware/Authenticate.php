@@ -1,12 +1,7 @@
 <?php
-
 namespace App\Http\Middleware;
-
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
-use Illuminate\Http\Request;
-
-
 class Authenticate
 {
     /**
@@ -15,7 +10,6 @@ class Authenticate
      * @var \Illuminate\Contracts\Auth\Factory
      */
     protected $auth;
-
     /**
      * Create a new middleware instance.
      *
@@ -26,7 +20,6 @@ class Authenticate
     {
         $this->auth = $auth;
     }
-
     /**
      * Handle an incoming request.
      *
@@ -38,11 +31,8 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->guard($guard)->guest()) {
-            return response(["success"=>false], 401);
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
-
-        // return $next($request); -> Stella shitwork
+        return $next($request);
     }
-
 }
-

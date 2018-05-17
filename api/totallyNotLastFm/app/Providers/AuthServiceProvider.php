@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Providers;
-
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -17,7 +14,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         //
     }
-
     /**
      * Boot the authentication services for the application.
      *
@@ -29,13 +25,14 @@ class AuthServiceProvider extends ServiceProvider
         // application. The callback which receives the incoming request instance
         // should return either a User instance or null. You're free to obtain
         // the User instance via an API token or any other method necessary.
-
-      /*  $this->app['auth']->viaRequest('api', function ($request) {
-            $token = $request->header("Token");
-            if($token && strlen($token) == 5){ // TO DO : Fonction check si utilisateur existe, sinon on renvoie rien
-                return new User();
+        /*$this->app['auth']->viaRequest('api', function ($request) {
+            if ($request->header('api_token')) {
+                return Player::where('api_token', $request->header('api_token'))->first();
             }
-            return;
         });*/
+        $this->app['auth']->viaRequest('api', function ($request) {
+            return User::where('user_username', $request->input('user_username'))->first();
+        });
+        
     }
 }
