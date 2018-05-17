@@ -324,7 +324,18 @@ $router->delete('/users/{user_id_user}', 'UserController@deleteUser');
 
 $router->post('/auth', 'UserController@authenticate');
 
-$router->group(['prefix' => 'auth'], function($router) {
+/*$router->group(['prefix' => 'auth'], function($router) {
 	$router->post('/login', 'AuthController@login');
 	$router->post('/logout', 'AuthController@logout');
+});*/
+
+Route::group([
+    'prefix' => 'auth'
+
+], function ($router) {
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
+
 });

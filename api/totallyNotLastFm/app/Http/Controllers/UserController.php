@@ -7,13 +7,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class UserController extends Controller{
-	/*
+	
 	//Constructor
 	public function __construct(){
-		$this->middleware('oauth', ['except' => ['getAllUsers', 'getUser']]);
-		$this->middleware('authorize:' . __CLASS__, ['except' => ['getAllUser', 'getUser', 'createUser']]);
+		//$this->middleware('auth', ['only' => ['me']]);
 	}
-	*/
+	
 
 	/* Récupère email + mdp et génère token si good */
 	/*public function authenticate(Request $request){
