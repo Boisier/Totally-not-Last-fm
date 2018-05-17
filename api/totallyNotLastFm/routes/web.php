@@ -322,4 +322,11 @@ $router->put('/users/{user_id_user}', 'UserController@updateUser');
 */
 $router->delete('/users/{user_id_user}', 'UserController@deleteUser');
 
-$router->post('/auth', 'UserController@authenticate');
+/*$router->post('/auth', 'UserController@authenticate');*/
+
+$router->post(
+    'auth/login',
+    [
+       'uses' => 'AuthController@authenticate'
+    ]
+);
