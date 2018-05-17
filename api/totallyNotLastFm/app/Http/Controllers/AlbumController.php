@@ -159,6 +159,24 @@ class AlbumController extends Controller{
 		return $this->success($albums, 200);
 	}	
 
+	//Suggestions of albums of a specific genre
+	public function suggestAlbumsOfGenre($id_genre){
+		$albums = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('be', 'music.music_id_music', '=', 'be.music_id_music')
+		->join('genre', 'be.music_id_music', '=', 'genre.genre_id_genre')
+		->join('include', 'music_id_music', '=', 'include.music_id_music')
+		->join('albums', 'include.album_id_album', '=', 'albums.album_id_album')
+		->select('albums.album_title_album', 'genre.genre_name_genre')
+		->where('genre.genre_id_genre', '=', $id_genre)
+		->groupBy('albums.album_id_album')
+		->get();
+
+		return $this->success($albums, 200);
+	}
+
 
 	/*----------------------------Annex functions--------------------------*/
 

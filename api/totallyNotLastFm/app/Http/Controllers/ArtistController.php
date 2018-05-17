@@ -146,6 +146,24 @@ class ArtistController extends Controller{
 		return $this->success($artists, 200);
 	}
 
+	//Suggestions of artists of a specific genre
+	public function suggestArtistsOfGenre($id_genre){
+		$artists = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->join('be', 'music.music_id_music', '=', 'be.music_id_music')
+		->join('genre', 'be.genre_id_genre', '=', 'genre.genre_id_genre')
+		->select('artists.artist_name', 'genre.genre_name_genre')
+		->where('genre.genre_id_genre', '=', $id_genre)
+		->groupBy('artists.artist_id')
+		->get();
+
+		return $this->success($artists, 200);
+	}
+
 	/*----------------------------Annex functions--------------------------*/
 
 	//validate request artist

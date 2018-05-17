@@ -111,8 +111,6 @@ class GenreController extends Controller{
 		return $this->success($genres, 200);
 	}
 
-
-
 	/*----------------------------Annex functions--------------------------*/
 
 
