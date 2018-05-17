@@ -120,6 +120,6 @@ $factory->define(App\User::class, function(Faker\Generator $faker){
   return [
     'user_mail' => $faker->email,
     'user_username' => $faker->name,
-    'user_password' => bcrypt('12345'),
+    'user_password' => md5('12345'),
   ];
 });

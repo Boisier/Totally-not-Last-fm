@@ -23,8 +23,7 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->withFacades();
-
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -58,13 +57,13 @@ $app->singleton(
 |
 */
 /* From Vendor Luca Degasperi */
-$app->middleware([
+/*$app->middleware([
         \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class
 ]);
 $app->routeMiddleware([
     'oauth' =>
 \LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,     
-]);
+]);*/
 /* End Vendor */
 
 $app->middleware([
@@ -86,8 +85,8 @@ $app->routeMiddleware([
 |
 */
 /* From Vendor Luca Degasperi */
-$app->register(\LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class);
-$app->register(\LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class);
+/*$app->register(\LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class);
+$app->register(\LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class);*/
 /* End vendor */
 
 // $app->register(App\Providers\AppServiceProvider::class);

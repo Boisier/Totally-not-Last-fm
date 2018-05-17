@@ -16,9 +16,9 @@ class UserController extends Controller{
 	*/
 
 	/* Récupère email + mdp et génère token si good */
-	public function authenticate(Request $request){
+	/*public function authenticate(Request $request){
 		return $this->success(["token" => md5(time())], 200); //md5 = génère une chaine de charactère
-	}
+	}*/
 
 	//get all users
 	public function getAllUsers(){
