@@ -2,9 +2,10 @@ $header-height: 3em;
 
 %selected-period
 {
+  transition-duration:0.1s;
   font-style: italic;
   list-style-type: none;
-  font-size: 40px;
+  font-size: 80px;
   font-weight: 700;
   color: red;
   letter-spacing: -0.1em;
@@ -16,14 +17,12 @@ $header-height: 3em;
 
 .stats-period-nav
 {
-  @import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
-
   font-family: 'Rubik', sans-serif;
   display: block;
   position: fixed;
 
   left: 3em;
-  top: 30%;
+  top: 20%;
 
   .stats-bar
   {
@@ -45,9 +44,9 @@ $header-height: 3em;
       list-style-type: none;
       position: relative fixed;
       left: -2em;
-      font-size: 13px;
+      font-size: 18px;
       font-weight: 500;
-      padding: 0 0 .4em;
+      padding: 0 0 .2em;
       text-transform: uppercase;
       letter-spacing: -0.3em;
       cursor: pointer;
@@ -58,7 +57,7 @@ $header-height: 3em;
         display: none;
       }
 
-      &.active
+      &.selected
       {
         @extend %selected-period;
       }
@@ -67,7 +66,59 @@ $header-height: 3em;
 
     li:hover
     {
-      @extend %selected-period;
+      letter-spacing: -0.1em;
+      span {
+        transition-duration: 1;
+        display: inline;
+      }
     }
+  }
+}
+
+.period-nav-top-enter
+{
+  opacity: 0;
+  transform: translateY(150px);
+
+  &.period-nav-top-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.period-nav-top-leave
+{
+  position: absolute;
+  top: 0;
+  opacity: 1;
+  transform: translateY(0);
+
+  &.period-nav-top-leave-active {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+}
+
+.period-nav-bottom-enter
+{
+  opacity: 0;
+  transform: translateY(-150px);
+
+  &.period-nav-bottom-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.period-nav-bottom-leave
+{
+  position: absolute;
+  top: 0;
+  opacity: 1;
+  transform: translateY(0);
+
+  &.period-nav-bottom-leave-active {
+    opacity: 0;
+    transform: translateY(150px);
   }
 }
