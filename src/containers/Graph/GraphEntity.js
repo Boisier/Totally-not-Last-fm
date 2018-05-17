@@ -49,13 +49,14 @@ export default class GraphEntity extends Component {
   }
 
   render (Graph) {
+    const height = this.props.size === 'wide' ? 50 : 60
     return <div
       className='graph-item bar-graph'
       onMouseOut={this.onMouseOut}>
       <Graph
         data={this.dataSelector}
         width={100}
-        height={50}
+        height={height}
         options={this.getGraphOption()}
       />
       <div

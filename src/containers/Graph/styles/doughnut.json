@@ -15,28 +15,32 @@
     }
   },
   "scales": {
-    "yAxes": [{
-      "display": false,
-      "gridLines": {
+    "yAxes": [
+      {
         "display": false,
-        "drawTicks": false
-      },
-      "ticks": {
-        "beginAtZero": true,
-        "display": false
+        "gridLines": {
+          "display": false,
+          "drawTicks": false
+        },
+        "ticks": {
+          "beginAtZero": true,
+          "display": false
+        }
       }
-    }],
-    "xAxes": [{
-      "display": false,
-      "gridLines": {
+    ],
+    "xAxes": [
+      {
         "display": false,
-        "drawOnChartArea": false,
-        "drawTicks": false
-      },
-      "ticks": {
-        "display": false
+        "gridLines": {
+          "display": false,
+          "drawOnChartArea": false,
+          "drawTicks": false
+        },
+        "ticks": {
+          "display": false
+        }
       }
-    }]
+    ]
   },
   "elements": {
     "point": {
@@ -45,4 +49,4 @@
       "hoverRadius": 3
     }
   }
-}}
+}
