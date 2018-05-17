@@ -30,9 +30,9 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($this->auth->guard($guard)->guest()) {
+        /*if ($this->auth->guard($guard)->guest()) {
             return response()->json(['error' => 'Unauthorized middleware'], 401);
-        }
+        }*/
         return $next($request);
     }
 }
