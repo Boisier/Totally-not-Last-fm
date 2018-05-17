@@ -68,6 +68,42 @@ class NationalityController extends Controller{
 
 	/*----------------------------Stats functions--------------------------*/
 
+	//Get the nationalities the most listened by all users
+	public function getNationalitesMostListened(){
+		$nationalities = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->join('hold', 'artists.artist_id', '=', 'hold.artist_id_artist')
+		->join('nationalities', 'hold.nationality_id_nationality', '=', 'nationalities.nationality_id_nationality')
+		->select('nationalities.nationality_code', 'COUNT(nationalities.nationality_id_nationality) as nbListening')
+		->groupBy('nationalities.nationality_id_nationality')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($nationalities, 200);
+	}
+
+	//Get the nationalities the most listened by a specific user
+	public function getNationalitesMostListenedByUser($id_user){
+		$nationalities = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->join('hold', 'artists.artist_id', '=', 'hold.artist_id_artist')
+		->join('nationalities', 'hold.nationality_id_nationality', '=', 'nationalities.nationality_id_nationality')
+		->select('nationalities.nationality_code', 'user.username', 'COUNT(nationalities.nationality_id_nationality) as nbListening')
+		->where('user.id', '=', $id_user)
+		->groupBy('nationalities.nationality_id_nationality')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($nationalities, 200);
+	}		
 	/*----------------------------Annex functions--------------------------*/
 
 	//delete Nationality

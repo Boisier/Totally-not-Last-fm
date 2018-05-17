@@ -84,21 +84,8 @@ class HistoryController extends Controller{
 	}
 
 	/*----------------------------Stats functions--------------------------*/
-	//Get number of listening of one music
-	public function getNbListeningMusic($id_music, $id_user){
-		$music = DB::table('histories')
-		->join('user', 'user.id', '=', 'histories.user_id_user')
-		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
-		->join('music', 'music.music_id_music', '=', 'contain.music_id_music')
-		->select ('music.music_title', 'user.id', 'count(music.music_id_music) as nbListening')
-		->where('music.music_id_music', '=', $id_music)
-		->groupBy('musics.music_id_music')
-		->get();
 
-		return $this->success($nbListening, 200);
-	}
-
-	//Get History playtime
+	//Get History total playtime of a specific user
 	public function getHistoryPlaytime($id_user){
 		$musicDuration = DB::table('histories')
 		->join('user', 'user.id', '=', 'histories.user_id_user')
@@ -115,37 +102,17 @@ class HistoryController extends Controller{
 		return $this->success($musicDuration, 200);
 	}
 
-	//Get the genres the most listened
-	/*public function getGenreMostListened($id_user){
-		$nbListeningGenre = DB::table('histories')
-		->join('users', 'users.user_id_user', '=', 'histories.user_id_user')
-		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
-		->join('musics', 'musics.music_id_music', '=', 'contain.music_id_music')
-		->join('be', 'musics.music_id_music', '=', 'be.music_id_music')
-		->join('genres', 'genres.genre_id_genre', '=', 'be.genre_id_genre')
-		->select count('users.user_id_user', 'histories.history_id_history', 'genres.genre_id_genre', 'genres.genre_name_genre')
-		->where('users.user_id_user', '=', $id_user)
-		->groupBy('genres.genre_id_genre')
+	//Get average, earliest and latest listening periods of a specific user
+	public function getListeningPeriodsOfUser($id_user){
+		$periods = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->select('user.username', 'SEC_TO_TIME(AVG(hour(histories.history_play_time)*3600+minute(histories.history_play_time)*60+second(histories.history_play_time))) as average', 'MAX(histories.history_play_time) as lastest', 'MIN(histories.history_play_time) as earliest')
+		->where('user.id', '=', $id_user)
+		->groupBy('user.id')
 		->get();
 
-		return $this->success($nbListeningGenre, 200);
-	}*/
-
-	//Get the artists the most listened by genre
-	/*public function getArtistMostListenedByGenre($id_user){
-		$nbListening = DB::table('histories')
-		->join('users', 'users.user_id_user', '=', 'histories.user_id_user')
-		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
-		->join('musics', 'musics.music_id_music', '=', 'contain.music_id_music')
-		->join('be', 'musics.music_id_music', '=', 'be.music_id_music')
-		->join('genres', 'genres.genre_id_genre', '=', 'be.genre_id_genre')
-		->select('users.user_id_user', 'histories.history_id_history', 'genres.genre_id_genre', 'genres.genre_name_genre')
-		->where('users.user_id_user', '=', $id_user)
-		->groupBy count('genres.genre_id_genre', 'desc')
-		->get();
-
-		return $this->success($albums, 200);
-	}*/
+		return $this->success($periods, 200);
+	}
 
 
 	/*----------------------------Annex functions--------------------------*/

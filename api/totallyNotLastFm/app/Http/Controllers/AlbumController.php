@@ -84,19 +84,6 @@ class AlbumController extends Controller{
 	}
 
 	/*----------------------------Stats functions--------------------------*/
-	//Get the list of all music titles of one Album
-	public function getTrackListOfAlbum($id_album){
-		$musics = DB::table('albums')
-		->join('include', 'albums.album_id_album', '=', 'include.album_id_album')
-		->join('music', 'music.music_id_music', '=', 'include.music_id_music')
-		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
-		->join('artists', 'artists.artist_id', '=', 'produce.artist_id_artist')
-		->select('albums.album_id_album', 'albums.album_title_album', 'music.music_id_music', 'music.music_title', 'artists.artist_id', 'artists.artist_name')
-		->where('albums.album_id_album', '=', $id_album)
-		->get();
-
-		return $this->success($musics, 200);
-	}
 
 	//Get the albums the most listened by all users
 	public function getAlbumsMostListened(){
@@ -107,7 +94,7 @@ class AlbumController extends Controller{
 		->join('include', 'music.music_id_music', '=', 'include.music_id_music')
 		->join('albums', 'include.album_id_album', '=', 'albums.album_id_album')
 		->select('albums.album_title_album', 'COUNT(albums.album_id_album) as nbListening')
-		->groupBy('albums.album_title_album')
+		->groupBy('albums.album_id_album')
 		->orderBy('nbListening DESC')
 		->get();
 
@@ -131,6 +118,46 @@ class AlbumController extends Controller{
 		return $this->success($albums, 200);
 	}
 
+	//Get the albums the most listened of a specific artist by all users
+	public function getAlbumsMostListenedOfArtist($id_artist){
+		$albums = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('include', 'music.music_id_music', '=', 'include.music_id_music')
+		->join('albums', 'include.album_id_album', '=', 'albums.album_id_album')
+		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
+		->join('artists', 'produce.artist_id_artist', '=', 'artists.artist_id')
+		->select('artists.artist_name', 'albums.album_title_album', 'COUNT(albums.album_id_album) as nbListening')
+		->where('artists.artist_id', '=', $id_artist)
+		->groupBy('albums.album_id_album')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($albums, 200);		
+	}
+
+	//Get the albums the most listened of a specific artist by a specific user
+	public function getAlbumsMostListenedOfArtistByUser($id_artist, $id_user){
+		$albums = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('include', 'music.music_id_music', '=', 'include.music_id_music')
+		->join('albums', 'include.album_id_album', '=', 'albums.album_id_album')
+		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
+		->join('artists', 'produce.artist_id_artist', '=', 'artists.artist_id')
+		->select('artists.artist_name', 'albums.album_title_album', 'COUNT(albums.album_id_album) as nbListening')
+		->where([
+			['artists.artist_id', '=', $id_artist],
+			['user.id', '=', $id_user]
+		])
+		->groupBy('albums.album_id_album')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($albums, 200);
+	}	
 
 
 	/*----------------------------Annex functions--------------------------*/
