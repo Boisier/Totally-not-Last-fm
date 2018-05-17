@@ -1,7 +1,7 @@
 {
   "tooltips": {
     "enabled": false,
-    "mode": "point",
+    "mode": "nearest",
     "intersect": false,
     "custom": null
   },
@@ -14,7 +14,17 @@
       "hidden": true
     }
   },
-  "scales": {
+  "scale": {
+    "display": false,
+    "ticks": {
+      "display": false
+    },
+    "gridLines": {
+      "display": false
+    },
+    "angleLines": {
+      "display": false
+    }
   },
   "elements": {
   }

@@ -35,4 +35,10 @@
       vertical-align: middle;
     }
   }
+
+  &.radar-graph,
+  &.doughnut-graph
+  {
+    // padding-bottom: 20px;
+  }
 }

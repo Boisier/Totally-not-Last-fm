@@ -40,7 +40,7 @@ export default class GraphEntity extends Component {
     tooltip.style.opacity = 0
   }
 
-  getGradient (topColor, bottomColor, height) {
+  getLinearGradient (topColor, bottomColor, height) {
     const gradient = this.ctx.createLinearGradient(0, 0, 0, height)
     gradient.addColorStop(0, topColor)
     gradient.addColorStop(1, bottomColor)
@@ -48,10 +48,18 @@ export default class GraphEntity extends Component {
     return gradient
   }
 
-  render (Graph) {
+  getRadialGradient (outerColor, innerColor, radiusX, radiusY) {
+    const gradient = this.ctx.createRadialGradient(radiusX, radiusY, 0, radiusX, radiusY, radiusY)
+    gradient.addColorStop(0, innerColor)
+    gradient.addColorStop(1, outerColor)
+
+    return gradient
+  }
+
+  render (Graph, className = '') {
     const height = this.props.size === 'wide' ? 50 : 60
     return <div
-      className='graph-item bar-graph'
+      className={'graph-item ' + className + '-graph'}
       onMouseOut={this.onMouseOut}>
       <Graph
         data={this.dataSelector}

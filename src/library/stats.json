@@ -17,7 +17,7 @@
           }
         },
         {
-          "type": "bar",
+          "type": "line",
           "size": "small",
           "route": "/stats/listeningtime/da1y",
           "post": [{"key": "day", "value": "section"}],

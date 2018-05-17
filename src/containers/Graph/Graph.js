@@ -6,6 +6,7 @@ import GraphManager from './GraphManager'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 import DoughnutGraph from './DoughnutGraph'
+import RadarGraph from './RadarGraph'
 
 export default class extends Component {
   constructor (props) {
@@ -27,7 +28,8 @@ export default class extends Component {
   graphs = {
     'bar': BarGraph,
     'line': LineGraph,
-    'doughnut': DoughnutGraph
+    'doughnut': DoughnutGraph,
+    'radar': RadarGraph
   }
 
   render () {

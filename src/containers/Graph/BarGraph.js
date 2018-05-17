@@ -8,7 +8,7 @@ import { graphTooltip } from './tooltips'
 export default class extends GraphEntity {
   genData () {
     // Create gradient
-    const gradient = this.getGradient(this.props.toColor, this.props.fromColor, this.ctx.canvas.offsetHeight)
+    const gradient = this.getLinearGradient(this.props.toColor, this.props.fromColor, this.ctx.canvas.offsetHeight)
 
     this.setState({ graphData: {
       labels: this.props.labels,
@@ -31,6 +31,6 @@ export default class extends GraphEntity {
   }
 
   render = () => {
-    return super.render(Bar)
+    return super.render(Bar, 'bar')
   }
 }
