@@ -40,17 +40,21 @@ class HistoryController extends Controller{
 
 	//get History
 	public function getHistory($id){
-		$history = History::find($id);
+		$history = DB::table('histories')
+		->where('history_id_history', '=', $id);
+		->get();
 
 		if(!$history)
 			return $this->error("The history with id {$id} doesn't exist", 404);
-		
+
 		return $this->success($history, 200);
 	}
 
 	//update History
 	public function updateHistory(Request $request, $id){
-		$history = History::find($id);
+		$history = DB::table('histories')
+		->where('history_id_history', '=', $id);
+		->get();
 
 		if(!$history)
             return response()->json(['message' => "The history with id {$id} doesn't exist"], 404);
@@ -67,8 +71,10 @@ class HistoryController extends Controller{
 
 	//delete History
 	public function deleteHistory($id){
-		$history = History::find($id);
-
+		$history = DB::table('histories')
+		->where('history_id_history', '=', $id);
+		->get();
+		
 		if(!$history)
             return response()->json(['message' => "The history with id {$id} doesn't exist"], 404);
 

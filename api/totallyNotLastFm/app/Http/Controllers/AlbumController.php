@@ -40,7 +40,9 @@ class AlbumController extends Controller{
 
 	//get Album
 	public function getAlbum($id){
-		$album = Album::find($id);
+		$albums = DB::table('albums')
+		->where('album_id_album', '=', $id)
+		->get();
 
 		if(!$album)
             return response()->json(['message' => "The album with id {$id} doesn't exist"], 404);
@@ -50,7 +52,9 @@ class AlbumController extends Controller{
 
 	//update Album
 	public function updateAlbum(Request $request, $id){
-		$album = Album::find($id);
+		$albums = DB::table('albums')
+		->where('album_id_album', '=', $id)
+		->get();
 
 		if(!$album)
             return response()->json(['message' => "The album with id {$id} doesn't exist"], 404);
@@ -67,7 +71,9 @@ class AlbumController extends Controller{
 
 	//delete Album
 	public function deleteAlbum($id){
-		$album = Album::find($id);
+		$albums = DB::table('albums')
+		->where('album_id_album', '=', $id)
+		->get();
 
 		if(!$album)
             return response()->json(['message' => "The album with id {$id} doesn't exist"], 404);
@@ -85,7 +91,7 @@ class AlbumController extends Controller{
 		->join('music', 'music.music_id_music', '=', 'include.music_id_music')
 		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
 		->join('artists', 'artists.artist_id', '=', 'produce.artist_id_artist')
-		->select('albums.album_id_album', 'albums.album_title_album', 'music.music_id_music', 'music.music_title', 'artists.artist_id', 'artists.artist_name') 
+		->select('albums.album_id_album', 'albums.album_title_album', 'music.music_id_music', 'music.music_title', 'artists.artist_id', 'artists.artist_name')
 		->where('albums.album_id_album', '=', $id_album)
 		->get();
 

@@ -41,17 +41,21 @@ class MusicController extends Controller{
 
 	//get Music
 	public function getMusic($id){
-		$music = Music::find($id);
+		$history = DB::table('music')
+		->where('music_id_music', '=', $id);
+		->get();
 
 		if(!$music)
             return response()->json(['message' => "The music with id {$id} doesn't exist"], 404);
-		
+
         return response()->json(['data' => $music], 200);
 	}
 
 	//update Music
 	public function updateMusic(Request $request, $id){
-		$music = Music::find($id);
+		$history = DB::table('music')
+		->where('music_id_music', '=', $id);
+		->get();
 
 		if(!$music)
 			return $this->error("The music with id {$id} doesn't exist", 404);
@@ -69,8 +73,10 @@ class MusicController extends Controller{
 
 	//delete Music
 	public function deleteMusic($id){
-		$music = Music::find($id);
-
+		$history = DB::table('music')
+		->where('music_id_music', '=', $id);
+		->get();
+		
 		if(!$music)
             return response()->json(['message' => "The music with id {$id} doesn't exist"], 404);
 
@@ -80,7 +86,7 @@ class MusicController extends Controller{
 	}
 
 	/*----------------------------Stats functions--------------------------*/
-	
+
 	/*----------------------------Annex functions--------------------------*/
 
 
@@ -89,7 +95,7 @@ class MusicController extends Controller{
 		$rules = [
 			'music_title' => 'required',
 			'music_duration' => 'required|time',
-			'music_release_date' => 'required|date'			
+			'music_release_date' => 'required|date'
 		];
 
 		$this->validate($request, $rules);
@@ -102,7 +108,7 @@ class MusicController extends Controller{
 
 		return $this->autorizeUser($request, $resource, $music);
 	}
-	
+
 }
 
 ?>

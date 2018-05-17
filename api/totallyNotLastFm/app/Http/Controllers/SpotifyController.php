@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class SpotifyController extends Controller{
-	
+
 	/*
 	//Constructor
 	public function __construct(){
@@ -41,7 +41,9 @@ class SpotifyController extends Controller{
 
 	//get one Spotify account in our database
 	public function getSpotify($id){
-		$spotify = Spotify::find($id);
+		$spotify = DB::table('spotify')
+		->where('spotify_user_id', '=', $id);
+		->get();
 
 		if(!$spotify)
             return response()->json(['message' => "The spotify account with id {$id} doesn't exist"], 404);
@@ -51,7 +53,9 @@ class SpotifyController extends Controller{
 
 	//update Spotify account in our database
 	public function updateSpotify(Request $request, $id){
-		$spotify = Spotify::find($id);
+		$spotify = DB::table('spotify')
+		->where('spotify_user_id', '=', $id);
+		->get();
 
 		if(!$spotify)
             return response()->json(['message' => "The spotify account with id {$id} doesn't exist"], 404);
@@ -68,8 +72,10 @@ class SpotifyController extends Controller{
 
 	//delete Spotify account in our database
 	public function deleteSpotify($id){
-		$spotify = Spotify::find($id);
-
+		$spotify = DB::table('spotify')
+		->where('spotify_user_id', '=', $id);
+		->get();
+		
 		if(!$spotify)
             return response()->json(['message' => "The spotify account with id {$id} doesn't exist"], 404);
 
@@ -81,7 +87,7 @@ class SpotifyController extends Controller{
 	/*----------------------------Stats functions--------------------------*/
 
 	/*----------------------------Annex functions--------------------------*/
-	
+
 
 	//validate request
 	public function validateRequestSpotify(Request $request){
@@ -101,7 +107,7 @@ class SpotifyController extends Controller{
 		return $this->autorizeUser($request, $resource, $spotify);
 	}
 
-	
+
 }
 
 ?>

@@ -40,7 +40,9 @@ class ArtistController extends Controller{
 
 	//get Artist
 	public function getArtist($id){
-		$artist = Artist::find($id);
+		$artists = DB::table('artists')
+		->where('artist_id', '=', $id)
+		->get();
 
 		if(!$artist)
             return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
@@ -50,7 +52,9 @@ class ArtistController extends Controller{
 
 	//update Artist
 	public function updateArtist(Request $request, $id){
-		$artist = Artist::find($id);
+		$artists = DB::table('artists')
+		->where('artist_id', '=', $id)
+		->get();
 
 		if(!$artist)
 	        return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
@@ -68,7 +72,9 @@ class ArtistController extends Controller{
 
 	//delete Artist
 	public function deleteArist($id){
-		$artist = Artist::find($id);
+		$artists = DB::table('artists')
+		->where('artist_id', '=', $id)
+		->get();
 
 		if(!$artist)
 			return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
@@ -104,7 +110,7 @@ class ArtistController extends Controller{
 		->orderBy('nbListening DESC')
 		->get();
 
-		return $this->success($artists, 200);		
+		return $this->success($artists, 200);
 	}
 
 	//Get the artists the most listened by a specific user
@@ -155,13 +161,13 @@ class ArtistController extends Controller{
 
 	//is authorized
 	public function isAuthorizedArtist(Request $request){
-		$resource = "artists"; 
+		$resource = "artists";
 		$artist = Artist::find($this->getArgs($request)["artist_id_artist"]);
 
 		return $this->authorizeUser($request, $resource, $artist);
 	}
 	//
-	
+
 }
 
 ?>

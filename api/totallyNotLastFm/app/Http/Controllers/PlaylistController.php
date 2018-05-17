@@ -41,7 +41,9 @@ class PlaylistController extends Controller{
 
 	//get Playlist
 	public function getPlaylist($id){
-		$playlist = Playlist::find($id);
+		$playlist = DB::table('playlist')
+		->where('playlist_id_playlist', '=', $id);
+		->get();
 
 		if(!$playlist)
 			return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
@@ -51,7 +53,9 @@ class PlaylistController extends Controller{
 
 	//update Playlist
 	public function updatePlaylist(Request $request, $id){
-		$playlist = Playlist::find($id);
+		$playlist = DB::table('playlist')
+		->where('playlist_id_playlist', '=', $id);
+		->get();
 
 		if(!$playlist)
             return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
@@ -69,8 +73,10 @@ class PlaylistController extends Controller{
 
 	//delete Playlist
 	public function deletePlaylist($id){
-		$playlist = Playlist::find($id);
-
+		$playlist = DB::table('playlist')
+		->where('playlist_id_playlist', '=', $id);
+		->get();
+		
 		if(!$playlist)
             return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
 
@@ -80,7 +86,7 @@ class PlaylistController extends Controller{
 	}
 
 	/*----------------------------Stats functions--------------------------*/
-	
+
 
 	/*----------------------------Annex functions--------------------------*/
 

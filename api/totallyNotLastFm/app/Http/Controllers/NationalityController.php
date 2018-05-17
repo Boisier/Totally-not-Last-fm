@@ -50,7 +50,9 @@ class NationalityController extends Controller{
 
 	//update Nationality
 	public function updateNationality(Request $request, $id){
-		$nationality = Nationality::find($id);
+		$nationality = DB::table('nationalities')
+		->where('nationality_id_nationality', '=', $id);
+		->get();
 
 		if(!$nationality)
             return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
@@ -70,8 +72,10 @@ class NationalityController extends Controller{
 
 	//delete Nationality
 	public function deleteNationality($id){
-		$nationality = Nationality::find($id);
-
+		$nationality = DB::table('nationalities')
+		->where('nationality_id_nationality', '=', $id);
+		->get();
+		
 		if(!$nationality)
             return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
 

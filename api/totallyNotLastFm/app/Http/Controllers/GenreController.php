@@ -38,7 +38,9 @@ class GenreController extends Controller{
 
 	//get Genre
 	public function getGenre($id){
-		$genre = Genre::find($id);
+		$genre = DB::table('genre')
+		->where('genre_id_genre', '=', $id);
+		->get();
 
 		if(!$genre)
             return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
@@ -47,7 +49,9 @@ class GenreController extends Controller{
 	}
 	//update genre
 	public function updateGenre(Request $request, $id){
-		$genre = Genre::find($id);
+		$genre = DB::table('genre')
+		->where('genre_id_genre', '=', $id);
+		->get();
 
 		if(!$genre)
             return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
@@ -63,8 +67,10 @@ class GenreController extends Controller{
 
 	//delete Genre
 	public function deleteGenre($id){
-		$genre = Genre::find($id);
-
+		$genre = DB::table('genre')
+		->where('genre_id_genre', '=', $id);
+		->get();
+		
 		if(!$genre)
 			return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
 
@@ -85,7 +91,7 @@ class GenreController extends Controller{
 		->orderBy('nbListening DESC')
 		->get();
 
-		return $this->success($genres, 200);		
+		return $this->success($genres, 200);
 	}
 
 	//Get the genres the most listened by a specific user
