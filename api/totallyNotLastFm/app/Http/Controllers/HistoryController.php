@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\History;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -79,15 +80,12 @@ class HistoryController extends Controller{
 	/*----------------------------Stats functions--------------------------*/
 	//Get number of listening of one music
 	public function getNbListeningMusic($id_music, $id_user){
-		$nbListening = DB::table('histories')
-		->join('users', 'users.user_id_user', '=', 'histories.user_id_user')
+		$music = DB::table('histories')
+		->join('user', 'user.id', '=', 'histories.user_id_user')
 		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
-		->join('musics', 'musics.music_id_music', '=', 'contain.music_id_music')
-		->join('compose', 'musics.music_id_music', '=', 'compose.music_id_music')
-		->join('artists', 'artists.artist_id_artist', '=', 'compose.artist_id_artist')
-		
-		->select count('users.user_id_user', 'histories.history_id_history', 'musics.music_id_music', 'musics.title', 'artists.artist_id_artist', 'artists.arist_name')
-		->where('musics.music_id_music', '=', $id_music)
+		->join('music', 'music.music_id_music', '=', 'contain.music_id_music')
+		->select ('music.music_title', 'user.id', 'count(music.music_id_music) as nbListening')
+		->where('music.music_id_music', '=', $id_music)
 		->groupBy('musics.music_id_music')
 		->get();
 
@@ -96,17 +94,23 @@ class HistoryController extends Controller{
 
 	//Get History playtime
 	public function getHistoryPlaytime($id_user){
-		$playtime = DB::table('histories')
-		->join('users', 'users.user_id_user', '=', 'histories.user_id_user')
-		->select('histories.history_play_time')
-		->where('users.user_id_user', '=', $id_user)
+		$musicDuration = DB::table('histories')
+		->join('user', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->select('user.id', 'SUM((hour(music.music_duration)*3600) + (minute(music.music_duration)*60) + second(music.music_duration)) as duration')
+		->where([
+			['user.id', '=', $id_user],
+			['music.music_id_music', '=', $id_music]
+		])
+		->groupBy('user.id')
 		->get();
 
-		return $this->success($playtime, 200);
+		return $this->success($musicDuration, 200);
 	}
 
 	//Get the genres the most listened
-	public function getGenreMostListened($id_user){
+	/*public function getGenreMostListened($id_user){
 		$nbListeningGenre = DB::table('histories')
 		->join('users', 'users.user_id_user', '=', 'histories.user_id_user')
 		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
@@ -119,7 +123,7 @@ class HistoryController extends Controller{
 		->get();
 
 		return $this->success($nbListeningGenre, 200);
-	}
+	}*/
 
 	//Get the artists the most listened by genre
 	/*public function getArtistMostListenedByGenre($id_user){

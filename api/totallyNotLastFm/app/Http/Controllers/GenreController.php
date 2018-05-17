@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Genre;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -71,7 +72,23 @@ class GenreController extends Controller{
 	}
 
 	/*----------------------------Stats functions--------------------------*/
-	
+	//Get the genres the most listened by all users
+	public function getGenresMostListened(){
+		$genres = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('be', 'music.music_id_music', '=', 'be.music_id_music')
+		->join('genre', 'be.genre_id_genre', '=', 'be.genre_id_genre')
+		->select('genre.genre_name_genre', 'COUNT(genre.genre_id_genre) as nbListening')
+		->groupBy('genre.genre_id_genre')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($genres, 200);		
+	}
+
+
 	/*----------------------------Annex functions--------------------------*/
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Artist;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -79,16 +80,33 @@ class ArtistController extends Controller{
 
 	/*----------------------------Stats functions--------------------------*/
 	//Get the list of all albums of one Artist
-	public function getAlbumListFromArtist($id_artist){
+	public function getAlbumListOfArtist($id_artist){
 		$albums = DB::table('albums')
 		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
-		->join('artist', 'artists.artist_id_artist', '=', 'produce.artist_id_artist')
-		->select('albums.*')
-		->where('artists.artist_id_artist', '=', $id_artist)
+		->join('artists', 'artists.artist_id', '=', 'produce.artist_id_artist')
+		->select('albums.*', 'artists.artist_id', 'artists.artist_name')
+		->where('artists.artist_id', '=', $id_artist)
 		->get();
 
 		return $this->success($albums, 200);
 	}
+
+	//Get the artists the most listened by all users
+	public function getArtistsMostListened(){
+		$artists = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->select('artists.artist_name', 'COUNT(artists.artist_id) as nbListening')
+		->groupBy('artists.artist_id')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($artists, 200);		
+	}
+
 
 	/*----------------------------Annex functions--------------------------*/
 

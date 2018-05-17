@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Nationality;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,8 @@ class NationalityController extends Controller{
 		$this->middleware('authorize:' . __CLASS__, ['except' => ['getAllNationalities', 'getNationality', 'createNationality']]);
 	}
 	*/
+
+	/*----------------------------Basic functions--------------------------*/
 
 	//get All Nationalities
 	public function getAllNationalities(){
@@ -58,6 +61,10 @@ class NationalityController extends Controller{
 
         return response()->json(['data' => "The nationality with id {$nationality->nationality_id_nationality} has been updated"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+
+	/*----------------------------Annex functions--------------------------*/
 
 	//delete Nationality
 	public function deleteNationality($id){

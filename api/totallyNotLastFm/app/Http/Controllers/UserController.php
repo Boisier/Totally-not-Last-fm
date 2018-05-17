@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -35,13 +36,13 @@ class UserController extends Controller{
 		$this->validateRequestUser($request);
 
 		$user = User::create([
-			'user_username' => $request->get('user_username'),
-			'user_birthday' => $request->get('user_birthday'),
-			'user_mail' => $request->get('user_mail'),
-			'user_password' => Hash::make($request->get('user_password'))
+			'username' => $request->get('username'),
+			'birthday' => $request->get('birthday'),
+			'mail' => $request->get('mail'),
+			'password' => Hash::make($request->get('password'))
 		]);
 
-		return response()->json(['data' => "The user with id {$user->user_id_user} has been created"], 201);
+		return response()->json(['data' => "The user with id {$user->id} has been created"], 201);
 	}
 
 	//get User
@@ -63,10 +64,10 @@ class UserController extends Controller{
 
 		$this->validateRequestUser($request);
 
-		$user->user_username = $request->get('user_username');
-		$user->user_birthday = $request->get('user_birthday');
-		$user->user_mail = $request->get('user_mail');
-		$user->user_password = Hash::make($request->get('user_password'));
+		$user->username = $request->get('username');
+		$user->birthday = $request->get('birthday');
+		$user->mail = $request->get('mail');
+		$user->password = Hash::make($request->get('password'));
 
 		$user->save();
 
@@ -93,10 +94,10 @@ class UserController extends Controller{
 	//validate request
 	public function validateRequestUser(Request $request){
 		$rules = [
-			'user_username' => 'required',
-			'user_birthday' => 'required|date',
-			'user_mail' => 'required|email|unique:users',
-			'user_password' => 'required|min:6'
+			'username' => 'required',
+			'birthday' => 'required|date',
+			'mail' => 'required|email|unique:users',
+			'password' => 'required|min:6'
 		];
 
 		$this->validate($request, $rules);
