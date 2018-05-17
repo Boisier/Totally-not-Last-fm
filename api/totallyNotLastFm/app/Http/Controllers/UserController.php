@@ -17,9 +17,10 @@ class UserController extends Controller{
 
 	/* Récupère email + mdp et génère token si good */
 	/*public function authenticate(Request $request){
+        print_r($request);
 		return $this->success(["token" => md5(time())], 200); //md5 = génère une chaine de charactère
-	}*/
-
+	}
+*/
 	//get all users
 	public function getAllUsers(){
 		$users = User::all();
@@ -32,10 +33,10 @@ class UserController extends Controller{
 		$this->validateRequestUser($request);
 
 		$user = User::create([
-			'user_username' => $request->get('user_username'),
+			'username' => $request->get('username'),
 			'user_birthday' => $request->get('user_birthday'),
-			'user_mail' => $request->get('user_mail'),
-			'user_password' => Hash::make($request->get('user_password'))
+			'mail' => $request->get('mail'),
+			'password' => Hash::make($request->get('password'))
 		]);
 
 		return response()->json(['data' => "The user with id {$user->user_id_user} has been created"], 201);
@@ -60,10 +61,10 @@ class UserController extends Controller{
 
 		$this->validateRequestUser($request);
 
-		$user->user_username = $request->get('user_username');
+		$user->username = $request->get('username');
 		$user->user_birthday = $request->get('user_birthday');
-		$user->user_mail = $request->get('user_mail');
-		$user->user_password = Hash::make($request->get('user_password'));
+		$user->mail = $request->get('mail');
+		$user->password = Hash::make($request->get('password'));
 
 		$user->save();
 
@@ -85,10 +86,10 @@ class UserController extends Controller{
 	//validate request
 	public function validateRequestUser(Request $request){
 		$rules = [
-			'user_username' => 'required',
+			'username' => 'required',
 			'user_birthday' => 'required|date',
-			'user_mail' => 'required|email|unique:users',
-			'user_password' => 'required|min:6'
+			'mail' => 'required|email|unique:users',
+			'password' => 'required|min:6'
 		];
 
 		$this->validate($request, $rules);

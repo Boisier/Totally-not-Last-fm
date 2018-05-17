@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\JWTAuth;
+//use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use App\User;
 use App\Http\Controllers\Controller;
 class AuthController extends Controller
@@ -11,16 +13,27 @@ class AuthController extends Controller
      * @var \Tymon\JWTAuth\JWTAuth
      */
     protected $jwt;
+    protected $email = 'email';
+    protected $username = 'username';
     public function __construct(JWTAuth $jwt) {
         $this->jwt = $jwt;
     }
+  
     public function login(Request $request) {
-        $this->validate($request, [
-            'user_username' => 'required',
-            'user_password' => 'required',
-        ]);
+      //print("login bafduidguyzqgdukh");
+      
+         /*$credentials = $request->only('username', 'password');
+
+        if ($token = $this->guard()->attempt($credentials)) {
+            return $this->respondWithToken($token);
+        }
+
+        return response()->json(['error' => 'Unauthorized'], 401);*/
+      
+        print_r(['username' => $request->username, 'password'=>$request->password] );
         try {
-            if (!$token = $this->jwt->attempt($request->only('user_username', 'user_password'))) {
+            if (!$token = $this->jwt->attempt(['username' => $request->username, 'password'=>$request->password])) {
+            
                 return response()->json(['user_not_found'], 404);
             }
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {

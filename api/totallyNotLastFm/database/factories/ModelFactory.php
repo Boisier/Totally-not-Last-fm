@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Hash;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -118,8 +119,8 @@ $factory->define(App\Spotify::class, function(Faker\Generator $faker){
 
 $factory->define(App\User::class, function(Faker\Generator $faker){
   return [
-    'user_mail' => $faker->email,
+    'mail' => $faker->email,
     'user_username' => $faker->name,
-    'user_password' => md5('12345'),
+    'password' => Hash::make('12345'),
   ];
 });

@@ -56,14 +56,7 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
-/* From Vendor Luca Degasperi */
-/*$app->middleware([
-        \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class
-]);
-$app->routeMiddleware([
-    'oauth' =>
-\LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware::class,     
-]);*/
+
 /* End Vendor */
 
 $app->middleware([
@@ -84,13 +77,11 @@ $app->routeMiddleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
-/* From Vendor Luca Degasperi */
-/*$app->register(\LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class);
-$app->register(\LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class);*/
-/* End vendor */
 
-// $app->register(App\Providers\AppServiceProvider::class);
+
+//$app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*

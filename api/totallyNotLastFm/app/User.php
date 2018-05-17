@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\
 use Illuminate\Database\Eloquent\Model; //allow us to query & insert data in your tables
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -18,9 +19,9 @@ protected $table = 'user';
      * @var array
      */
   protected $fillable = [
-    'user_id_user', 'user_mail', 'user_username', 'user_birthday'
+    'user_id_user', 'mail', 'user_username', 'user_birthday'
   ];
-  protected $hidden = ['updated_at','created_at','user_password',];
+  protected $hidden = ['updated_at','created_at','password',];
 
   /**
      * The attributes excluded from the model's JSON form.
