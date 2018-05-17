@@ -7,9 +7,9 @@ import './style/App.scss'
 import auth from 'library/auth'
 
 // Scene scenes
+import Landing from './scenes/Landing/Landing'
 import Structure from './containers/Structure/Structure'
 
-import Landing from './scenes/Landing/Landing'
 import Home from './scenes/Home/Home'
 import About from './scenes/About/About'
 import Settings from './scenes/Settings/Settings'

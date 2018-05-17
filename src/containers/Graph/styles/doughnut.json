@@ -1,0 +1,48 @@
+{
+  "tooltips": {
+    "enabled": false,
+    "mode": "index",
+    "intersect": false,
+    "custom": null
+  },
+  "title": {
+    "display": false
+  },
+  "legend": {
+    "display": false,
+    "labels": {
+      "hidden": true
+    }
+  },
+  "scales": {
+    "yAxes": [{
+      "display": false,
+      "gridLines": {
+        "display": false,
+        "drawTicks": false
+      },
+      "ticks": {
+        "beginAtZero": true,
+        "display": false
+      }
+    }],
+    "xAxes": [{
+      "display": false,
+      "gridLines": {
+        "display": false,
+        "drawOnChartArea": false,
+        "drawTicks": false
+      },
+      "ticks": {
+        "display": false
+      }
+    }]
+  },
+  "elements": {
+    "point": {
+      "radius": 0,
+      "hitRadius": 25,
+      "hoverRadius": 3
+    }
+  }
+}}

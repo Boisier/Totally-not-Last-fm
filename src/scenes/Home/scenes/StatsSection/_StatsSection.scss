@@ -1,3 +1,5 @@
+$stats-transition: $transition-duration ease-out;
+
 .stats-section
 {
   display: flex;
@@ -17,7 +19,7 @@
       flex-wrap: wrap;
       width: 100%;
 
-      transition: 150ms ease-out;
+      transition: $stats-transition;
     }
   }
 
@@ -39,7 +41,13 @@
       text-transform: uppercase;
       font-size: .8rem;
 
+      transition: $stats-transition;
       cursor: pointer;
+
+      &:hover
+      {
+        color: black;
+      }
 
       &.selected
       {
@@ -57,7 +65,7 @@
 
   &.stats-wrapper-left-enter-active {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0);
   }
 }
 
@@ -66,7 +74,7 @@
   position: absolute;
   top: 0;
   opacity: 1;
-  transform: translateX(0px);
+  transform: translateX(0);
 
   &.stats-wrapper-left-leave-active {
     opacity: 0;
@@ -81,7 +89,7 @@
 
   &.stats-wrapper-right-enter-active {
     opacity: 1;
-    transform: translateX(0px);
+    transform: translateX(0);
   }
 }
 
@@ -90,7 +98,7 @@
   position: absolute;
   top: 0;
   opacity: 1;
-  transform: translateX(0px);
+  transform: translateX(0);
 
   &.stats-wrapper-right-leave-active {
     opacity: 0;
