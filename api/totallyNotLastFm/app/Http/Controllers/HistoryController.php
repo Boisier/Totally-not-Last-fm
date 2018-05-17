@@ -98,7 +98,7 @@ class HistoryController extends Controller{
 		->join('user', 'user.id', '=', 'histories.user_id_user')
 		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
 		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
-		->select('user.id', 'SUM((hour(music.music_duration)*3600) + (minute(music.music_duration)*60) + second(music.music_duration)) as duration')
+		->select('user.id', 'SEC_TO_TIME(SUM((hour(music.music_duration)*3600) + (minute(music.music_duration)*60) + second(music.music_duration))) as duration')
 		->where([
 			['user.id', '=', $id_user],
 			['music.music_id_music', '=', $id_music]

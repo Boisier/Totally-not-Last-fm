@@ -88,6 +88,24 @@ class GenreController extends Controller{
 		return $this->success($genres, 200);		
 	}
 
+	//Get the genres the most listened by a specific user
+	public function getGenresMostListenedByUser($id_user){
+		$genres = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('be', 'music.music_id_music', '=', 'be.music_id_music')
+		->join('genre', 'be.genre_id_genre', '=', 'be.genre_id_genre')
+		->select('user.id', 'user.username', 'genre.genre_name_genre', 'genre.genre_id_genre', 'COUNT(genre.genre_id_genre) as nbListening')
+		->where('user.id', '=', $id_user)
+		->groupBy('genre.genre_id_genre')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($genres, 200);
+	}
+
+
 
 	/*----------------------------Annex functions--------------------------*/
 
