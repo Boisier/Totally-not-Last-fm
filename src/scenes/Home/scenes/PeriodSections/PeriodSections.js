@@ -27,7 +27,7 @@ export default class extends Component {
         break
       case 'week':
         for (let i = 0; i < 5; ++i) {
-          sections[i] = moment().week(moment().week() - i).format('wo')
+          sections[i] = 'W' + moment().week(moment().week() - i).format('ww')
         }
         break
       case 'month':
