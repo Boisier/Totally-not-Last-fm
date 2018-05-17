@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import {Doughnut} from 'react-chartjs-2'
+import barStyle from './styles/doughnut.json'
 
 export default class extends Component {
   render = () => {
@@ -24,57 +25,7 @@ export default class extends Component {
         data={data}
         width={100}
         height={50}
-        options={{
-          tooltips: {
-            enabled: false
-          },
-          title: {
-            display: false,
-            text: 'Plays per day',
-            fontSize: 20
-          },
-          legend: {
-            display: false,
-            labels: {
-              hidden: true
-            }
-          },
-          scales: {
-            yAxes: [{
-              display: false,
-              gridLines: {
-                display: true,
-                drawTicks: false
-              },
-              ticks: {
-                beginAtZero: true,
-                display: false
-              }
-            }],
-            xAxes: [{
-              display: false,
-              gridLines: {
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false
-              },
-              ticks: {
-                display: false,
-                fontSize: 15,
-                fontColor: '#1e1e1e',
-                fontStyle: 'bold',
-                fontFamily: 'Arial'
-              }
-            }]
-          },
-          elements: {
-            point: {
-              radius: 0,
-              hitRadius: 25,
-              hoverRadius: 3
-            }
-          }
-        }}
+        options={}
       />
     </div>
   }
