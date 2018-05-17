@@ -10,7 +10,7 @@ export default class StatBlock extends Component {
     size: PropTypes.oneOf(['small', 'wide']),
     route: PropTypes.string.isRequired,
     post: PropTypes.arrayOf(PropTypes.object),
-    period: PropTypes.string,
+    period: PropTypes.object,
     section: PropTypes.number.isRequired
   }
 
@@ -23,7 +23,7 @@ export default class StatBlock extends Component {
   }
 
   genLabels (period) {
-    // Generate the labels for the current period
+    // Generate the labels for the current period if needed
     // If the period isn't over, determine up to when to generate
     return labelGenerator[period.name](this.props.section)
   }
@@ -40,6 +40,7 @@ export default class StatBlock extends Component {
         fullClass = baseClass
     }
 
+    // Retrieve data from route
     const data = Array.from({length: 40}, () => Math.floor(Math.random() * 40))
 
     return (

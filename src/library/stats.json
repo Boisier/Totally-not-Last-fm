@@ -6,7 +6,7 @@
       "period": "day",
       "graphs": [
         {
-          "type": "bar",
+          "type": "doughnut",
           "size": "wide",
           "route": "/stats/listeningtime/day",
           "post": [{"key": "day", "value": "section"}],
@@ -28,14 +28,14 @@
           }
         },
         {
-          "type": "doughnut",
+          "type": "bar",
           "size": "small",
           "route": "/stats/listeningtime/da2y",
           "post": [{"key": "day", "value": "section"}],
           "name": "Number of songs listened to",
           "colors": {
-            "from": "#F2DDDE",
-            "to": "red"
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
           }
         }
       ]
