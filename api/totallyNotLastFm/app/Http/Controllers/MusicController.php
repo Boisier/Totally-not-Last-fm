@@ -53,36 +53,34 @@ class MusicController extends Controller{
 
 	//update Music
 	public function updateMusic(Request $request, $id){
+		$nbMusics = DB::table('music')->max('music_id_music');
+
+		if($id > $nbMusics || $id < 0 )
+		  return response()->json(['data' => "The music with id $id doesn't exist"],200);
+
 		$history = DB::table('music')
-		->where('music_id_music', '=', $id);
-		->get();
+		->where('music_id_music', '=', $id)
+		->update([
+          'music_title'=>$request->input('music_title'),
+          'music_duration'=>$request->input('music_duration')
+		  'music_release_date'=>$request->input('music_release_date')
+        ]);
 
-		if(!$music)
-			return $this->error("The music with id {$id} doesn't exist", 404);
-
-		$this->validateRequestMusic($request);
-
-		$music->music_title = $request->get('music_title');
-		$music->music_duration = $request->get('music_duration');
-		$music->music_release_date = $request->get('music_release_date');
-
-		$music->save();
-
-		return $this->success("The music with id {$music->music_id_music} has been updated", 200);
+		return $this->success("The music with id $id has been updated", 200);
 	}
 
 	//delete Music
 	public function deleteMusic($id){
+		$nbMusics = DB::table('music')->max('music_id_music');
+
+		if($id > $nbMusics || $id < 0 )
+	      return response()->json(['data' => "The music with id $id doesn't exist"],200);
+
 		$history = DB::table('music')
 		->where('music_id_music', '=', $id);
-		->get();
-		
-		if(!$music)
-            return response()->json(['message' => "The music with id {$id} doesn't exist"], 404);
+		->delete();
 
-		$music->delete();
-
-        return response()->json(['data' => "The music with id {$id} has been deleted"], 200);
+        return response()->json(['data' => "The music with id $id has been deleted"], 200);
 	}
 
 	/*----------------------------Stats functions--------------------------*/

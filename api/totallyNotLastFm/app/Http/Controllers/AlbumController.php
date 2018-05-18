@@ -53,9 +53,10 @@ class AlbumController extends Controller{
   //update Album
   public function updateAlbum(Request $request, $id){
     $nbAlbums = DB::table('albums')->max('album_id_album');
-    //print($nbAlbums);
+
     if($id > $nbAlbums || $id < 0 )
       return response()->json(['data' => "The album with id $id doesn't exist"],200);
+
     $albums = DB::table('albums')
       ->where('album_id_album', '=', $id)
       ->update([
@@ -63,7 +64,6 @@ class AlbumController extends Controller{
         'album_nb_tracks'=>$request->input('album_nb_tracks')
 
       ]);
-    //$this->validateRequestAlbum($request);
 
     return response()->json(['data' => "The album with id $id has been updated"], 200);
   }
@@ -71,10 +71,10 @@ class AlbumController extends Controller{
   //delete Album
   public function deleteAlbum($id){
     $nbAlbums = DB::table('albums')->max('album_id_album');
-    //print($nbAlbums);
+
     if($id > $nbAlbums || $id < 0 )
       return response()->json(['data' => "The album with id $id doesn't exist"],200);
-    
+
     $albums = DB::table('albums')
       ->where('album_id_album', '=', $id)
       ->delete();
@@ -133,7 +133,7 @@ class AlbumController extends Controller{
       ->orderBy('nbListening', 'DESC')
       ->get();
 
-    return $this->success($albums, 200);		
+    return $this->success($albums, 200);
   }
 
   //Get the albums the most listened of a specific artist by a specific user
@@ -156,7 +156,7 @@ class AlbumController extends Controller{
       ->get();
 
     return $this->success($albums, 200);
-  }	
+  }
 
   //Suggestions of albums of a specific genre
   public function suggestAlbumsOfGenre($id_genre){

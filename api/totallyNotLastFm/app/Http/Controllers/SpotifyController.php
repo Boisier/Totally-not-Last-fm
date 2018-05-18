@@ -53,35 +53,33 @@ class SpotifyController extends Controller{
 
 	//update Spotify account in our database
 	public function updateSpotify(Request $request, $id){
+		$nbSpotify = DB::table('spotify')->max('spotify_user_id');
+
+		if($id > $nbSpotify || $id < 0 )
+		  return response()->json(['data' => "The spotify account with id $id doesn't exist"],200);
+
 		$spotify = DB::table('spotify')
 		->where('spotify_user_id', '=', $id);
-		->get();
+		->update([
+		  'user_id_user'=>$request->input('user_id_user'),
+		  'spotify_our_id'=>$request->input('spotify_our_id')
+		]);
 
-		if(!$spotify)
-            return response()->json(['message' => "The spotify account with id {$id} doesn't exist"], 404);
-
-		$this->validateRequestSpotify($request);
-
-		$spotify->user_id_user = $request->get('user_id_user');
-		$album->spotify_our_id = $request->get('spotify_our_id');
-
-		$spotify->save();
-
-        return response()->json(['data' => "The spotify account with id {$album->album_id_album} has been updated"], 200);
+        return response()->json(['data' => "The spotify account with id $id has been updated"], 200);
 	}
 
 	//delete Spotify account in our database
 	public function deleteSpotify($id){
+		$nbSpotify = DB::table('spotify')->max('spotify_user_id');
+
+		if($id > $nbSpotify || $id < 0 )
+		  return response()->json(['data' => "The spotify account with id $id doesn't exist"],200);
+
 		$spotify = DB::table('spotify')
 		->where('spotify_user_id', '=', $id);
-		->get();
-		
-		if(!$spotify)
-            return response()->json(['message' => "The spotify account with id {$id} doesn't exist"], 404);
+		->delete();
 
-		$spotify->delete();
-
-		return response()->json(['data' => "The spotify account with id {$id} has been deleted"], 200);
+		return response()->json(['data' => "The spotify account with id $id has been deleted"], 200);
 	}
 
 	/*----------------------------Stats functions--------------------------*/

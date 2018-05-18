@@ -53,36 +53,34 @@ class PlaylistController extends Controller{
 
 	//update Playlist
 	public function updatePlaylist(Request $request, $id){
+		$nbPlaylists = DB::table('playlist')->max('playlist_id_playlist');
+
+		if($id > $nbPlaylists || $id < 0 )
+		  return response()->json(['data' => "The playlist with id $id doesn't exist"],200);
+
 		$playlist = DB::table('playlist')
 		->where('playlist_id_playlist', '=', $id);
-		->get();
+		->update([
+          'user_id_user'=>$request->input('user_id_user'),
+          'playlist_description'=>$request->input('playlist_description')
+		  'playlist_name'=>$request->input('playlist_name'),
+        ]);
 
-		if(!$playlist)
-            return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
-
-		$this->validateRequestPlaylist($request);
-
-		$playlist->user_id_user = $request->get('user_id_user');
-		$album->playlist_description = $request->get('playlist_description');
-		$album->playlist_name = $request->get('playlist_name');
-
-		$playlist->save();
-
-        return response()->json(['data' => "The playlist with id {$playlist->playlist_id_playlist} has been updated"], 200);
+        return response()->json(['data' => "The playlist with id $id has been updated"], 200);
 	}
 
 	//delete Playlist
 	public function deletePlaylist($id){
+		$nbPlaylists = DB::table('playlist')->max('playlist_id_playlist');
+
+		if($id > $nbPlaylists || $id < 0 )
+		  return response()->json(['data' => "The playlist with id $id doesn't exist"],200);
+
 		$playlist = DB::table('playlist')
 		->where('playlist_id_playlist', '=', $id);
-		->get();
-		
-		if(!$playlist)
-            return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
+		->delete();
 
-		$playlist->delete();
-
-		return response()->json(['data' => "The playlist with id {$id} has been deleted"], 200);
+		return response()->json(['data' => "The playlist with id $id has been deleted"], 200);
 	}
 
 	/*----------------------------Stats functions--------------------------*/

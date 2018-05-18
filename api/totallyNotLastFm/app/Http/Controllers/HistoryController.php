@@ -52,35 +52,33 @@ class HistoryController extends Controller{
 
 	//update History
 	public function updateHistory(Request $request, $id){
+		$nbHistories = DB::table('histories')->max('history_id_history');
+
+		if($id > $nbHistories || $id < 0 )
+		  return response()->json(['data' => "The history with id $id doesn't exist"],200);
+
 		$history = DB::table('histories')
 		->where('history_id_history', '=', $id);
-		->get();
+		->update([
+		  'history_playtime'=>$request->input('history_playtime'),
+		  'user_id_user'=>$request->input('user_id_user')
+		]);
 
-		if(!$history)
-            return response()->json(['message' => "The history with id {$id} doesn't exist"], 404);
-
-		$this->validateRequestHistory($request);
-
-		$hsitory->history_playtime = $request->get('history_play_time');
-		$history->user_id_user = $request->get('user_id_user');
-
-		$history->save();
-
-        return response()->json(['data' => "The history with id {$history->history_id_history} has been updated"], 200);
+        return response()->json(['data' => "The history with id $id has been updated"], 200);
 	}
 
 	//delete History
 	public function deleteHistory($id){
+		$nbHistories = DB::table('histories')->max('history_id_history');
+
+		if($id > $nbHistories || $id < 0 )
+		  return response()->json(['data' => "The history with id $id doesn't exist"],200);
+
 		$history = DB::table('histories')
 		->where('history_id_history', '=', $id);
-		->get();
-		
-		if(!$history)
-            return response()->json(['message' => "The history with id {$id} doesn't exist"], 404);
+		->delete();
 
-		$history->delete();
-
-		return response()->json(['data' => "The history with id {$id} has been deleted"], 200);
+		return response()->json(['data' => "The history with id $id has been deleted"], 200);
 	}
 
 	/*----------------------------Stats functions--------------------------*/

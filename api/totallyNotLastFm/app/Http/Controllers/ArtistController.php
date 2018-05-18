@@ -52,36 +52,34 @@ class ArtistController extends Controller{
 
 	//update Artist
 	public function updateArtist(Request $request, $id){
+		$nbArtists = DB::table('artists')->max('artist_id');
+
+		if($id > $nbArtists || $id < 0 )
+		  return response()->json(['data' => "The artist with id $id doesn't exist"],200);
+
 		$artists = DB::table('artists')
 		->where('artist_id', '=', $id)
-		->get();
+		->update([
+		  'artist_name'=>$request->input('artist_name'),
+		  'artist_birth_year'=>$request->input('artist_birth_year')
+		  'artist_death_year'=>$request->input('artist_death_year')
+		]);
 
-		if(!$artists)
-	        return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
-
-		$this->validateRequestArtist($request);
-
-		$artists->artist_name = $request->get('artist_name');
-		$artists->artist_birth_year = $request->get('artist_birth_year');
-		$artists->artist_death_year = $request->get('artist_death_year');
-
-		$artists->save();
-
-	    return response()->json(['data' => "The artist with id {$artist->artist_id_artist} has been updated"], 200);
+	    return response()->json(['data' => "The artist with id $id has been updated"], 200);
 	}
 
 	//delete Artist
 	public function deleteArist($id){
+		$nbArtists = DB::table('artists')->max('artist_id');
+
+		if($id > $nbArtists || $id < 0 )
+		  return response()->json(['data' => "The artist with id $id doesn't exist"],200);
+
 		$artists = DB::table('artists')
 		->where('artist_id', '=', $id)
-		->get();
+		->delete();
 
-		if(!$artists)
-			return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
-
-		$artists->delete();
-
-		return response()->json(['data' => "The artist with id {$id} has been deleted"], 200);
+		return response()->json(['data' => "The artist with id $id has been deleted"], 200);
 	}
 
 	/*----------------------------Stats functions--------------------------*/

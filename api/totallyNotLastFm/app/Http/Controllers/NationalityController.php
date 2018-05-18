@@ -103,21 +103,21 @@ class NationalityController extends Controller{
 		->get();
 
 		return $this->success($nationalities, 200);
-	}		
+	}
 	/*----------------------------Annex functions--------------------------*/
 
 	//delete Nationality
 	public function deleteNationality($id){
+		$nbNationalities = DB::table('nationalities')->max('nationality_id_nationality');
+
+		if($id > $nbNationalities || $id < 0 )
+		  return response()->json(['data' => "The nationality with id $id doesn't exist"],200);
+
 		$nationality = DB::table('nationalities')
 		->where('nationality_id_nationality', '=', $id)
-		->get();
-		
-		if(!$nationality)
-            return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
+		->delete();
 
-		$nationality->delete();
-
-		return response()->json(['data' => "The nationality with id {$id} has been deleted"], 200);
+		return response()->json(['data' => "The nationality with id $id has been deleted"], 200);
 	}
 
 	//validate request

@@ -49,32 +49,32 @@ class GenreController extends Controller{
 	}
 	//update genre
 	public function updateGenre(Request $request, $id){
+		$nbGenres = DB::table('genre')->max('genere_id_genre');
+
+		if($id > $nbGenres || $id < 0 )
+		  return response()->json(['data' => "The genre with id $id doesn't exist"],200);
+
 		$genre = DB::table('genre')
 		->where('genre_id_genre', '=', $id)
-		->get();
+		->update([
+          'genre_name_genre'=>$request->input('genre_name_genre')
+        ]);
 
-		if(!$genre)
-            return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
-
-		$this->validateRequestGenre($request);
-
-		$genre->genre_name_genre = $request->get('genre_name_genre');
-
-		$genre->save();
-
-        return response()->json(['data' => "The genre with id {$genre->genre_id_genre} has been updated"], 200);
+        return response()->json(['data' => "The genre with id $id has been updated"], 200);
 	}
 
 	//delete Genre
 	public function deleteGenre($id){
+		$nbGenres = DB::table('genre')->max('genere_id_genre');
+
+		if($id > $nbGenres || $id < 0 )
+		  return response()->json(['data' => "The genre with id $id doesn't exist"],200);
+
 		$genre = DB::table('genre')
 		->where('genre_id_genre', '=', $id)
-		->get();
-		
-		if(!$genre)
-			return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
+		->delete();
 
-		return response()->json(['data' => "The genre with id {$id} has been deleted"], 200);
+		return response()->json(['data' => "The genre with id $id has been deleted"], 200);
 	}
 
 	/*----------------------------Stats functions--------------------------*/
