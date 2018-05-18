@@ -39,7 +39,7 @@ class NationalityController extends Controller{
 	//get Nationality
 	public function getNationality($id){
 		$nationality = DB::table('nationalities')
-		->where('nationality_id_nationality', '=', $id);
+		->where('nationality_id_nationality', '=', $id)
 		->get();
 
 		if(!$nationality)
@@ -51,7 +51,7 @@ class NationalityController extends Controller{
 	//update Nationality
 	public function updateNationality(Request $request, $id){
 		$nationality = DB::table('nationalities')
-		->where('nationality_id_nationality', '=', $id);
+		->where('nationality_id_nationality', '=', $id)
 		->get();
 
 		if(!$nationality)
@@ -109,7 +109,7 @@ class NationalityController extends Controller{
 	//delete Nationality
 	public function deleteNationality($id){
 		$nationality = DB::table('nationalities')
-		->where('nationality_id_nationality', '=', $id);
+		->where('nationality_id_nationality', '=', $id)
 		->get();
 		
 		if(!$nationality)

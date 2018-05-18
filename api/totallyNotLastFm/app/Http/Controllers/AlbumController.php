@@ -30,12 +30,12 @@ class AlbumController extends Controller{
 	public function createAlbum(Request $request){
 		$this->validateRequestAlbum($request);
 
-		$album = Album::create([
+		$albums = Album::create([
 			'album_title_album' => $request->get('album_title_album'),
 			'album_nb_tracks' => $request->get('album_nb_tracks')
 		]);
 
-		return response()->json(['data' => "The album with id {$album->album_id_album} has been created"], 201);
+		return response()->json(['data' => "The album with id {$albums->album_id_album} has been created"], 201);
 	}
 
 	//get Album
@@ -44,10 +44,10 @@ class AlbumController extends Controller{
 		->where('album_id_album', '=', $id)
 		->get();
 
-		if(!$album)
+		if(!$albums)
             return response()->json(['message' => "The album with id {$id} doesn't exist"], 404);
 
-        return response()->json(['data' => $album], 200);
+        return response()->json(['data' => $albums], 200);
 	}
 
 	//update Album
@@ -56,17 +56,17 @@ class AlbumController extends Controller{
 		->where('album_id_album', '=', $id)
 		->get();
 
-		if(!$album)
+		if(!$albums)
             return response()->json(['message' => "The album with id {$id} doesn't exist"], 404);
 
 		$this->validateRequestAlbum($request);
 
-		$album->album_title_album = $request->get('album_title_album');
-		$album->album_nb_tracks = $request->get('album_nb_tracks');
+		$albums->album_title_album = $request->get('album_title_album');
+		$albums->album_nb_tracks = $request->get('album_nb_tracks');
 
-		$album->save();
+		$albums->save();
 
-        return response()->json(['data' => "The album with id {$album->album_id_album} has been updated"], 200);
+        return response()->json(['data' => "The album with id {$albums->album_id_album} has been updated"], 200);
 	}
 
 	//delete Album
@@ -75,10 +75,10 @@ class AlbumController extends Controller{
 		->where('album_id_album', '=', $id)
 		->get();
 
-		if(!$album)
+		if(!$albums)
             return response()->json(['message' => "The album with id {$id} doesn't exist"], 404);
 
-		$album->delete();
+		$albums->delete();
 
         return response()->json(['data' => "The album with id {$id} has been deleted"], 200);
 	}
@@ -193,9 +193,9 @@ class AlbumController extends Controller{
 	//is authorized
 	public function isAuthorizedAlbum(Request $request){
 		$resource = "albums";
-		$album = Album::find($this->getArgs($request)["album_id_album"]);
+		$albums = Album::find($this->getArgs($request)["album_id_album"]);
 
-		return $this->autorizeUser($request, $resource, $album);
+		return $this->autorizeUser($request, $resource, $albums);
 	}
 
 }
