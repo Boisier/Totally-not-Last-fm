@@ -24,11 +24,12 @@ $router->get('/user/{name}', function ($name) {
 
 
 
-/*-----------------Albums------------------*/
+/*-----------------------------Albums--------------------------------*/
 /* GetAllAlbums
  * return all the albums
  */
 $router->get('/albums', 'AlbumController@getAllAlbums');
+
 /* CreateAlbum
 Rules:
   $rules = [
@@ -37,10 +38,12 @@ Rules:
     ];
 */
 $router->post('/albums', 'AlbumController@createAlbum');
+
  /* GetAlbum
  * return a specific album
  */
 $router->get('/albums/{album_id_album}', 'AlbumController@getAlbum');
+
 /* UpdateAlbum
 * return modified album
 Rules:
@@ -50,18 +53,43 @@ Rules:
     ];
 */
 $router->put('/albums/{album_id_album}', 'AlbumController@updateAlbum');
+
 /* DeleteAlbum
 */
 $router->delete('/albums/{album_id_album}', 'AlbumController@deleteAlbum');
 
+/* Get the albums the most listened by all users
+* return array of albums
+*/
+$router->get('/albums/mostListened', 'AlbumController@getAlbumsMostListened');
+
+/* Get the albums the most listened by a specific user
+* return array of albums
+*/
+$router->get('/albums/mostListened/{user_id}', 'AlbumController@getAlbumsMostListenedByUser');
+
+/* Get the albums the most listened of a specific artist by all users
+* return array of albums
+*/
+$router->get('/albums/mostListened/{artist_id}', 'AlbumController@getAlbumsMostListenedOfArtist');
+
+/* Get the albums the most listened of a specific artist by a specific user
+* return array of albums
+*/
+$router->get('/albums/mostListened/{artist_id}/{user_id}', 'AlbumController@getAlbumsMostListenedOfArtistByUser');
+
+/* Suggestions of albums of a specific genre
+* return array of albums
+*/
+$router->get('/albums/suggestions/{genre_id}', 'AlbumController@suggestAlbumsOfGenre');
 
 
-
-/*-----------------Artists------------------*/
+/*-----------------------------Artists--------------------------------*/
 /* GetAllArtists
  * return all the artists
  */
 $router->get('/artists', 'ArtistController@getAllArtists');
+
 /* CreateArtist
 Rules:
   $rules = [
@@ -71,9 +99,11 @@ Rules:
     ];
 */
 $router->post('/artists', 'ArtistController@createArtist');
+
  /* GetArtist
  * return a specific artist */
 $router->get('/artists/{artist_id_artist}', 'ArtistController@getArtist');
+
 /* UpdateArtist
 * return modified artist
 Rules:
@@ -84,21 +114,36 @@ Rules:
     ];
 */
 $router->put('/artists/{artist_id_artist}', 'ArtistController@updateArtist');
+
 /* DeleteArtist
 */
 $router->delete('/artists/{artist_id_artist}', 'ArtistController@deleteArtist');
 
 
+$router->get('/artists/listOfAlbums/{artist_id_artist}', 'ArtistController@getAlbumListOfArtist');
+
+$router->get('/artists/mostListened', 'ArtistController@getArtistsMostListened');
+
+$router->get('/artists/mostListenedUser/{user_id}', 'ArtistController@getArtistsMostListenedByUser');
+
+$router->get('/artists/mostListenedGenre/{genre_id_genre}', 'ArtistController@getArtistsMostListenedOfGenre');
+
+/* Suggestions of artists of a specific genre
+* return array of artists
+*/
+$router->get('/artists/suggestions/{genre_id}', 'ArtistController@suggestsArtistOfGenre');
 
 
 
 
 
-/*-----------------Genres------------------*/
+
+/*-----------------------------Genres--------------------------------*/
 /* GetAllGenres
  * return all the genres
  */
 $router->get('/genres', 'GenreController@getAllGenres');
+
 /* CreateGenre
 Rules:
     $rules = [
@@ -106,9 +151,11 @@ Rules:
     ];
 */
 $router->post('/genres', 'GenreController@createGenre');
+
  /* GetGenre
  * return a specific genre */
 $router->get('/genres/{genre_id_genre}', 'GenreController@getGenre');
+
 /* UpdateGenre
 * return modified genre
 Rules:
@@ -117,18 +164,29 @@ Rules:
     ];
 */
 $router->put('/genres/{genre_id_genre}', 'GenreController@updateGenre');
+
 /* DeleteGenre */
 $router->delete('/genres/{genre_id_genre}', 'GenreController@deleteGenre');
 
+/* Get the genres the most listened by all users
+* return array of genres
+*/
+$router->get('/genres/mostListened', 'AlbumController@getGenresMostListened');
+
+/* Get the genres the most listened by a specific user
+* return array of genres
+*/
+$router->get('/genres/{id_user}', 'AlbumController@getGenresMostListenedByUser');
 
 
 
 
-/*-----------------Histories------------------*/
+/*-----------------------------Histories--------------------------------*/
 /* GetAllHistories
  * return all the histories
  */
 $router->get('/histories', 'HistoryController@getAllHistories');
+
 /* CreateHistory
 Rules:
     $rules = [
@@ -137,9 +195,11 @@ Rules:
     ];
 */
 $router->post('/histories', 'HistoryController@createHistory');
+
  /* GetHistory
  * return a specific history */
 $router->get('/histories/{history_id_history}', 'HistoryController@getHistory');
+
 /* UpdateHistory
 * return modified history
 Rules:
@@ -149,19 +209,24 @@ Rules:
     ];
 */
 $router->put('/histories/{history_id_history}', 'HistoryController@updateHistory');
+
 /* DeleteHistory
 */
 $router->delete('/histories/{history_id_history}', 'HistoryController@deleteHistory');
 
 
+$router->get('/history/historyPlaytime/{user_id}', 'HistoryController@getHistoryPlaytime');
+
+$router->get('/history/isteningPeriods/{user_id}', 'HistoryController@ggetListeningPeriodsOfUser');
 
 
 
-/*-----------------Musics------------------*/
+/*-----------------------------Musics--------------------------------*/
 /* GetAllMusics
  * return all the musics
  */
 $router->get('/musics', 'MusicController@getAllMusics');
+
 /* CreateMusic
 Rules:
     $rules = [
@@ -171,9 +236,11 @@ Rules:
     ];
 */
 $router->post('/musics', 'MusicController@createMusic');
+
  /* GetMusic
  * return a specific music */
 $router->get('/musics/{music_id_music}', 'MusicController@getMusic');
+
 /* UpdateMusic
 * return modified music
 Rules:
@@ -184,17 +251,48 @@ Rules:
     ];
 */
 $router->put('/musics/{music_id_music}', 'MusicController@updateMusic');
+
 /* DeleteMusic
 */
 $router->delete('/musics/{music_id_music}', 'MusicController@deleteMusic');
 
+/* Get number of listening of one music by a specific user
+* return number of listening
+*/
+$router->get('/musics/{id_music}/{user_id}/nbListening', 'AlbumController@getNbListeningMusic');
+
+/* Get the list of all music titles of one Album
+* return array of musics
+*/
+$router->get('/musics/{id_album}/tracklist', 'AlbumController@getTrackListOfAlbum');
+
+/* Get the musics the most listened by all users
+* return array of musics
+*/
+$router->get('/musics/mostListened', 'AlbumController@getAlbumsMostListened');
+
+/* Get the musics the most listened by a specific user
+* return array of musics
+*/
+$router->get('/musics/mostListened/{user_id}', 'AlbumController@getMusicsMostListenedByUser');
+
+/* Get the musics the most listened of a specific artist by all users
+* return array of musics
+*/
+$router->get('/musics/mostListened/{artist_id}', 'AlbumController@getMusicsMostListenedOfArtist');
+
+/* Get the musics the most listened of a specific artist by a specific user
+* return array of musics
+*/
+$router->get('/musics/mostListened/{artist_id}/{user_id}', 'AlbumController@getMusicsMostListenedOfArtistByUser');
 
 
-/*-----------------Nationalities------------------*/
+/*-----------------------------Nationalities--------------------------------*/
 /* GetAllNationalities
  * return all the nationaloties
  */
 $router->get('/nationalities', 'NationalityController@getAllNationalities');
+
 /* CreateNationality
 Rules:
     $rules = [
@@ -202,9 +300,11 @@ Rules:
     ];
 */
 $router->post('/nationalities', 'NationalityController@createNationality');
+
  /* GetNationality
  * return a specific nationality */
 $router->get('/nationalities/{nationality_id_nationality}', 'NationalityController@getNationality');
+
 /* UpdateNationality
 * return modified nationality
 Rules:
@@ -213,6 +313,7 @@ Rules:
     ];
 */
 $router->put('/nationalities/{nationality_id_nationality}', 'NationalityController@updateNationality');
+
 /* DeleteNationality
 */
 $router->delete('/nationalities/{nationality_id_nationality}', 'NationalityController@deleteNationality');
@@ -220,13 +321,12 @@ $router->delete('/nationalities/{nationality_id_nationality}', 'NationalityContr
 
 
 
-
-
-/*-----------------Playlists------------------*/
+/*-----------------------------Playlists--------------------------------*/
 /* GetAllPlaylists
  * return all the playlists
  */
 $router->get('/playlists', 'PlaylistController@getAllPlaylists');
+
 /* CreatePlaylist
 Rules:
     $rules = [
@@ -236,9 +336,11 @@ Rules:
     ];
 */
 $router->post('/playlists', 'PlaylistController@createPlaylist');
+
  /* GetPlaylist
  * return a specific playlist */
 $router->get('/playlists/{playlist_id_playlist}', 'PlaylistController@getPlaylist');
+
 /* UpdatePlaylist
 * return modified playlist
 Rules:
@@ -249,18 +351,19 @@ Rules:
     ];
 */
 $router->put('/playlists/{playlist_id_playlist}', 'PlaylistController@updatePlaylist');
+
 /* DeletePlaylist
 */
 $router->delete('/playlists/{playlist_id_playlist}', 'PlaylistController@deletePlaylist');
 
 
 
-
-/*-----------------Spotify------------------*/
+/*-----------------------------Spotify--------------------------------*/
 /* GetAllSpotify
  * return all the spotify
  */
 $router->get('/spotify', 'SpotifyController@getAllSpotify');
+
 /* CreateSpotify
 Rules:
     $rules = [
@@ -269,9 +372,11 @@ Rules:
     ];
 */
 $router->post('/spotify', 'SpotifyController@createSpotify');
+
  /* GetSpotify
  * return a specific spotify */
 $router->get('/spotify/{spotify_id_spotify}', 'SpotifyController@getSpotify');
+
 /* UpdateSpotify
 * return modified spotify
 Rules:
@@ -281,6 +386,7 @@ Rules:
     ];
 */
 $router->put('/spotify/{spotify_id_spotify}', 'SpotifyController@updateSpotify');
+
 /* DeleteSpotify
 */
 $router->delete('/spotify/{spotify_id_spotify}', 'SpotifyController@deleteSpotify');
@@ -288,12 +394,12 @@ $router->delete('/spotify/{spotify_id_spotify}', 'SpotifyController@deleteSpotif
 
 
 
-
-/*-----------------Users------------------*/
+/*-----------------------------Users--------------------------------*/
 /* GetAllUsers
  * return all the users
  */
 $router->get('/users', 'UserController@getAllUsers');
+
 /* CreateUser
 Rules:
     $rules = [
@@ -304,9 +410,11 @@ Rules:
     ];
 */
 $router->post('/users', 'UserController@createUser');
+
  /* GetUser
  * return a specific user*/
 $router->get('/users/{user_id_user}', 'UserController@getUser');
+
 /* UpdateUser
 * return modified user
 Rules:
@@ -318,6 +426,7 @@ Rules:
     ];
 */
 $router->put('/users/{user_id_user}', 'UserController@updateUser');
+
 /* DeleteUser
 */
 $router->delete('/users/{user_id_user}', 'UserController@deleteUser');
