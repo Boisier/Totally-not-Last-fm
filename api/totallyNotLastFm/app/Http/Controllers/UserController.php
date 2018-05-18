@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,9 @@ class UserController extends Controller{
 	public function __construct(){
 		//$this->middleware('auth', ['only' => ['me']]);
 	}
+	
+
+	/*----------------------------Basic functions--------------------------*/
 	
 
 	/* Récupère email + mdp et génère token si good */
@@ -33,12 +37,12 @@ class UserController extends Controller{
 
 		$user = User::create([
 			'username' => $request->get('username'),
-			'user_birthday' => $request->get('user_birthday'),
+			'birthday' => $request->get('birthday'),
 			'mail' => $request->get('mail'),
 			'password' => Hash::make($request->get('password'))
 		]);
 
-		return response()->json(['data' => "The user with id {$user->user_id_user} has been created"], 201);
+		return response()->json(['data' => "The user with id {$user->id} has been created"], 201);
 	}
 
 	//get User
@@ -61,7 +65,7 @@ class UserController extends Controller{
 		$this->validateRequestUser($request);
 
 		$user->username = $request->get('username');
-		$user->user_birthday = $request->get('user_birthday');
+		$user->birthday = $request->get('birthday');
 		$user->mail = $request->get('mail');
 		$user->password = Hash::make($request->get('password'));
 
@@ -81,12 +85,17 @@ class UserController extends Controller{
 
 		return response()->json(['data' => "The user with id {$id} has been deleted"], 200);
 	}
+	/*----------------------------Stats functions--------------------------*/
+
+
+	/*----------------------------Annex functions--------------------------*/
+
 
 	//validate request
 	public function validateRequestUser(Request $request){
 		$rules = [
 			'username' => 'required',
-			'user_birthday' => 'required|date',
+			'birthday' => 'required|date',
 			'mail' => 'required|email|unique:users',
 			'password' => 'required|min:6'
 		];

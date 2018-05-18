@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Nationality;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,8 @@ class NationalityController extends Controller{
 		$this->middleware('authorize:' . __CLASS__, ['except' => ['getAllNationalities', 'getNationality', 'createNationality']]);
 	}
 	*/
+
+	/*----------------------------Basic functions--------------------------*/
 
 	//get All Nationalities
 	public function getAllNationalities(){
@@ -35,7 +38,9 @@ class NationalityController extends Controller{
 
 	//get Nationality
 	public function getNationality($id){
-		$nationality = Nationality::find($id);
+		$nationality = DB::table('nationalities')
+		->where('nationality_id_nationality', '=', $id);
+		->get();
 
 		if(!$nationality)
             return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
@@ -45,7 +50,9 @@ class NationalityController extends Controller{
 
 	//update Nationality
 	public function updateNationality(Request $request, $id){
-		$nationality = Nationality::find($id);
+		$nationality = DB::table('nationalities')
+		->where('nationality_id_nationality', '=', $id);
+		->get();
 
 		if(!$nationality)
             return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
@@ -59,10 +66,52 @@ class NationalityController extends Controller{
         return response()->json(['data' => "The nationality with id {$nationality->nationality_id_nationality} has been updated"], 200);
 	}
 
+	/*----------------------------Stats functions--------------------------*/
+
+	//Get the nationalities the most listened by all users
+	public function getNationalitesMostListened(){
+		$nationalities = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->join('hold', 'artists.artist_id', '=', 'hold.artist_id_artist')
+		->join('nationalities', 'hold.nationality_id_nationality', '=', 'nationalities.nationality_id_nationality')
+		->select('nationalities.nationality_code', 'COUNT(nationalities.nationality_id_nationality) as nbListening')
+		->groupBy('nationalities.nationality_id_nationality')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($nationalities, 200);
+	}
+
+	//Get the nationalities the most listened by a specific user
+	public function getNationalitesMostListenedByUser($id_user){
+		$nationalities = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->join('hold', 'artists.artist_id', '=', 'hold.artist_id_artist')
+		->join('nationalities', 'hold.nationality_id_nationality', '=', 'nationalities.nationality_id_nationality')
+		->select('nationalities.nationality_code', 'user.username', 'COUNT(nationalities.nationality_id_nationality) as nbListening')
+		->where('user.id', '=', $id_user)
+		->groupBy('nationalities.nationality_id_nationality')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($nationalities, 200);
+	}		
+	/*----------------------------Annex functions--------------------------*/
+
 	//delete Nationality
 	public function deleteNationality($id){
-		$nationality = Nationality::find($id);
-
+		$nationality = DB::table('nationalities')
+		->where('nationality_id_nationality', '=', $id);
+		->get();
+		
 		if(!$nationality)
             return response()->json(['message' => "The nationality with id {$id} doesn't exist"], 404);
 
@@ -74,7 +123,7 @@ class NationalityController extends Controller{
 	//validate request
 	public function validateRequestNationality(Request $request){
 		$rules = [
-			'nationality_code' => 'required|alpha'	
+			'nationality_code' => 'required|alpha'
 		];
 
 		$this->validate($request, $rules);
@@ -88,7 +137,7 @@ class NationalityController extends Controller{
 		return $this->autorizeUser($request, $resource, $nationality);
 	}
 
-	
+
 }
 
 ?>

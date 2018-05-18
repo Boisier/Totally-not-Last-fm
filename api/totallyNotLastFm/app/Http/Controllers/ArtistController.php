@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Artist;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,8 @@ class ArtistController extends Controller{
 		$this->middleware('authorize:' . __CLASS__, ['except' => ['getAllArtists', 'getArtist', 'createArtist']]);
 	}
 	*/
+
+	/*----------------------------Basic functions--------------------------*/
 
 	//get All Artists
 	public function getAllArtists(){
@@ -37,7 +40,9 @@ class ArtistController extends Controller{
 
 	//get Artist
 	public function getArtist($id){
-		$artist = Artist::find($id);
+		$artists = DB::table('artists')
+		->where('artist_id', '=', $id)
+		->get();
 
 		if(!$artist)
             return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
@@ -47,7 +52,9 @@ class ArtistController extends Controller{
 
 	//update Artist
 	public function updateArtist(Request $request, $id){
-		$artist = Artist::find($id);
+		$artists = DB::table('artists')
+		->where('artist_id', '=', $id)
+		->get();
 
 		if(!$artist)
 	        return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
@@ -65,7 +72,9 @@ class ArtistController extends Controller{
 
 	//delete Artist
 	public function deleteArist($id){
-		$artist = Artist::find($id);
+		$artists = DB::table('artists')
+		->where('artist_id', '=', $id)
+		->get();
 
 		if(!$artist)
 			return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
@@ -74,6 +83,88 @@ class ArtistController extends Controller{
 
 		return response()->json(['data' => "The artist with id {$id} has been deleted"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+	//Get the list of all albums of one Artist
+	public function getAlbumListOfArtist($id_artist){
+		$albums = DB::table('albums')
+		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
+		->join('artists', 'artists.artist_id', '=', 'produce.artist_id_artist')
+		->select('albums.*', 'artists.artist_id', 'artists.artist_name')
+		->where('artists.artist_id', '=', $id_artist)
+		->get();
+
+		return $this->success($albums, 200);
+	}
+
+	//Get the artists the most listened by all users
+	public function getArtistsMostListened(){
+		$artists = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->select('artists.artist_name', 'COUNT(artists.artist_id) as nbListening')
+		->groupBy('artists.artist_id')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($artists, 200);
+	}
+
+	//Get the artists the most listened by a specific user
+	public function getArtistsMostListenedByUser($id_user){
+		$artists = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->select('user.username', 'user.id', 'COUNT(artists.artist_id) as nbListening')
+		->where('user.id', '=', $id_user)
+		->groupBy('artists.artist_id')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($artists, 200);
+	}
+
+	//Get the artists the most listened in a specific genre by all user
+	public function getArtistsMostListenedOfGenre($id_genre){
+		$artists = DB::table('genre')
+		->join('be', 'genre.genre_id_genre', '=', 'be.genre_id_genre')
+		->join('music', 'be.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->select('artists.artist_name', 'COUNT(artists.artist_id) as nbListening')
+		->where('genre.genre_id_genre', '=', $id_genre)
+		->groupBy('artists.artist_name')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($artists, 200);
+	}
+
+	//Suggestions of artists of a specific genre
+	public function suggestArtistsOfGenre($id_genre){
+		$artists = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+		->join('be', 'music.music_id_music', '=', 'be.music_id_music')
+		->join('genre', 'be.genre_id_genre', '=', 'genre.genre_id_genre')
+		->select('artists.artist_name', 'genre.genre_name_genre')
+		->where('genre.genre_id_genre', '=', $id_genre)
+		->groupBy('artists.artist_id')
+		->get();
+
+		return $this->success($artists, 200);
+	}
+
+	/*----------------------------Annex functions--------------------------*/
 
 	//validate request artist
 	public function validateRequestArtist(Request $request){
@@ -88,13 +179,13 @@ class ArtistController extends Controller{
 
 	//is authorized
 	public function isAuthorizedArtist(Request $request){
-		$resource = "artists"; 
+		$resource = "artists";
 		$artist = Artist::find($this->getArgs($request)["artist_id_artist"]);
 
 		return $this->authorizeUser($request, $resource, $artist);
 	}
 	//
-	
+
 }
 
 ?>

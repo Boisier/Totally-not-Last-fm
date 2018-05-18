@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Playlist;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,9 @@ class PlaylistController extends Controller{
 		$this->middleware('authorize:' . __CLASS__, ['except' => ['getAllPlaylists', 'getPlaylist', 'createPlaylist']]);
 	}
 	*/
+
+	/*----------------------------Basic functions--------------------------*/
+
 
 	//get All Playlists
 	public function getAllPlaylists(){
@@ -37,7 +41,9 @@ class PlaylistController extends Controller{
 
 	//get Playlist
 	public function getPlaylist($id){
-		$playlist = Playlist::find($id);
+		$playlist = DB::table('playlist')
+		->where('playlist_id_playlist', '=', $id);
+		->get();
 
 		if(!$playlist)
 			return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
@@ -47,7 +53,9 @@ class PlaylistController extends Controller{
 
 	//update Playlist
 	public function updatePlaylist(Request $request, $id){
-		$playlist = Playlist::find($id);
+		$playlist = DB::table('playlist')
+		->where('playlist_id_playlist', '=', $id);
+		->get();
 
 		if(!$playlist)
             return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
@@ -65,8 +73,10 @@ class PlaylistController extends Controller{
 
 	//delete Playlist
 	public function deletePlaylist($id){
-		$playlist = Playlist::find($id);
-
+		$playlist = DB::table('playlist')
+		->where('playlist_id_playlist', '=', $id);
+		->get();
+		
 		if(!$playlist)
             return response()->json(['message' => "The playlist with id {$id} doesn't exist"], 404);
 
@@ -74,6 +84,12 @@ class PlaylistController extends Controller{
 
 		return response()->json(['data' => "The playlist with id {$id} has been deleted"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+
+
+	/*----------------------------Annex functions--------------------------*/
+
 
 	//validate request
 	public function validateRequestPlaylist(Request $request){

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\History;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,9 @@ class HistoryController extends Controller{
 		$this->middleware('authorize:' . __CLASS__, ['except' => ['getAllHistories', 'getHistory', 'createHistory']]);
 	}
 	*/
+
+	/*----------------------------Basic functions--------------------------*/
+
 
 	//get All Histories
 	public function getAllHistories(){
@@ -36,17 +40,21 @@ class HistoryController extends Controller{
 
 	//get History
 	public function getHistory($id){
-		$history = History::find($id);
+		$history = DB::table('histories')
+		->where('history_id_history', '=', $id);
+		->get();
 
 		if(!$history)
 			return $this->error("The history with id {$id} doesn't exist", 404);
-		
+
 		return $this->success($history, 200);
 	}
 
 	//update History
 	public function updateHistory(Request $request, $id){
-		$history = History::find($id);
+		$history = DB::table('histories')
+		->where('history_id_history', '=', $id);
+		->get();
 
 		if(!$history)
             return response()->json(['message' => "The history with id {$id} doesn't exist"], 404);
@@ -63,8 +71,10 @@ class HistoryController extends Controller{
 
 	//delete History
 	public function deleteHistory($id){
-		$history = History::find($id);
-
+		$history = DB::table('histories')
+		->where('history_id_history', '=', $id);
+		->get();
+		
 		if(!$history)
             return response()->json(['message' => "The history with id {$id} doesn't exist"], 404);
 
@@ -72,6 +82,40 @@ class HistoryController extends Controller{
 
 		return response()->json(['data' => "The history with id {$id} has been deleted"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+
+	//Get History total playtime of a specific user
+	public function getHistoryPlaytime($id_user){
+		$musicDuration = DB::table('histories')
+		->join('user', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->select('user.id', 'SEC_TO_TIME(SUM((hour(music.music_duration)*3600) + (minute(music.music_duration)*60) + second(music.music_duration))) as duration')
+		->where([
+			['user.id', '=', $id_user],
+			['music.music_id_music', '=', $id_music]
+		])
+		->groupBy('user.id')
+		->get();
+
+		return $this->success($musicDuration, 200);
+	}
+
+	//Get average, earliest and latest listening periods of a specific user
+	public function getListeningPeriodsOfUser($id_user){
+		$periods = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->select('user.username', 'SEC_TO_TIME(AVG(hour(histories.history_play_time)*3600+minute(histories.history_play_time)*60+second(histories.history_play_time))) as average', 'MAX(histories.history_play_time) as lastest', 'MIN(histories.history_play_time) as earliest')
+		->where('user.id', '=', $id_user)
+		->groupBy('user.id')
+		->get();
+
+		return $this->success($periods, 200);
+	}
+
+
+	/*----------------------------Annex functions--------------------------*/
 
 	//Validate request
 	public function validateRequestHistory(Request $request){

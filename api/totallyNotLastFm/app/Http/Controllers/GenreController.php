@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Genre;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,8 @@ class GenreController extends Controller{
 		$this->middleware('authorize:' . __CLASS__, ['except' => ['getAllGenres', 'getGenre', 'createGenre']]);
 	}
 	*/
+
+	/*----------------------------Basic functions--------------------------*/
 
 	//get all Genres
 	public function getAllGenres(){
@@ -35,7 +38,9 @@ class GenreController extends Controller{
 
 	//get Genre
 	public function getGenre($id){
-		$genre = Genre::find($id);
+		$genre = DB::table('genre')
+		->where('genre_id_genre', '=', $id);
+		->get();
 
 		if(!$genre)
             return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
@@ -44,7 +49,9 @@ class GenreController extends Controller{
 	}
 	//update genre
 	public function updateGenre(Request $request, $id){
-		$genre = Genre::find($id);
+		$genre = DB::table('genre')
+		->where('genre_id_genre', '=', $id);
+		->get();
 
 		if(!$genre)
             return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
@@ -60,13 +67,52 @@ class GenreController extends Controller{
 
 	//delete Genre
 	public function deleteGenre($id){
-		$genre = Genre::find($id);
-
+		$genre = DB::table('genre')
+		->where('genre_id_genre', '=', $id);
+		->get();
+		
 		if(!$genre)
 			return response()->json(['message' => "The genre with id {$id} doesn't exist"], 404);
 
 		return response()->json(['data' => "The genre with id {$id} has been deleted"], 200);
 	}
+
+	/*----------------------------Stats functions--------------------------*/
+	//Get the genres the most listened by all users
+	public function getGenresMostListened(){
+		$genres = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('be', 'music.music_id_music', '=', 'be.music_id_music')
+		->join('genre', 'be.genre_id_genre', '=', 'be.genre_id_genre')
+		->select('genre.genre_name_genre', 'COUNT(genre.genre_id_genre) as nbListening')
+		->groupBy('genre.genre_id_genre')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($genres, 200);
+	}
+
+	//Get the genres the most listened by a specific user
+	public function getGenresMostListenedByUser($id_user){
+		$genres = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->join('be', 'music.music_id_music', '=', 'be.music_id_music')
+		->join('genre', 'be.genre_id_genre', '=', 'be.genre_id_genre')
+		->select('user.id', 'user.username', 'genre.genre_name_genre', 'genre.genre_id_genre', 'COUNT(genre.genre_id_genre) as nbListening')
+		->where('user.id', '=', $id_user)
+		->groupBy('genre.genre_id_genre')
+		->orderBy('nbListening DESC')
+		->get();
+
+		return $this->success($genres, 200);
+	}
+
+	/*----------------------------Annex functions--------------------------*/
+
 
 	//validate request
 	public function validateRequestGenre(Request $request){
