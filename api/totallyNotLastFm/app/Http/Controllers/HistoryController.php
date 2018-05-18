@@ -41,7 +41,7 @@ class HistoryController extends Controller{
 	//get History
 	public function getHistory($id){
 		$history = DB::table('histories')
-		->where('history_id_history', '=', $id);
+		->where('history_id_history', '=', $id)
 		->get();
 
 		if(!$history)
@@ -58,10 +58,9 @@ class HistoryController extends Controller{
 		  return response()->json(['data' => "The history with id $id doesn't exist"],200);
 
 		$history = DB::table('histories')
-		->where('history_id_history', '=', $id);
+		->where('history_id_history', '=', $id)
 		->update([
-		  'history_playtime'=>$request->input('history_playtime'),
-		  'user_id_user'=>$request->input('user_id_user')
+		  'history_play_time'=>$request->input('history_playtime')
 		]);
 
         return response()->json(['data' => "The history with id $id has been updated"], 200);
@@ -75,7 +74,7 @@ class HistoryController extends Controller{
 		  return response()->json(['data' => "The history with id $id doesn't exist"],200);
 
 		$history = DB::table('histories')
-		->where('history_id_history', '=', $id);
+		->where('history_id_history', '=', $id)
 		->delete();
 
 		return response()->json(['data' => "The history with id $id has been deleted"], 200);
@@ -91,8 +90,7 @@ class HistoryController extends Controller{
 		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
 		->select(DB::raw('SEC_TO_TIME(SUM((hour(music.music_duration)*3600) + (minute(music.music_duration)*60) + second(music.music_duration))) as duration'), 'user.id')
 		->where([
-			['user.id', '=', $id_user],
-			['music.music_id_music', '=', $id_music]
+			['user.id', '=', $id_user]
 		])
 		->groupBy('user.id')
 		->get();
@@ -101,9 +99,9 @@ class HistoryController extends Controller{
 	}
 
 	//Get average, earliest and latest listening periods of a specific user
-	public function getListeningPeriodsOfUser($id_user){
+	public function getListeningPeriodsOfUser($id_user){  //TO DO 
 		$periods = DB::table('user')
-		->join('histories', 'userz.id', '=', 'histories.user_id_user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
 		->select(DB::raw('SEC_TO_TIME(AVG(hour(histories.history_play_time)*3600+minute(histories.history_play_time)*60+second(histories.history_play_time))) as average'), 'MAX(histories.history_play_time) as lastest', 'MIN(histories.history_play_time) as earliest', 'user.username')
 		->where('user.id', '=', $id_user)
 		->groupBy('user.id')

@@ -49,7 +49,7 @@ class GenreController extends Controller{
 	}
 	//update genre
 	public function updateGenre(Request $request, $id){
-		$nbGenres = DB::table('genre')->max('genere_id_genre');
+		$nbGenres = DB::table('genre')->max('genre_id_genre');
 
 		if($id > $nbGenres || $id < 0 )
 		  return response()->json(['data' => "The genre with id $id doesn't exist"],200);
@@ -65,7 +65,7 @@ class GenreController extends Controller{
 
 	//delete Genre
 	public function deleteGenre($id){
-		$nbGenres = DB::table('genre')->max('genere_id_genre');
+		$nbGenres = DB::table('genre')->max('genre_id_genre');
 
 		if($id > $nbGenres || $id < 0 )
 		  return response()->json(['data' => "The genre with id $id doesn't exist"],200);

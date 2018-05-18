@@ -113,10 +113,10 @@ Route::group([
 ],function($router){
   Route::get('getAll','ArtistController@getAllArtists');
   Route::post('create','ArtistController@createArtist');
-  Route::get('get/{artist_id_artist}','ArtistController@getArtist');
-  Route::put('update/{artist_id_artist}','ArtistController@updateArtist'); // NOPE save()
-  Route::delete('delete/{artist_id_artist}','ArtistController@deleteArtist'); //NOPE delete)()
-  Route::get('artistListAlbum/{artist_id_artist}','ArtistController@getAlbumListOfArtist');
+  Route::get('get/{artist_id}','ArtistController@getArtist');
+  Route::put('update/{artist_id}','ArtistController@updateArtist'); // NOPE save()
+  Route::delete('delete/{artist_id}','ArtistController@deleteArtist'); //NOPE delete)()
+  Route::get('artistListAlbum/{artist_id}','ArtistController@getAlbumListOfArtist');
   Route::get('mostListened','ArtistController@getArtistsMostListened');
   Route::get('userMostListened/{id}','ArtistController@getArtistsMostListenedByUser');
   Route::get('genreMostListened/{genre_id_genre}','ArtistController@getArtistsMostListenedOfGenre');
@@ -185,8 +185,8 @@ Route::group([
   Route::put('update/{genre_id_genre}','GenreController@updateGenre'); // NOPE save()
   Route::delete('delete/{genre_id_genre}','GenreController@deleteGenre'); //NOPE delete)()
   
-  Route::get('mostListened','AlbumController@getGenresMostListened');
-  Route::get('userMostListened/{id}','AlbumController@getGenresMostListenedByUser');
+  Route::get('mostListened','GenreController@getGenresMostListened');
+  Route::get('userMostListened/{id}','GenreController@getGenresMostListenedByUser'); //NOT OK
  
 });
 ///* GetAllGenres
@@ -237,7 +237,7 @@ Route::group([
   'prefix'=> 'history'  
 ],function($router){
   Route::get('getAll','HistoryController@getAllHistories');
-  Route::post('create','HistoryController@createHistory');
+  Route::post('create','HistoryController@createHistory'); 
   Route::get('get/{history_id_history}','HistoryController@getHistory');
   Route::put('update/{history_id_history}','HistoryController@updateHistory');
   Route::delete('delete/{history_id_history}','HistoryController@deleteHistory');
@@ -288,14 +288,14 @@ Route::group([
   'prefix'=> 'music'  
 ],function($router){
   Route::get('getAll','MusicController@getAllMusics');
-  Route::post('create','MusicController@createHistory');
+  Route::post('create','MusicController@createMusic'); //To fix validate doesn't exist
   Route::get('get/{music_id_music}','MusicController@getMusic');
   Route::put('update/{music_id_music}','MusicController@updateMusic');
   Route::delete('delete/{music_id_music}','MusicController@deleteMusic');
-  Route::get('userNbListeningMusic/{music_id_music}/{id}','AlbumController@getNbListeningMusic');
-  Route::get('tracklistMusicAlbum/{id_album}','AlbumController@getTrackListofAlbum');
+  Route::get('userNbListeningMusic/{music_id_music}/{id}','MusicController@getNbListeningMusic');
+  Route::get('tracklistMusicAlbum/{id_album}','MusicController@getTrackListofAlbum');
   Route::get('mostListened','MusicController@getMusicsMostListened');
-  Route::get('userMostListened','MusicController@getMusicsMostListenedByUser');
+  Route::get('userMostListened/{id}','MusicController@getMusicsMostListenedByUser');
   Route::get('artistAllMostListened/{artist_id}','MusicController@getMusicsMostListenedOfArtist');
   Route::get('mostListenedOfArtistByUser/{artist_id}/{id}','MusicController@getMusicsMostListenedOfArtistByUser');
 });
@@ -414,7 +414,7 @@ Route::group([
   'prefix'=> 'playlist'  
 ],function($router){
   Route::get('getAll','PlaylistController@getAllPlaylists');
-  Route::post('create','PlaylistController@createPlaylist');
+  Route::post('create','PlaylistController@createPlaylist');  // Pb bc foreign keys
   Route::get('get/{playlist_id_playlist}','PlaylistController@getPlaylist');
   Route::put('update/{playlist_id_playlist}','PlaylistController@updatePlaylist');
   Route::delete('delete/{playlist_id_playlist}','PlaylistController@deletePlaylist');

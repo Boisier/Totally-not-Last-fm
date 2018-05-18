@@ -61,7 +61,7 @@ class ArtistController extends Controller{
 		->where('artist_id', '=', $id)
 		->update([
 		  'artist_name'=>$request->input('artist_name'),
-		  'artist_birth_year'=>$request->input('artist_birth_year')
+		  'artist_birth_year'=>$request->input('artist_birth_year'),
 		  'artist_death_year'=>$request->input('artist_death_year')
 		]);
 
@@ -69,7 +69,7 @@ class ArtistController extends Controller{
 	}
 
 	//delete Artist
-	public function deleteArist($id){
+	public function deleteArtist($id){
 		$nbArtists = DB::table('artists')->max('artist_id');
 
 		if($id > $nbArtists || $id < 0 )

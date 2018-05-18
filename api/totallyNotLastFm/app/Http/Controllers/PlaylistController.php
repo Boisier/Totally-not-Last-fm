@@ -42,7 +42,7 @@ class PlaylistController extends Controller{
 	//get Playlist
 	public function getPlaylist($id){
 		$playlist = DB::table('playlist')
-		->where('playlist_id_playlist', '=', $id);
+		->where('playlist_id_playlist', '=', $id)
 		->get();
 
 		if(!$playlist)
@@ -59,11 +59,11 @@ class PlaylistController extends Controller{
 		  return response()->json(['data' => "The playlist with id $id doesn't exist"],200);
 
 		$playlist = DB::table('playlist')
-		->where('playlist_id_playlist', '=', $id);
+		->where('playlist_id_playlist', '=', $id)
 		->update([
           'user_id_user'=>$request->input('user_id_user'),
-          'playlist_description'=>$request->input('playlist_description')
-		  'playlist_name'=>$request->input('playlist_name'),
+          'playlist_description'=>$request->input('playlist_description'),
+		  'playlist_name'=>$request->input('playlist_name')
         ]);
 
         return response()->json(['data' => "The playlist with id $id has been updated"], 200);
@@ -77,7 +77,7 @@ class PlaylistController extends Controller{
 		  return response()->json(['data' => "The playlist with id $id doesn't exist"],200);
 
 		$playlist = DB::table('playlist')
-		->where('playlist_id_playlist', '=', $id);
+		->where('playlist_id_playlist', '=', $id)
 		->delete();
 
 		return response()->json(['data' => "The playlist with id $id has been deleted"], 200);

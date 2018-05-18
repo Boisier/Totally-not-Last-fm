@@ -41,8 +41,8 @@ class MusicController extends Controller{
 
 	//get Music
 	public function getMusic($id){
-		$history = DB::table('music')
-		->where('music_id_music', '=', $id);
+		$music = DB::table('music')
+		->where('music_id_music', '=', $id)
 		->get();
 
 		if(!$music)
@@ -62,7 +62,7 @@ class MusicController extends Controller{
 		->where('music_id_music', '=', $id)
 		->update([
           'music_title'=>$request->input('music_title'),
-          'music_duration'=>$request->input('music_duration')
+          'music_duration'=>$request->input('music_duration'),
 		  'music_release_date'=>$request->input('music_release_date')
         ]);
 
@@ -77,7 +77,7 @@ class MusicController extends Controller{
 	      return response()->json(['data' => "The music with id $id doesn't exist"],200);
 
 		$history = DB::table('music')
-		->where('music_id_music', '=', $id);
+		->where('music_id_music', '=', $id)
 		->delete();
 
         return response()->json(['data' => "The music with id $id has been deleted"], 200);
@@ -93,7 +93,7 @@ class MusicController extends Controller{
 		->join('music', 'music.music_id_music', '=', 'contain.music_id_music')
 		->select(DB::raw('count(music.music_id_music) as nbListening'), 'music.music_title', 'user.id')
 		->where('music.music_id_music', '=', $id_music)
-		->groupBy('musics.music_id_music')
+		->groupBy('music.music_id_music')
 		->get();
 
 		return $this->success($nbListening, 200);
@@ -114,7 +114,7 @@ class MusicController extends Controller{
 	}
 
 	//Get the musics the most listened by all users
-	public function getAlbumsMostListened(){
+	public function getMusicsMostListened(){
 		$musics = DB::table('user')
 		->join('histories', 'user.id', '=', 'histories.user_id_user')
 		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')

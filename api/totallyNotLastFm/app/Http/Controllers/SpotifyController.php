@@ -32,17 +32,16 @@ class SpotifyController extends Controller{
 		$this->validateRequestSpotify($request);
 
 		$spotify = Spotify::create([
-			'user_id_user' => $request->get('user_id_user'),
-			'spotify_our_id' => $request->get('spotify_our_id')
+			'user_id_user' => $request->get('user_id_user')
 		]);
 
-		return response()->json(['data' => "The spotify account with id {$spotify->spotify_user_id} has been created"], 201);
+		return response()->json(['data' => "The spotify account with this id has been created"], 201);
 	}
 
 	//get one Spotify account in our database
 	public function getSpotify($id){
 		$spotify = DB::table('spotify')
-		->where('spotify_user_id', '=', $id);
+		->where('spotify_user_id', '=', $id)
 		->get();
 
 		if(!$spotify)
@@ -59,10 +58,9 @@ class SpotifyController extends Controller{
 		  return response()->json(['data' => "The spotify account with id $id doesn't exist"],200);
 
 		$spotify = DB::table('spotify')
-		->where('spotify_user_id', '=', $id);
+		->where('spotify_user_id', '=', $id)
 		->update([
-		  'user_id_user'=>$request->input('user_id_user'),
-		  'spotify_our_id'=>$request->input('spotify_our_id')
+		  'user_id_user'=>$request->input('user_id_user')
 		]);
 
         return response()->json(['data' => "The spotify account with id $id has been updated"], 200);
@@ -76,7 +74,7 @@ class SpotifyController extends Controller{
 		  return response()->json(['data' => "The spotify account with id $id doesn't exist"],200);
 
 		$spotify = DB::table('spotify')
-		->where('spotify_user_id', '=', $id);
+		->where('spotify_user_id', '=', $id)
 		->delete();
 
 		return response()->json(['data' => "The spotify account with id $id has been deleted"], 200);
@@ -90,8 +88,7 @@ class SpotifyController extends Controller{
 	//validate request
 	public function validateRequestSpotify(Request $request){
 		$rules = [
-			'user_id_user' => 'required|numeric',
-			'spotify_our_id' => 'required|numeric'
+			'user_id_user' => 'required|numeric'
 		];
 
 		$this->validate($request, $rules);
