@@ -89,6 +89,19 @@ $router->put('/artists/{artist_id_artist}', 'ArtistController@updateArtist');
 $router->delete('/artists/{artist_id_artist}', 'ArtistController@deleteArtist');
 
 
+$router->get('/artists/listOfAlbums/{artist_id_artist}', 'ArtistController@getAlbumListOfArtist');
+
+$router->get('/artists/mostListened', 'ArtistController@getArtistsMostListened');
+
+$router->get('/artists/mostListenedUser/{user_id}', 'ArtistController@getArtistsMostListenedByUser');
+
+$router->get('/artists/mostListenedGenre/{genre_id_genre}', 'ArtistController@getArtistsMostListenedOfGenre');
+
+/* Suggestions of artists of a specific genre
+* return array of artists
+*/
+$router->get('/artists/suggestions/{genre_id}', 'ArtistController@suggestsArtistOfGenre');
+
 
 
 
@@ -153,6 +166,10 @@ $router->put('/histories/{history_id_history}', 'HistoryController@updateHistory
 */
 $router->delete('/histories/{history_id_history}', 'HistoryController@deleteHistory');
 
+
+$router->get('/history/historyPlaytime/{user_id}', 'HistoryController@getHistoryPlaytime');
+
+$router->get('/history/isteningPeriods/{user_id}', 'HistoryController@ggetListeningPeriodsOfUser');
 
 
 
