@@ -39,7 +39,7 @@ class GenreController extends Controller{
 	//get Genre
 	public function getGenre($id){
 		$genre = DB::table('genre')
-		->where('genre_id_genre', '=', $id);
+		->where('genre_id_genre', '=', $id)
 		->get();
 
 		if(!$genre)
@@ -50,7 +50,7 @@ class GenreController extends Controller{
 	//update genre
 	public function updateGenre(Request $request, $id){
 		$genre = DB::table('genre')
-		->where('genre_id_genre', '=', $id);
+		->where('genre_id_genre', '=', $id)
 		->get();
 
 		if(!$genre)
@@ -68,7 +68,7 @@ class GenreController extends Controller{
 	//delete Genre
 	public function deleteGenre($id){
 		$genre = DB::table('genre')
-		->where('genre_id_genre', '=', $id);
+		->where('genre_id_genre', '=', $id)
 		->get();
 		
 		if(!$genre)

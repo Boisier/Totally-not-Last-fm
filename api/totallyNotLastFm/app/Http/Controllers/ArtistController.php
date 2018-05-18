@@ -44,10 +44,10 @@ class ArtistController extends Controller{
 		->where('artist_id', '=', $id)
 		->get();
 
-		if(!$artist)
+		if(!$artists)
             return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
 
-        return response()->json(['data' => $artist], 200);
+        return response()->json(['data' => $artists], 200);
 	}
 
 	//update Artist
@@ -56,16 +56,16 @@ class ArtistController extends Controller{
 		->where('artist_id', '=', $id)
 		->get();
 
-		if(!$artist)
+		if(!$artists)
 	        return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
 
 		$this->validateRequestArtist($request);
 
-		$artist->artist_name = $request->get('artist_name');
-		$artist->artist_birth_year = $request->get('artist_birth_year');
-		$artist->artist_death_year = $request->get('artist_death_year');
+		$artists->artist_name = $request->get('artist_name');
+		$artists->artist_birth_year = $request->get('artist_birth_year');
+		$artists->artist_death_year = $request->get('artist_death_year');
 
-		$artist->save();
+		$artists->save();
 
 	    return response()->json(['data' => "The artist with id {$artist->artist_id_artist} has been updated"], 200);
 	}
@@ -76,10 +76,10 @@ class ArtistController extends Controller{
 		->where('artist_id', '=', $id)
 		->get();
 
-		if(!$artist)
+		if(!$artists)
 			return response()->json(['message' => "The artist with id {$id} doesn't exist"], 404);
 
-		$artist->delete();
+		$artists->delete();
 
 		return response()->json(['data' => "The artist with id {$id} has been deleted"], 200);
 	}
