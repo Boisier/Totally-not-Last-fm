@@ -100,6 +100,7 @@ $factory->define(App\Nationality::class, function(Faker\Generator $faker){
 $factory->define(App\Playlist::class, function(Faker\Generator $faker){
   return [
     'playlist_description' => $faker->name,
+    'user_id_user' => $faker->randomDigit,
     'playlist_name'=>$faker->name
     ];
 });
@@ -119,8 +120,8 @@ $factory->define(App\Spotify::class, function(Faker\Generator $faker){
 
 $factory->define(App\User::class, function(Faker\Generator $faker){
   return [
-    'mail' => $faker->email,
-    'user_username' => $faker->name,
+    'email' => $faker->email,
+    'username' => $faker->name,
     'password' => Hash::make('12345'),
   ];
 });
