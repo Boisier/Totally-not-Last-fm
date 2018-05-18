@@ -86,9 +86,9 @@ class GenreController extends Controller{
 		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
 		->join('be', 'music.music_id_music', '=', 'be.music_id_music')
 		->join('genre', 'be.genre_id_genre', '=', 'be.genre_id_genre')
-		->select('genre.genre_name_genre', 'COUNT(genre.genre_id_genre) as nbListening')
+		->select(DB::raw('count(genre.genre_id_genre) as nbListening'), 'genre.genre_name_genre')
 		->groupBy('genre.genre_id_genre')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening', 'DESC')
 		->get();
 
 		return $this->success($genres, 200);
@@ -102,10 +102,10 @@ class GenreController extends Controller{
 		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
 		->join('be', 'music.music_id_music', '=', 'be.music_id_music')
 		->join('genre', 'be.genre_id_genre', '=', 'be.genre_id_genre')
-		->select('user.id', 'user.username', 'genre.genre_name_genre', 'genre.genre_id_genre', 'COUNT(genre.genre_id_genre) as nbListening')
+		->select(DB::raw('count(genre.genre_id_genre) as nbListening'), 'user.id', 'user.username', 'genre.genre_name_genre', 'genre.genre_id_genre')
 		->where('user.id', '=', $id_user)
 		->groupBy('genre.genre_id_genre')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening', 'DESC')
 		->get();
 
 		return $this->success($genres, 200);

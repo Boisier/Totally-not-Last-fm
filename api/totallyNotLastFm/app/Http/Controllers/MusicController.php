@@ -93,7 +93,7 @@ class MusicController extends Controller{
 		->join('user', 'user.id', '=', 'histories.user_id_user')
 		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
 		->join('music', 'music.music_id_music', '=', 'contain.music_id_music')
-		->select ('music.music_title', 'user.id', 'count(music.music_id_music) as nbListening')
+		->select(DB::raw('count(music.music_id_music) as nbListening'), 'music.music_title', 'user.id')
 		->where('music.music_id_music', '=', $id_music)
 		->groupBy('musics.music_id_music')
 		->get();
@@ -121,9 +121,9 @@ class MusicController extends Controller{
 		->join('histories', 'user.id', '=', 'histories.user_id_user')
 		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
 		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
-		->select('music.music_title', 'COUNT(music.music_id_music) as nbListening')
+		->select(DB::raw('count(music.music_id_music) as nbListening'), 'music.music_title')
 		->groupBy('music.music_id_music')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening', 'DESC')
 		->get();
 
 		return $this->success($musics, 200);
@@ -135,10 +135,10 @@ class MusicController extends Controller{
 		->join('histories', 'user.id', '=', 'histories.user_id_user')
 		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
 		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
-		->select('user.username', 'music.music_title', 'COUNT(music.music_id_music) as nbListening')
+		->select(DB::raw('count(music.music_id_music) as nbListening'), 'user.username', 'music.music_title')
 		->where('user.id', '=', $id_user)
 		->groupBy('music.music_id_music')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening', 'DESC')
 		->get();
 
 		return $this->success($musics, 200);
@@ -154,10 +154,10 @@ class MusicController extends Controller{
 		->join('albums', 'include.album_id_album', '=', 'albums.album_id_album')
 		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
 		->join('artists', 'produce.artist_id_artist', '=', 'artists.artist_id')
-		->select('artists.artist_name', 'music.music_title', 'COUNT(music.music_id_music) as nbListening')
+		->select(DB::raw('count(music.music_id_music) as nbListening'), 'artists.artist_name', 'music.music_title')
 		->where('artists.artist_id', '=', $id_artist)
 		->groupBy('music.music_id_music')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening', 'DESC')
 		->get();
 
 		return $this->success($musics, 200);
@@ -173,13 +173,13 @@ class MusicController extends Controller{
 		->join('albums', 'include.album_id_album', '=', 'albums.album_id_album')
 		->join('produce', 'albums.album_id_album', '=', 'produce.album_id_album')
 		->join('artists', 'produce.artist_id_artist', '=', 'artists.artist_id')
-		->select('artists.artist_name', 'music.music_title', 'COUNT(music.music_id_music) as nbListening')
+		->select(DB::raw('count(music.music_id_music) as nbListening'), 'artists.artist_name', 'music.music_title')
 		->where([
 			['artists.artist_id', '=', $id_artist],
 			['user.id', '=', $id_user]
 		])
 		->groupBy('music.music_id_music')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening', 'DESC')
 		->get();
 
 		return $this->success($musics, 200);

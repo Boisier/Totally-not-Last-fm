@@ -78,9 +78,9 @@ class NationalityController extends Controller{
 		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
 		->join('hold', 'artists.artist_id', '=', 'hold.artist_id_artist')
 		->join('nationalities', 'hold.nationality_id_nationality', '=', 'nationalities.nationality_id_nationality')
-		->select('nationalities.nationality_code', 'COUNT(nationalities.nationality_id_nationality) as nbListening')
+		->select(DB::raw('count(nationalities.nationality_id_nationality) as nbListening'), 'nationalities.nationality_code')
 		->groupBy('nationalities.nationality_id_nationality')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening', 'DESC')
 		->get();
 
 		return $this->success($nationalities, 200);
@@ -96,10 +96,10 @@ class NationalityController extends Controller{
 		->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
 		->join('hold', 'artists.artist_id', '=', 'hold.artist_id_artist')
 		->join('nationalities', 'hold.nationality_id_nationality', '=', 'nationalities.nationality_id_nationality')
-		->select('nationalities.nationality_code', 'user.username', 'COUNT(nationalities.nationality_id_nationality) as nbListening')
+		->select(DB::raw('count(nationalities.nationality_id_nationality) as nbListening'), 'nationalities.nationality_code', 'user.username')
 		->where('user.id', '=', $id_user)
 		->groupBy('nationalities.nationality_id_nationality')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening', 'DESC')
 		->get();
 
 		return $this->success($nationalities, 200);

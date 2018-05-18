@@ -91,7 +91,7 @@ class HistoryController extends Controller{
 		->join('user', 'user.id', '=', 'histories.user_id_user')
 		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
 		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
-		->select('user.id', 'SEC_TO_TIME(SUM((hour(music.music_duration)*3600) + (minute(music.music_duration)*60) + second(music.music_duration))) as duration')
+		->select(DB::raw('SEC_TO_TIME(SUM((hour(music.music_duration)*3600) + (minute(music.music_duration)*60) + second(music.music_duration))) as duration'), 'user.id')
 		->where([
 			['user.id', '=', $id_user],
 			['music.music_id_music', '=', $id_music]
@@ -106,7 +106,7 @@ class HistoryController extends Controller{
 	public function getListeningPeriodsOfUser($id_user){
 		$periods = DB::table('user')
 		->join('histories', 'user.id', '=', 'histories.user_id_user')
-		->select('user.username', 'SEC_TO_TIME(AVG(hour(histories.history_play_time)*3600+minute(histories.history_play_time)*60+second(histories.history_play_time))) as average', 'MAX(histories.history_play_time) as lastest', 'MIN(histories.history_play_time) as earliest')
+		->select(DB::raw('SEC_TO_TIME(AVG(hour(histories.history_play_time)*3600+minute(histories.history_play_time)*60+second(histories.history_play_time))) as average'), 'MAX(histories.history_play_time) as lastest', 'MIN(histories.history_play_time) as earliest', 'user.username')
 		->where('user.id', '=', $id_user)
 		->groupBy('user.id')
 		->get();
