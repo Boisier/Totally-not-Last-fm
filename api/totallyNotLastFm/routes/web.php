@@ -232,10 +232,22 @@ Route::group([
 //
 //
 ///*-----------------------------Histories--------------------------------*/
+
+Route::group([
+  'prefix'=> 'history'  
+],function($router){
+  Route::get('getAll','HistoryController@getAllHistories');
+  Route::post('create','HistoryController@createHistory');
+  Route::get('get/{history_id_history}','HistoryController@getHistory');
+  Route::put('update/{history_id_history}','HistoryController@updateHistory');
+  Route::delete('delete/{history_id_history}','HistoryController@deleteHistory');
+  Route::get('playtime/{id}','HistoryController@gethistoryPlaytime');
+  Route::get('listeningPeriods/{id}','HistoryController@getListeningPeriodsOfUser');
+});
 ///* GetAllHistories
 // * return all the histories
 // */
-//$router->get('/histories', 'HistoryController@getAllHistories');
+//$router->get('/histories', 'HistoryController@getAllHistories'); DONE
 //
 ///* CreateHistory
 //Rules:
@@ -244,11 +256,11 @@ Route::group([
 //        'user_id_user' => 'required|numeric'
 //    ];
 //*/
-//$router->post('/histories', 'HistoryController@createHistory');
+//$router->post('/histories', 'HistoryController@createHistory'); DONE
 //
 // /* GetHistory
 // * return a specific history */
-//$router->get('/histories/{history_id_history}', 'HistoryController@getHistory');
+//$router->get('/histories/{history_id_history}', 'HistoryController@getHistory');  DONE
 //
 ///* UpdateHistory
 //* return modified history
@@ -258,7 +270,7 @@ Route::group([
 //        'user_id_user' => 'required|numeric'
 //    ];
 //*/
-//$router->put('/histories/{history_id_history}', 'HistoryController@updateHistory');
+//$router->put('/histories/{history_id_history}', 'HistoryController@updateHistory'); DONE
 //
 ///* DeleteHistory
 //*/
@@ -272,10 +284,26 @@ Route::group([
 //
 //
 ///*-----------------------------Musics--------------------------------*/
+Route::group([
+  'prefix'=> 'music'  
+],function($router){
+  Route::get('getAll','MusicController@getAllMusics');
+  Route::post('create','MusicController@createHistory');
+  Route::get('get/{music_id_music}','MusicController@getMusic');
+  Route::put('update/{music_id_music}','MusicController@updateMusic');
+  Route::delete('delete/{music_id_music}','MusicController@deleteMusic');
+  Route::get('userNbListeningMusic/{music_id_music}/{id}','AlbumController@getNbListeningMusic');
+  Route::get('tracklistMusicAlbum/{id_album}','AlbumController@getTrackListofAlbum');
+  Route::get('mostListened','MusicController@getMusicsMostListened');
+  Route::get('userMostListened','MusicController@getMusicsMostListenedByUser');
+  Route::get('artistAllMostListened/{artist_id}','MusicController@getMusicsMostListenedOfArtist');
+  Route::get('mostListenedOfArtistByUser/{artist_id}/{id}','MusicController@getMusicsMostListenedOfArtistByUser');
+});
+
 ///* GetAllMusics
 // * return all the musics
 // */
-//$router->get('/musics', 'MusicController@getAllMusics');
+//$router->get('/musics', 'MusicController@getAllMusics'); DONE
 //
 ///* CreateMusic
 //Rules:
@@ -285,11 +313,11 @@ Route::group([
 //        'music_release_date' => 'required|date'
 //    ];
 //*/
-//$router->post('/musics', 'MusicController@createMusic');
+//$router->post('/musics', 'MusicController@createMusic'); DONE
 //
 // /* GetMusic
 // * return a specific music */
-//$router->get('/musics/{music_id_music}', 'MusicController@getMusic');
+//$router->get('/musics/{music_id_music}', 'MusicController@getMusic'); DONE
 //
 ///* UpdateMusic
 //* return modified music
@@ -300,36 +328,36 @@ Route::group([
 //        'music_release_date' => 'required|date'
 //    ];
 //*/
-//$router->put('/musics/{music_id_music}', 'MusicController@updateMusic');
+//$router->put('/musics/{music_id_music}', 'MusicController@updateMusic'); DONE
 //
 ///* DeleteMusic
 //*/
-//$router->delete('/musics/{music_id_music}', 'MusicController@deleteMusic');
+//$router->delete('/musics/{music_id_music}', 'MusicController@deleteMusic'); DONE
 //
 ///* Get number of listening of one music by a specific user
 //* return number of listening
 //*/
-//$router->get('/musics/{id_music}/{user_id}/nbListening', 'AlbumController@getNbListeningMusic');
+//$router->get('/musics/{id_music}/{user_id}/nbListening', 'AlbumController@getNbListeningMusic'); DONE
 //
 ///* Get the list of all music titles of one Album
 //* return array of musics
 //*/
-//$router->get('/musics/{id_album}/tracklist', 'AlbumController@getTrackListOfAlbum');
+//$router->get('/musics/{id_album}/tracklist', 'AlbumController@getTrackListOfAlbum'); DONE
 //
 ///* Get the musics the most listened by all users
 //* return array of musics
 //*/
-//$router->get('/musics/mostListened', 'AlbumController@getAlbumsMostListened');
+//$router->get('/musics/mostListened', 'AlbumController@getAlbumsMostListened'); DONE
 //
 ///* Get the musics the most listened by a specific user
 //* return array of musics
 //*/
-//$router->get('/musics/mostListened/{user_id}', 'AlbumController@getMusicsMostListenedByUser');
+//$router->get('/musics/mostListened/{user_id}', 'AlbumController@getMusicsMostListenedByUser'); DONE
 //
 ///* Get the musics the most listened of a specific artist by all users
 //* return array of musics
 //*/
-//$router->get('/musics/mostListened/{artist_id}', 'AlbumController@getMusicsMostListenedOfArtist');
+//$router->get('/musics/mostListened/{artist_id}', 'AlbumController@getMusicsMostListenedOfArtist'); DONE
 //
 ///* Get the musics the most listened of a specific artist by a specific user
 //* return array of musics
@@ -338,6 +366,16 @@ Route::group([
 //
 //
 ///*-----------------------------Nationalities--------------------------------*/
+Route::group([
+  'prefix'=> 'nationality'  
+],function($router){
+  Route::get('getAll','NationalityController@getAllNationalities');
+  Route::post('create','NationalityController@createNationality');
+  Route::get('get/{nationality_id_nationality}','NationalityController@getNationality');
+  Route::put('update/{nationality_id_nationality}','NationalityController@updateNationality');
+  Route::delete('delete/{nationality_id_nationality}','NationalityController@deleteNationality');
+  
+});
 ///* GetAllNationalities
 // * return all the nationaloties
 // */
@@ -372,6 +410,16 @@ Route::group([
 //
 //
 ///*-----------------------------Playlists--------------------------------*/
+Route::group([
+  'prefix'=> 'playlist'  
+],function($router){
+  Route::get('getAll','PlaylistController@getAllPlaylists');
+  Route::post('create','PlaylistController@createPlaylist');
+  Route::get('get/{playlist_id_playlist}','PlaylistController@getPlaylist');
+  Route::put('update/{playlist_id_playlist}','PlaylistController@updatePlaylist');
+  Route::delete('delete/{playlist_id_playlist}','PlaylistController@deletePlaylist');
+  
+});
 ///* GetAllPlaylists
 // * return all the playlists
 // */
@@ -409,6 +457,16 @@ Route::group([
 //
 //
 ///*-----------------------------Spotify--------------------------------*/
+Route::group([
+  'prefix'=> 'spotify'  
+],function($router){
+  Route::get('getAll','SpotifyController@getAllSpotify');
+  Route::post('create','SpotifyController@createSpotify');
+  Route::get('get/{spotify_id_spotify}','SpotifyController@getSpotify');
+  Route::put('update/{spotify_id_spotify}','SpotifyController@updateSpotify');
+  Route::delete('delete/{spotify_id_spotify}','SpotifyController@deleteSpotify');
+  
+});
 ///* GetAllSpotify
 // * return all the spotify
 // */
@@ -445,6 +503,16 @@ Route::group([
 //
 //
 ///*-----------------------------Users--------------------------------*/
+Route::group([
+  'prefix'=> 'user'  
+],function($router){
+  Route::get('getAll','UserController@getAllUsers');
+  Route::post('create','UserController@createUser');
+  Route::get('get/{id}','UserController@getUser');
+  Route::put('update/{id}','UserController@updateUser');
+  Route::delete('delete/{id}','UserController@deleteUser');
+  
+});
 ///* GetAllUsers
 // * return all the users
 // */
