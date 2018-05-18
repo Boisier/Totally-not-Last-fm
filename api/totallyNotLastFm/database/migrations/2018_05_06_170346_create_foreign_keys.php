@@ -17,7 +17,7 @@ class CreateForeignKeys extends Migration
 
     Schema::table('histories', function(Blueprint $table){
       $table->foreign('user_id_user')
-        ->references('user_id_user')
+        ->references('id')
         ->on('user')
         ->onDelete('cascade')
         ->onUpdate('cascade');
@@ -26,7 +26,7 @@ class CreateForeignKeys extends Migration
     //playlist
     Schema::table('playlist', function(Blueprint $table){
       $table->foreign('user_id_user')
-        ->references('user_id_user')
+        ->references('id')
         ->on('user')
         ->onDelete('cascade')
         ->onUpdate('cascade');
@@ -35,7 +35,7 @@ class CreateForeignKeys extends Migration
     //spotify
     Schema::table('spotify', function(Blueprint $table){
       $table->foreign('user_id_user')
-        ->references('user_id_user')
+        ->references('id')
         ->on('user')
         ->onDelete('cascade')
         ->onUpdate('cascade');
