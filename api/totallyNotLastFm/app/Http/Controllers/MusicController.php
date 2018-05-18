@@ -6,6 +6,7 @@ use App\Music;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class MusicController extends Controller{
 	/*

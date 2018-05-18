@@ -28,6 +28,8 @@ class PlaylistController extends Controller{
 
 	//create Playlist
 	public function createPlaylist(Request $request){
+	    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
 		$this->validateRequestPlaylist($request);
 
 		$playlist = Playlist::create([
@@ -35,6 +37,8 @@ class PlaylistController extends Controller{
 			'playlist_description' => $request->get('playlist_description'),
 			'playlist_name' => $request->get('playlist_name')
 		]);
+
+	    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
 		return response()->json(['data' => "The playlist with id {$playlist->playlist_id_playlist} has been created"], 201);
 	}
