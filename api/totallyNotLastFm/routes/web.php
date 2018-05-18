@@ -28,7 +28,7 @@ $router->get('/user/{name}', function ($name) {
 /* GetAllAlbums
  * return all the albums
  */
-$router->get('/albums', 'AlbumController@getAllAlbums');
+$router->get('/albums/getAll', 'AlbumController@getAllAlbums');
 
 /* CreateAlbum
 Rules:
@@ -37,7 +37,7 @@ Rules:
         'album_nb_tracks' => 'required|numeric'
     ];
 */
-$router->post('/albums', 'AlbumController@createAlbum');
+$router->post('/albums/create', 'AlbumController@createAlbum');
 
  /* GetAlbum
  * return a specific album
@@ -61,17 +61,17 @@ $router->delete('/albums/{album_id_album}', 'AlbumController@deleteAlbum');
 /* Get the albums the most listened by all users
 * return array of albums
 */
-$router->get('/albums/mostListened', 'AlbumController@getAlbumsMostListened');
+$router->get('/albums/allMostListened/', 'AlbumController@getAlbumsMostListened');
 
 /* Get the albums the most listened by a specific user
 * return array of albums
 */
-$router->get('/albums/mostListened/{user_id}', 'AlbumController@getAlbumsMostListenedByUser');
+$router->get('/albums/userMostListened/{user_id}', 'AlbumController@getAlbumsMostListenedByUser');
 
 /* Get the albums the most listened of a specific artist by all users
 * return array of albums
 */
-$router->get('/albums/mostListened/{artist_id}', 'AlbumController@getAlbumsMostListenedOfArtist');
+$router->get('/albums/mostListenedArtist/{artist_id}', 'AlbumController@getAlbumsMostListenedOfArtist');
 
 /* Get the albums the most listened of a specific artist by a specific user
 * return array of albums

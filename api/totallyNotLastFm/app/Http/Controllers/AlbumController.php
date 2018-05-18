@@ -93,9 +93,9 @@ class AlbumController extends Controller{
 		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
 		->join('include', 'music.music_id_music', '=', 'include.music_id_music')
 		->join('albums', 'include.album_id_album', '=', 'albums.album_id_album')
-		->select('albums.album_title_album', 'COUNT(albums.album_id_album) as nbListening')
+		->select(DB::raw('count(albums.album_id_album) as nbListening'), 'albums.album_title_album')
 		->groupBy('albums.album_id_album')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening','DESC')
 		->get();
 
 		return $this->success($albums, 200);
@@ -109,10 +109,10 @@ class AlbumController extends Controller{
 		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
 		->join('include', 'music.music_id_music', '=', 'include.music_id_music')
 		->join('albums', 'include.album_id_album', '=', 'albums.album_id_album')
-		->select('user.username', 'user.id', 'COUNT(albums.album_id_album) as nbListening')
+		->select(DB::raw('count(albums.album_id_album) as nbListening'),'user.username', 'user.id')
 		->where('user.id', '=', $id_user)
 		->groupBy('albums.album_id_album')
-		->orderBy('nbListening DESC')
+		->orderBy('nbListening','DESC')
 		->get();
 
 		return $this->success($albums, 200);
