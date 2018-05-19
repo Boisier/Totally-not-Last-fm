@@ -6,6 +6,8 @@ import { Route, Switch } from 'react-router-dom'
 import './style/App.scss'
 import auth from 'library/auth'
 
+import api from 'library/api'
+
 // Scene scenes
 import Landing from './scenes/Landing/Landing'
 import Structure from './containers/Structure/Structure'
