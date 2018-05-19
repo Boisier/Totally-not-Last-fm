@@ -56,7 +56,7 @@ export default class extends Component {
     this.setState({
       email: email
     })
-    this.showSignUp()
+    this.showSignIn()
   }
 
   render = () => {

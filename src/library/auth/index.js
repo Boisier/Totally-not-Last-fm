@@ -3,7 +3,6 @@
  */
 
 import cookies from 'browser-cookies'
-import settings from '../settings'
 import api from '../api'
 
 /**
@@ -11,12 +10,32 @@ import api from '../api'
  * @return {boolean}
  */
 class Auth {
+  userInfos = {}
+
   constructor () {
     if (!this.isUser()) {
       return
     }
 
     api.setToken(this.getToken())
+
+    this.userInfos = {
+      id: -1,
+      email: '',
+      username: ''
+    }
+  }
+
+  setUserInfos (infos) {
+    this.userInfos = infos
+  }
+
+  removeUserInfos () {
+    this.userInfos = {
+      id: -1,
+      email: '',
+      username: ''
+    }
   }
 
   isUser () {
@@ -37,7 +56,12 @@ class Auth {
     // Refresh the token
     this.setToken(token)
 
-    return true
+    if (this.getID() !== -1) return true
+
+    return api.get('/auth/me').then(response => {
+      this.setUserInfos(response.data)
+      return true
+    })
   }
 
   /**
@@ -46,6 +70,18 @@ class Auth {
    */
   isVisitor () {
     return !this.isUser()
+  }
+
+  getID () {
+    return this.userInfos.id
+  }
+
+  getEmail () {
+    return this.userInfos.email
+  }
+
+  getName () {
+    return this.userInfos.username
   }
 
   /**
@@ -68,42 +104,46 @@ class Auth {
   /**
    * Set the token with the given string
    * @param token
+   * @param expires Cookie duration
    */
-  setToken (token) {
+  setToken (token, expires = 0) {
     cookies.set('token', token, {
-      expires: settings.user.cookieDuration // days
+      expires: expires // days
     })
   }
 
-  signUp (/* email, password, confirmation */) {
-    /*
-    TODO: Uncomment and replace with correct route once available
+  signUp (pseudo, email, password, confirmation) {
     if (password === confirmation) return false
 
     api.post('/auth', {
+      username: pseudo,
       email: email,
-      password: password
+      password: password,
+      birthday: 0
     }).then(response => {
-      if(reponse.success === true) {
+      console.log(response)
+      /*
+      if (response.success === true) {
         this.setToken(reponse.token)
         this.onLogin()
         return true
       }
 
-      return false
+      return false */
+      return true
     })
-    */
 
     this.onLogin()
     return true
   }
 
-  signIn (/* email, password */) {
-    /*
-    TODO: Uncomment and replace with correct route once available
-    api.get('/auth').then(response => {
-      if(response.success === true) {
-        this.setToken(response.token)
+  signIn (email, password) {
+    return api.post('/auth/login', {
+      email: email,
+      password: password
+    }).then(response => {
+      if (response.status === 200) {
+        this.setToken(response.data.access_token, response.data.expires_in)
         this.onLogin()
 
         return true
@@ -111,25 +151,23 @@ class Auth {
 
       return false
     })
-     */
-    return true
   }
 
   onLogin () {
     api.setToken(this.getToken())
+
+    return api.get('/auth/me').then(response => {
+      this.setUserInfos(response.data)
+    })
   }
 
   onLogout () {
-    /*
-    TODO: Uncomment and replace with correct route once available
-    api.get('/auth/logout').then(() => {
+    return api.post('/auth/logout', {}).then(() => {
       api.setToken('')
       cookies.erase('token')
+      this.removeUserInfos()
+      window.location.reload()
     })
-    */
-
-    api.setToken('')
-    cookies.erase('token')
   }
 }
 

@@ -92,7 +92,9 @@ class Header extends Component {
             <span className="hamburger-label">Menu</span>
           </button>
         </h5>
-        <Menu isOpen={this.state.menuIsOpen} closeMenu={this.closeMenu} />
+        <Menu
+          isOpen={this.state.menuIsOpen}
+          closeMenu={this.closeMenu} />
       </header>
     )
   }

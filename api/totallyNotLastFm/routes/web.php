@@ -26,17 +26,17 @@ $router->get('/user/{name}', function ($name) {
 
 /*-----------------------------Albums--------------------------------*/
 Route::group([
-  'prefix'=> 'albums'  
+  'prefix'=> 'albums'
 ],function($router){
   Route::get('getAll','AlbumController@getAllAlbums');
   Route::post('create','AlbumController@createAlbum');
   Route::get('get/{album_id_album}','AlbumController@getAlbum');
-  
-  Route::put('update/{album_id_album}','AlbumController@updateAlbum'); 
+
+  Route::put('update/{album_id_album}','AlbumController@updateAlbum');
   Route::delete('delete/{album_id_album}','AlbumController@deleteAlbum');
-  
+
   Route::get('allMostListened','AlbumController@getAlbumsMostListened');
-  Route::get('userMostListened/{id}','AlbumController@getAlbumsMostListenedByUser'); 
+  Route::get('userMostListened/{id}','AlbumController@getAlbumsMostListenedByUser');
   Route::get('artistMostListened/{artist_id}','AlbumController@getAlbumsMostListenedOfArtist');
   Route::get('userMostListenedArtist/{artist_id}/{id}','AlbumController@getAlbumsMostListenedOfArtistByUser');
   Route::get('suggestion/{genre_id}','AlbumController@suggestAlbumsOfGenre');
@@ -45,8 +45,8 @@ Route::group([
 /* GetAllAlbums
  * return all the albums
  */
-   
- 
+
+
 /* CreateAlbum
 Rules:
   $rules = [
@@ -98,7 +98,7 @@ Rules:
  */
 
 Route::group([
-  'prefix'=> 'artist'  
+  'prefix'=> 'artist'
 ],function($router){
   Route::get('getAll','ArtistController@getAllArtists');
   Route::post('create','ArtistController@createArtist');
@@ -110,7 +110,7 @@ Route::group([
   Route::get('userMostListened/{id}','ArtistController@getArtistsMostListenedByUser');
   Route::get('genreMostListened/{genre_id_genre}','ArtistController@getArtistsMostListenedOfGenre');
   Route::get('suggestions/{genre_id_genre}','ArtistController@suggestArtistsOfGenre');
- 
+
 });
 
 
@@ -150,17 +150,17 @@ Rules:
 ///*-----------------------------Genres--------------------------------*/
 
 Route::group([
-  'prefix'=> 'genre'  
+  'prefix'=> 'genre'
 ],function($router){
   Route::get('getAll','GenreController@getAllGenres');
   Route::post('create','GenreController@createGenre');
   Route::get('get/{genre_id_genre}','GenreController@getGenre');
-  Route::put('update/{genre_id_genre}','GenreController@updateGenre'); 
+  Route::put('update/{genre_id_genre}','GenreController@updateGenre');
   Route::delete('delete/{genre_id_genre}','GenreController@deleteGenre');
-  
+
   Route::get('mostListened','GenreController@getGenresMostListened');
   Route::get('userMostListened/{id}','GenreController@getGenresMostListenedByUser');
- 
+
 });
 /* GetAllGenres
  * return all the genres
@@ -197,10 +197,10 @@ Rules:
 /*-----------------------------Histories--------------------------------*/
 
 Route::group([
-  'prefix'=> 'history'  
+  'prefix'=> 'history'
 ],function($router){
   Route::get('getAll','HistoryController@getAllHistories');
-  Route::post('create','HistoryController@createHistory'); 
+  Route::post('create','HistoryController@createHistory');
   Route::get('get/{history_id_history}','HistoryController@getHistory');
   Route::put('update/{history_id_history}','HistoryController@updateHistory');
   Route::delete('delete/{history_id_history}','HistoryController@deleteHistory');
@@ -237,7 +237,7 @@ Rules:
 
 /*-----------------------------Musics--------------------------------*/
 Route::group([
-  'prefix'=> 'music'  
+  'prefix'=> 'music'
 ],function($router){
   Route::get('getAll','MusicController@getAllMusics');
   Route::post('create','MusicController@createMusic'); //To fix validate doesn't exist
@@ -309,14 +309,14 @@ Rules:
 
 /*-----------------------------Nationalities--------------------------------*/
 Route::group([
-  'prefix'=> 'nationality'  
+  'prefix'=> 'nationality'
 ],function($router){
   Route::get('getAll','NationalityController@getAllNationalities');
   Route::post('create','NationalityController@createNationality');
   Route::get('get/{nationality_id_nationality}','NationalityController@getNationality');
   Route::put('update/{nationality_id_nationality}','NationalityController@updateNationality');
   Route::delete('delete/{nationality_id_nationality}','NationalityController@deleteNationality');
-  
+
 });
 /* GetAllNationalities
  * return all the nationaloties
@@ -347,14 +347,14 @@ Rules:
 
 /*-----------------------------Playlists--------------------------------*/
 Route::group([
-  'prefix'=> 'playlist'  
+  'prefix'=> 'playlist'
 ],function($router){
   Route::get('getAll','PlaylistController@getAllPlaylists');
   Route::post('create','PlaylistController@createPlaylist');  // Pb bc foreign keys
   Route::get('get/{playlist_id_playlist}','PlaylistController@getPlaylist');
   Route::put('update/{playlist_id_playlist}','PlaylistController@updatePlaylist');
   Route::delete('delete/{playlist_id_playlist}','PlaylistController@deletePlaylist');
-  
+
 });
 /* GetAllPlaylists
  * return all the playlists
@@ -388,14 +388,14 @@ Rules:
 
 /*-----------------------------Spotify--------------------------------*/
 Route::group([
-  'prefix'=> 'spotify'  
+  'prefix'=> 'spotify'
 ],function($router){
   Route::get('getAll','SpotifyController@getAllSpotify');
   Route::post('create','SpotifyController@createSpotify');
   Route::get('get/{spotify_id_spotify}','SpotifyController@getSpotify');
   Route::put('update/{spotify_id_spotify}','SpotifyController@updateSpotify');
   Route::delete('delete/{spotify_id_spotify}','SpotifyController@deleteSpotify');
-  
+
 });
 /* GetAllSpotify
  * return all the spotify
@@ -429,14 +429,14 @@ Rules:
 
 ///*-----------------------------Users--------------------------------*/
 Route::group([
-  'prefix'=> 'user'  
+  'prefix'=> 'user'
 ],function($router){
   Route::get('getAll','UserController@getAllUsers');
   Route::post('create','UserController@createUser');
   Route::get('get/{id}','UserController@getUser');
   Route::put('update/{id}','UserController@updateUser');
   Route::delete('delete/{id}','UserController@deleteUser');
-  
+
 });
 /* GetAllUsers
  * return all the users
@@ -482,6 +482,6 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+    Route::get('me', 'AuthController@me');
 
 });

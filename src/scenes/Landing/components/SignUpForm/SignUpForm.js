@@ -8,6 +8,7 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      pseudo: '',
       email: this.props.email,
       password: '',
       confirmation: ''
@@ -37,7 +38,7 @@ export default class extends Component {
 
     // Check validity of credentials against the server
     // if ok, a token will be retrieved from the server
-    if (auth.signUp(this.state.email, this.state.password, this.state.confirmation)) {
+    if (auth.signUp(this.state.pseudo, this.state.email, this.state.password, this.state.confirmation)) {
       auth.setToken('testtoken')
       this.props.onLogin()
     }
@@ -51,6 +52,12 @@ export default class extends Component {
         <div className="access-form">
           <h5 className="caption">Join us</h5>
           <form method="post" action="" onSubmit={this.signUp}>
+            <FieldInput
+              type="text"
+              className="input-signup-pseudo"
+              label="Enter your pseudo"
+              value={this.state.pseudo}
+              onChange={this.onInputUpdate.bind(this, 'pseudo')}/>
             <FieldInput
               type="email"
               className="input-signup-email"

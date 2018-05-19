@@ -15,7 +15,8 @@ export default class extends Component {
 
   componentWillReceiveProps (nextProps) {
     this.setState({
-      email: nextProps.email
+      email: nextProps.email,
+      password: ''
     })
   }
 
@@ -30,10 +31,11 @@ export default class extends Component {
   signIn = () => {
     // Check validity of credentials against the server
     // if ok, a token will be retrived from the server
-    if (auth.signIn(this.state.email, this.state.password)) {
-      auth.setToken('testtoken')
+    auth.signIn(this.state.email, this.state.password).then(success => {
+      if (!success) return
+
       this.props.onLogin()
-    }
+    })
   }
 
   render = () => {
@@ -43,7 +45,7 @@ export default class extends Component {
       <section id="signin-form" className={displayClass}>
         <div className="access-form">
           <h5 className="caption">Plug in </h5>
-          <form method="post" action="" onSubmit={this.signUp}>
+          <form onSubmit={this.signUp}>
             <FieldInput
               type="email"
               className="input-signin-email"
@@ -55,9 +57,9 @@ export default class extends Component {
               className="input-signin-password"
               label="Enter your password"
               value={this.state.password}
-              onChange={this.onInputUpdate(this, 'password')} />
+              onChange={this.onInputUpdate.bind(this, 'password')} />
             <input
-              type="submit"
+              type="button"
               value="Sign in"
               onClick={this.signIn}/>
             <h6 onClick={this.props.showSignUp} className="clickable">Click here to sign up</h6>

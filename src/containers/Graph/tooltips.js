@@ -5,6 +5,8 @@ import _ from 'lodash'
 export function graphTooltip (tooltipModel) {
   const tooltip = document.getElementById('tooltip-' + this._chart.id)
 
+  if (!tooltip) return
+
   if (!tooltipModel || !tooltipModel.opacity) return
   if (!tooltipModel.dataPoints.length) return
 
