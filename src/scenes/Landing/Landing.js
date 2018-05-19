@@ -5,8 +5,6 @@ import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen'
 import SignUpForm from './components/SignUpForm/SignUpForm'
 import SignInForm from './components/SignInForm/SignInForm'
 
-import './Landing.scss'
-
 export default class extends Component {
   constructor (props) {
     super(props)

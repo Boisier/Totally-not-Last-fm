@@ -1,0 +1,10 @@
+@import 'scenes/StatsPeriodesNavBar/StatsPeriodesNavBar';
+@import 'scenes/StatsSection/StatsSection';
+
+.home-stats
+{
+  width: 800px;
+  margin: auto;
+  padding: 0;
+  background-color: $light-color;
+}
