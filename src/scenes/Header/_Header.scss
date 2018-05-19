@@ -44,13 +44,15 @@ header
     height: $header-height;
     margin: 0;
 
-    color: $light-color;
+    a {
+      text-decoration: none;
+      color: $light-color;
+    }
     text-align: left;
     text-transform: uppercase;
     font-style: italic;
     font-size: 1.5rem;
     line-height: $header-height;
-
     transition: $header-transition;
 
     .red {
@@ -63,7 +65,7 @@ header
       display: inline-block;
       padding-left: .35rem;
       color: #000;
-
+      font-size: 1rem;
       transition: opacity $header-transition,
                   width $header-transition;
     }
