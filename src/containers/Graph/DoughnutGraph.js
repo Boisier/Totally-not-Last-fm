@@ -1,5 +1,5 @@
 import React from 'react'
-import GraphEntity from 'Containers/Graph/GraphEntity'
+import GraphEntity from './GraphEntity'
 
 import {Doughnut} from 'react-chartjs-2'
 import doughnutStyle from './styles/doughnut.json'

@@ -14,7 +14,7 @@ export default class extends Component {
     this.setState({period: _.clamp(period, 0, 3)})
   }
   componentWillMount () {
-    document.addEventListener("keydown", this.handleKeyPress)
+    document.addEventListener('keydown', this.handleKeyPress)
   }
   handleKeyPress = (event) => {
     event.stopPropagation()

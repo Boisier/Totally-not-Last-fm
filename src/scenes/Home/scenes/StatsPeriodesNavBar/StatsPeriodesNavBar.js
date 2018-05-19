@@ -22,9 +22,9 @@ export default class extends Component {
         <ul className="side-nav">
           {
             stats.periods.map((p, i) => (
-              <li 
+              <li
                 className={this.props.currentPeriod === i ? 'selected' : ''}
-                key={p.key} 
+                key={p.key}
                 onClick={this.props.showPeriodStats.bind(this, i)}
                 onKeyPress={this.props.handleKeyPress}>
                 { p.name.charAt(0) }
