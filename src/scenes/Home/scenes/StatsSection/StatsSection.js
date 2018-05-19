@@ -19,7 +19,7 @@ export default class extends Component {
 
   componentWillReceiveProps (props) {
     this.setState({
-      period: props.period, 
+      period: props.period,
       currentSection: 0,
       oldSection: 0
     })

@@ -76,12 +76,42 @@ class Auth {
   }
 
   signUp (/* email, password, confirmation */) {
+    /*
+    TODO: Uncomment and replace with correct route once available
+    if (password === confirmation) return false
+
+    api.post('/auth', {
+      email: email,
+      password: password
+    }).then(response => {
+      if(reponse.success === true) {
+        this.setToken(reponse.token)
+        this.onLogin()
+        return true
+      }
+
+      return false
+    })
+    */
+
     this.onLogin()
     return true
   }
 
   signIn (/* email, password */) {
-    this.onLogin()
+    /*
+    TODO: Uncomment and replace with correct route once available
+    api.get('/auth').then(response => {
+      if(response.success === true) {
+        this.setToken(response.token)
+        this.onLogin()
+
+        return true
+      }
+
+      return false
+    })
+     */
     return true
   }
 
@@ -90,7 +120,15 @@ class Auth {
   }
 
   onLogout () {
-    api.retToken('')
+    /*
+    TODO: Uncomment and replace with correct route once available
+    api.get('/auth/logout').then(() => {
+      api.setToken('')
+      cookies.erase('token')
+    })
+    */
+
+    api.setToken('')
     cookies.erase('token')
   }
 }
