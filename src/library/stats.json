@@ -3,22 +3,173 @@
     {
       "key": "DAILY",
       "name": "daily",
-      "period": "day"
+      "period": "day",
+      "graphs": [
+        {
+          "type": "doughnut",
+          "size": "wide",
+          "route": "/stats/listeningtime/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
+          }
+        },
+        {
+          "type": "line",
+          "size": "small",
+          "route": "/stats/listeningtime/da1y",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        },
+        {
+          "type": "bar",
+          "size": "small",
+          "route": "/stats/listeningtime/da2y",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
+          }
+        }
+      ]
     },
     {
       "key": "WEEKLY",
       "name": "weekly",
-      "period": "week"
+      "period": "week",
+      "graphs": [
+        {
+          "type": "line",
+          "size": "wide",
+          "route": "/stats/listeningtime/week1",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        },
+        {
+          "type": "doughnut",
+          "size": "small",
+          "route": "/stats/listeningtime/week2",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        },
+        {
+          "type": "bar",
+          "size": "small",
+          "route": "/stats/listeningtime/week3",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        }
+      ]
     },
     {
       "key": "MONTHLY",
       "name": "monthly",
-      "period": "month"
+      "period": "month",
+      "graphs": [
+        {
+          "type": "line",
+          "size": "wide",
+          "route": "/stats/listeningtime/month1",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        },
+        {
+          "type": "doughnut",
+          "size": "small",
+          "route": "/stats/listeningtime/month2",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        },
+        {
+          "type": "bar",
+          "size": "small",
+          "route": "/stats/listeningtime/month3",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        }
+      ]
     },
     {
       "key": "YEARLY",
       "name": "yearly",
-      "period": "year"
+      "period": "year",
+      "graphs": [
+        {
+          "type": "line",
+          "size": "wide",
+          "route": "/stats/listeningtime/year1",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        },
+        {
+          "type": "doughnut",
+          "size": "small",
+          "route": "/stats/listeningtime/year2",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        },
+        {
+          "type": "bar",
+          "size": "small",
+          "route": "/stats/listeningtime/year3",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Number of songs listened to",
+          "colors": {
+            "from": "#F2DDDE",
+            "to": "red"
+          }
+        }
+      ]
     }
-  ]
+  ],
+  "graphs": {
+    "Bar": {
+
+    },
+    "Doughnut": {
+
+    },
+    "Line": {
+
+    }
+  }
 }

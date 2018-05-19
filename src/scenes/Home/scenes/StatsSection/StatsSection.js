@@ -12,14 +12,12 @@ export default class extends Component {
 
     this.state = {
       period: this.props.period,
-      periodName: stats.periods[this.props.period].name,
       currentSection: 0,
       oldSection: 0
     }
   }
 
   onSectionChange = (newSection) => {
-    console.log(this.state.periodName + ' ' + newSection)
     this.setState({
       currentSection: newSection,
       oldSection: this.state.currentSection
@@ -27,14 +25,6 @@ export default class extends Component {
   }
 
   render () {
-    const statBlocks = (
-      <div className="stats-wrapper" key={this.state.periodName + '-' + this.state.currentSection}>
-        <StatBlock size="wide" />
-        <StatBlock />
-        <StatBlock />
-      </div>
-    )
-
     return (
       <div className="stats-section">
         <PeriodSections
@@ -52,7 +42,18 @@ export default class extends Component {
           transitionLeave={true}
           component="div"
           className="stats-wrapper-animation">
-          {statBlocks}
+          <div className="stats-wrapper" key={this.state.period + '-' + this.state.currentSection}>
+            {
+              stats.periods[this.state.period].graphs.map(graph => (
+                <StatBlock
+                  {...graph}
+                  period={stats.periods[this.props.period]}
+                  section={this.state.currentSection}
+                  key={this.state.period + '-' + this.state.currentSection + '-' + graph.route}
+                />
+              ))
+            }
+          </div>
         </ReactCSSTransitionGroup>
       </div>
     )

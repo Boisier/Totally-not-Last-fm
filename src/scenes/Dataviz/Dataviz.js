@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 
-import './Dataviz.scss'
-import LineGraph from './LineGraph'
-import BarGraph from './BarGraph'
-import DoughnutGraph from './DoughnutGraph'
+import '../../containers/Graph/Dataviz.scss'
+import LineGraph from '../../containers/Graph/LineGraph'
+import BarGraph from '../../containers/Graph/BarGraph'
+import DoughnutGraph from '../../containers/Graph/DoughnutGraph'
 
 export default class extends Component {
   render = () => {
