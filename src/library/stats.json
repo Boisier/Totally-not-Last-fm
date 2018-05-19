@@ -6,36 +6,102 @@
       "period": "day",
       "graphs": [
         {
-          "type": "doughnut",
+          "type": "line",
           "size": "wide",
           "route": "/stats/listeningtime/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Listening history",
           "colors": {
-            "from": "rgba(150, 150, 255, .4)",
-            "to": "rgba(150, 150, 255, 1)"
+            "from": "rgba(255, 80, 80, .4)",
+            "to": "rgba(255, 80, 80, 1)"
           }
         },
         {
-          "type": "line",
+          "type": "doughnut",
           "size": "small",
-          "route": "/stats/listeningtime/da1y",
+          "route": "/stats/albums/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Top albums",
           "colors": {
-            "from": "#F2DDDE",
-            "to": "red"
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
           }
         },
         {
           "type": "bar",
           "size": "small",
-          "route": "/stats/listeningtime/da2y",
+          "route": "/stats/albums/times/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Top albums listening times",
+          "colors": {
+            "from": "rgba(220, 150, 255, .4)",
+            "to": "rgba(220, 150, 255, 1)"
+          }
+        },
+        {
+          "type": "radar",
+          "size": "small",
+          "route": "/stats/genres/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top genres",
+          "colors": {
+            "from": "rgba(255, 220, 130, .4)",
+            "to": "rgba(255, 220, 130, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "small",
+          "route": "/stats/artists/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists",
+          "colors": {
+            "from": "rgba(140, 225, 140, .4)",
+            "to": "rgba(140, 225, 140, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "wide",
+          "route": "/stats/artists/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists per seasons",
+          "colors": {
+            "from": "rgba(255, 150, 140, .4)",
+            "to": "rgba(255, 150, 140, 1)"
+          }
+        },
+        {
+          "type": "doughnut",
+          "size": "small",
+          "route": "/stats/albums/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top albums per artists",
           "colors": {
             "from": "rgba(150, 150, 255, .4)",
             "to": "rgba(150, 150, 255, 1)"
+          }
+        },
+        {
+          "type": "horizontalBar",
+          "size": "small",
+          "route": "/stats/tracks/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top tracks per artists",
+          "colors": {
+            "from": "rgba(255, 150, 80, .4)",
+            "to": "rgba(255, 150, 80, 1)"
+          }
+        },
+        {
+          "type": "bar",
+          "size": "wide",
+          "route": "/stats/hours/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Listening hours",
+          "colors": {
+            "from": "rgba(150, 220, 255, .4)",
+            "to": "rgba(150, 220, 255, 1)"
           }
         }
       ]
@@ -48,34 +114,100 @@
         {
           "type": "line",
           "size": "wide",
-          "route": "/stats/listeningtime/week1",
+          "route": "/stats/listeningtime/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Listening history",
           "colors": {
-            "from": "#F2DDDE",
+            "from": "#ffcdd2",
             "to": "red"
           }
         },
         {
           "type": "doughnut",
           "size": "small",
-          "route": "/stats/listeningtime/week2",
+          "route": "/stats/albums/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Top albums",
           "colors": {
-            "from": "#F2DDDE",
-            "to": "red"
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
           }
         },
         {
           "type": "bar",
           "size": "small",
-          "route": "/stats/listeningtime/week3",
+          "route": "/stats/albums/times/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Top albums listening times",
           "colors": {
-            "from": "#F2DDDE",
+            "from": "rgba(220, 150, 255, .4)",
+            "to": "rgba(220, 150, 255, 1)"
+          }
+        },
+        {
+          "type": "radar",
+          "size": "small",
+          "route": "/stats/genres/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top genres",
+          "colors": {
+            "from": "rgba(255, 220, 130, .4)",
+            "to": "rgba(255, 220, 130, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "small",
+          "route": "/stats/artists/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists",
+          "colors": {
+            "from": "rgba(140, 225, 140, .4)",
+            "to": "rgba(140, 225, 140, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "wide",
+          "route": "/stats/artists/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists per seasons",
+          "colors": {
+            "from": "rgba(255, 150, 140, .4)",
+            "to": "rgba(255, 150, 140, 1)"
+          }
+        },
+        {
+          "type": "doughnut",
+          "size": "small",
+          "route": "/stats/albums/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top albums per artists",
+          "colors": {
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
+          }
+        },
+        {
+          "type": "horizontalBar",
+          "size": "small",
+          "route": "/stats/tracks/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top tracks per artists",
+          "colors": {
+            "from": "#ffcdd2",
             "to": "red"
+          }
+        },
+        {
+          "type": "bar",
+          "size": "wide",
+          "route": "/stats/hours/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Listening hours",
+          "colors": {
+            "from": "rgba(150, 220, 255, .4)",
+            "to": "rgba(150, 220, 255, 1)"
           }
         }
       ]
@@ -88,34 +220,100 @@
         {
           "type": "line",
           "size": "wide",
-          "route": "/stats/listeningtime/month1",
+          "route": "/stats/listeningtime/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Listening history",
           "colors": {
-            "from": "#F2DDDE",
+            "from": "#ffcdd2",
             "to": "red"
           }
         },
         {
           "type": "doughnut",
           "size": "small",
-          "route": "/stats/listeningtime/month2",
+          "route": "/stats/albums/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Top albums",
           "colors": {
-            "from": "#F2DDDE",
-            "to": "red"
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
           }
         },
         {
           "type": "bar",
           "size": "small",
-          "route": "/stats/listeningtime/month3",
+          "route": "/stats/albums/times/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Top albums listening times",
           "colors": {
-            "from": "#F2DDDE",
+            "from": "rgba(220, 150, 255, .4)",
+            "to": "rgba(220, 150, 255, 1)"
+          }
+        },
+        {
+          "type": "radar",
+          "size": "small",
+          "route": "/stats/genres/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top genres",
+          "colors": {
+            "from": "rgba(255, 220, 130, .4)",
+            "to": "rgba(255, 220, 130, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "small",
+          "route": "/stats/artists/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists",
+          "colors": {
+            "from": "rgba(140, 225, 140, .4)",
+            "to": "rgba(140, 225, 140, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "wide",
+          "route": "/stats/artists/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists per seasons",
+          "colors": {
+            "from": "rgba(255, 150, 140, .4)",
+            "to": "rgba(255, 150, 140, 1)"
+          }
+        },
+        {
+          "type": "doughnut",
+          "size": "small",
+          "route": "/stats/albums/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top albums per artists",
+          "colors": {
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
+          }
+        },
+        {
+          "type": "horizontalBar",
+          "size": "small",
+          "route": "/stats/tracks/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top tracks per artists",
+          "colors": {
+            "from": "#ffcdd2",
             "to": "red"
+          }
+        },
+        {
+          "type": "bar",
+          "size": "wide",
+          "route": "/stats/hours/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Listening hours",
+          "colors": {
+            "from": "rgba(150, 220, 255, .4)",
+            "to": "rgba(150, 220, 255, 1)"
           }
         }
       ]
@@ -128,34 +326,100 @@
         {
           "type": "line",
           "size": "wide",
-          "route": "/stats/listeningtime/year1",
+          "route": "/stats/listeningtime/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Listening history",
           "colors": {
-            "from": "#F2DDDE",
+            "from": "#ffcdd2",
             "to": "red"
           }
         },
         {
           "type": "doughnut",
           "size": "small",
-          "route": "/stats/listeningtime/year2",
+          "route": "/stats/albums/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Top albums",
           "colors": {
-            "from": "#F2DDDE",
-            "to": "red"
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
           }
         },
         {
           "type": "bar",
           "size": "small",
-          "route": "/stats/listeningtime/year3",
+          "route": "/stats/albums/times/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Number of songs listened to",
+          "name": "Top albums listening times",
           "colors": {
-            "from": "#F2DDDE",
+            "from": "rgba(220, 150, 255, .4)",
+            "to": "rgba(220, 150, 255, 1)"
+          }
+        },
+        {
+          "type": "radar",
+          "size": "small",
+          "route": "/stats/genres/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top genres",
+          "colors": {
+            "from": "rgba(255, 220, 130, .4)",
+            "to": "rgba(255, 220, 130, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "small",
+          "route": "/stats/artists/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists",
+          "colors": {
+            "from": "rgba(140, 225, 140, .4)",
+            "to": "rgba(140, 225, 140, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "wide",
+          "route": "/stats/artists/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists per seasons",
+          "colors": {
+            "from": "rgba(255, 150, 140, .4)",
+            "to": "rgba(255, 150, 140, 1)"
+          }
+        },
+        {
+          "type": "doughnut",
+          "size": "small",
+          "route": "/stats/albums/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top albums per artists",
+          "colors": {
+            "from": "rgba(150, 150, 255, .4)",
+            "to": "rgba(150, 150, 255, 1)"
+          }
+        },
+        {
+          "type": "horizontalBar",
+          "size": "small",
+          "route": "/stats/tracks/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top tracks per artists",
+          "colors": {
+            "from": "#ffcdd2",
             "to": "red"
+          }
+        },
+        {
+          "type": "bar",
+          "size": "wide",
+          "route": "/stats/hours/day",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Listening hours",
+          "colors": {
+            "from": "rgba(150, 220, 255, .4)",
+            "to": "rgba(150, 220, 255, 1)"
           }
         }
       ]
