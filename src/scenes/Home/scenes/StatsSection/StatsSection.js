@@ -9,7 +9,6 @@ import PeriodSections from '../PeriodSections/PeriodSections'
 export default class extends Component {
   constructor (props) {
     super(props)
-    console.log(this.props.period)
     this.state = {
       period: this.props.period,
       currentSection: 0,
