@@ -9,12 +9,20 @@ import PeriodSections from '../PeriodSections/PeriodSections'
 export default class extends Component {
   constructor (props) {
     super(props)
-
+    console.log(this.props.period)
     this.state = {
       period: this.props.period,
       currentSection: 0,
       oldSection: 0
     }
+  }
+
+  componentWillReceiveProps (props) {
+    this.setState({
+      period: props.period, 
+      currentSection: 0,
+      oldSection: 0
+    })
   }
 
   onSectionChange = (newSection) => {
@@ -28,7 +36,7 @@ export default class extends Component {
     return (
       <div className="stats-section">
         <PeriodSections
-          period={this.props.period}
+          period={this.state.period}
           section={this.state.currentSection}
           onSectionChange={this.onSectionChange} />
         <ReactCSSTransitionGroup
