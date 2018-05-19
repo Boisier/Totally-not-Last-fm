@@ -15,56 +15,39 @@ describe('Checking API library behaviour', () => {
     expect(api.authToken).toBeNull()
   })
 
-  it('Failed queries have correct return value', () => {
-    expect(api.queryFailed('error')).toEqual({
-      success: false
-    })
-  })
+  const standardResponse = {
+    data: expect.anything(),
+    status: 200,
+    statusText: 'OK',
+    headers: expect.anything(),
+    config: expect.anything(),
+    request: expect.anything()
+  }
 
   it('Response has correct format on GET success', () => {
     return api.get('https://httpbin.org/get').then(response => {
-      expect(response).toEqual({
-        success: true,
-        status: expect.any(Number),
-        headers: expect.anything(),
-        body: expect.anything()
-      })
+      expect(response).toEqual(standardResponse)
     })
   })
 
   it('Response has correct format on POST success', () => {
     const testID = makeid()
     return api.post('https://httpbin.org/post', {testID: testID}).then(response => {
-      expect(response).toEqual({
-        success: true,
-        status: expect.any(Number),
-        headers: expect.anything(),
-        body: expect.anything()
-      })
+      expect(response).toEqual(standardResponse)
     })
   })
 
   it('Response has correct format on PUT success', () => {
     const testID = makeid()
     return api.put('https://httpbin.org/put', {testID: testID}).then(response => {
-      expect(response).toEqual({
-        success: true,
-        status: expect.any(Number),
-        headers: expect.anything(),
-        body: expect.anything()
-      })
+      expect(response).toEqual(standardResponse)
     })
   })
 
   it('Response has correct format on DELETE success', () => {
     const testID = makeid()
     return api.delete('https://httpbin.org/delete', {testID: testID}).then(response => {
-      expect(response).toEqual({
-        success: true,
-        status: expect.any(Number),
-        headers: expect.anything(),
-        body: expect.anything()
-      })
+      expect(response).toEqual(standardResponse)
     })
   })
 

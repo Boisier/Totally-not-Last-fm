@@ -18,10 +18,11 @@ export default class {
     }
 
     // Token found, let's validate it
-    if (!this.tokenIsValid()) {
+    /* if (!this.tokenIsValid()) {
       cookies.erase('token')
       return false
-    }
+    } */
+
     // if the token is OK, let's store it in the app state
     // The token will be send with every request to prove identity
     // Refresh the token
