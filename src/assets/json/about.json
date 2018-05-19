@@ -1,7 +1,7 @@
 [
       {
         "name": "Laure Issa",
-        "urlImg": "default.jpg",
+        "urlImg": "laure.png",
         "role": "project jeffe",
         "music": [ "This is The Day - The The" ]
       },
@@ -15,7 +15,7 @@
       },
       {
         "name": "Marie-Lou Barbier",
-        "urlImg": "default.jpg",
+        "urlImg": "marielou.png",
         "role": "frontend developer",
         "music": [ "Romeo is Bleeding - Tom Waits",
           "Virgo's Maze - Part Time",
