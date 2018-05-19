@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import GraphManager from './GraphManager'
 
 import BarGraph from './BarGraph'
+import HorizontalBarGraph from './HorizontalBarGraph'
 import LineGraph from './LineGraph'
+import PieGraph from './Pie'
 import DoughnutGraph from './DoughnutGraph'
 import RadarGraph from './RadarGraph'
 
@@ -27,7 +29,9 @@ export default class extends Component {
 
   graphs = {
     'bar': BarGraph,
+    'horizontalBar': HorizontalBarGraph,
     'line': LineGraph,
+    'pie': PieGraph,
     'doughnut': DoughnutGraph,
     'radar': RadarGraph
   }
