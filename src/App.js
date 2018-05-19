@@ -3,15 +3,16 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 // Scene dependencies
-import './App.scss'
+import './style/App.scss'
 import auth from 'library/auth'
 
 // Scene scenes
 import Landing from './scenes/Landing/Landing'
+import Structure from './containers/Structure/Structure'
 
-import Header from './scenes/Header/Header'
-import Footer from './scenes/Footer/Footer'
 import Home from './scenes/Home/Home'
+import About from './scenes/About/About'
+import Settings from './scenes/Settings/Settings'
 
 export default class extends Component {
   constructor (props) {
@@ -36,7 +37,7 @@ export default class extends Component {
   }
 
   checkLogin = () => {
-    if (auth.isUser()) {
+    if (auth.isUser() && !this.state.isUser) {
       this.setState({
         isUser: true,
         token: auth.getToken()
@@ -50,13 +51,13 @@ export default class extends Component {
     }
 
     return (
-      <section className='App'>
-        <Header/>
-        <Switch>
-          <Route path='/' component={Home}/>
+      <Structure>
+        <Switch >
+          <Route path={'/about'} component={About} />
+          <Route path={'/settings'} component={Settings} />
+          <Route path={'/'} component={Home} />
         </Switch>
-        <Footer/>
-      </section>
+      </Structure>
     )
   }
 }
