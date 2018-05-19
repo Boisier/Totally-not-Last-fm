@@ -63,7 +63,7 @@ export default class extends Component {
               key={section}
               className={this.state.currentSection === index ? 'selected' : ''}
               onClick={this.setSection.bind(this, index)}>
-              { section }
+              {section}
             </li>
           ))
         }
