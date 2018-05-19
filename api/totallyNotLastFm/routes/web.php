@@ -321,7 +321,6 @@ Route::group([
 /* GetAllNationalities
  * return all the nationaloties
  */
-$router->get('/nationalities', 'NationalityController@getAllNationalities');
 
 /* CreateNationality
 Rules:
@@ -329,11 +328,9 @@ Rules:
         'nationality_code' => 'required|alpha'
     ];
 */
-$router->post('/nationalities', 'NationalityController@createNationality');
 
  /* GetNationality
  * return a specific nationality */
-$router->get('/nationalities/{nationality_id_nationality}', 'NationalityController@getNationality');
 
 /* UpdateNationality
 * return modified nationality
