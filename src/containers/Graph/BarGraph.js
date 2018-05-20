@@ -10,8 +10,6 @@ export default class extends GraphEntity {
     // Create gradient
     const gradient = this.getLinearGradient(props.toColor, props.fromColor, this.ctx.canvas.offsetHeight)
 
-    console.log(props)
-
     this.setState({ graphData: {
       labels: props.labels,
       datasets: [{

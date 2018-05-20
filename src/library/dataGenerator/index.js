@@ -1,5 +1,11 @@
 import { getHistory } from './history'
-import { getMostListenedAlbums } from './mostlistened'
+import {
+  getMostListenedAlbums,
+  getMostListenedGenres,
+  getMostListenedArtists,
+  getMostListenedAlbumsByArtists,
+  getMostListenedTracksByArtists
+} from './mostlistened'
 
 // Data generator 'simulate' api.get behavior by using a promise,
 // just like an API would do
@@ -35,11 +41,11 @@ const routes = {
   'stats': {
     'mostlistened': {
       'albums': getMostListenedAlbums,
-      'genre': 'getMostListenedGenres',
-      'artists': 'getMostListenedArtists',
-      'artistsbyseason': 'getMostListenedArtistsBySeason',
-      'albumsbyartists': 'getMostListenedAlbumsByArtists',
-      'tracksbyartists': 'getMostListenedTracksByArtists'
+      'genres': getMostListenedGenres,
+      'artists': getMostListenedArtists,
+      'albumsbyartists': getMostListenedAlbumsByArtists,
+      'tracksbyartists': getMostListenedTracksByArtists,
+      'artistsbyseason': 'getMostListenedArtistsBySeason'
     },
     'cumulatedtime': 'getCumulatedTime'
   }

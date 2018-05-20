@@ -61,17 +61,6 @@
           }
         },
         {
-          "type": "pie",
-          "size": "wide",
-          "route": "/stats/mostlistened/artistsbyseason",
-          "post": [{"key": "day", "value": "section"}],
-          "name": "Top artists per seasons",
-          "colors": {
-            "from": "rgba(255, 150, 140, .4)",
-            "to": "rgba(255, 150, 140, 1)"
-          }
-        },
-        {
           "type": "doughnut",
           "size": "small",
           "route": "/stats/mostlistened/albumsbyartists",
@@ -420,6 +409,17 @@
           "colors": {
             "from": "rgba(150, 220, 255, .4)",
             "to": "rgba(150, 220, 255, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "wide",
+          "route": "/stats/mostlistened/artistsbyseason",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists per seasons",
+          "colors": {
+            "from": "rgba(255, 150, 140, .4)",
+            "to": "rgba(255, 150, 140, 1)"
           }
         }
       ]

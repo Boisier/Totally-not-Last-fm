@@ -47,7 +47,6 @@ export default class StatBlock extends Component {
       period: this.props.period
     }).then(response => {
       let labels = response.data.labels ? response.data.labels : this.genLabels(this.props.period)
-      console.log(labels, response.data.data)
 
       this.setState({
         graph: {
@@ -72,7 +71,6 @@ export default class StatBlock extends Component {
 
     return (
       <div className={fullClass} key={this.props.route}>
-        { console.log(this.state) }
         <h4 key={this.props.route + '-h4'}>
           {this.props.name}
         </h4>
