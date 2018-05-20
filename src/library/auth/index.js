@@ -67,7 +67,7 @@ export default class Auth {
   }
 
   signUp (name, email, password, confirmation) {
-    if (password !== confirmation) return Promise.reject(new Error('Password and confiramtion doesn\'t match'))
+    if (password !== confirmation) return Promise.reject(new Error('Password and confirmation doesn\'t match'))
 
     return api.post('/user/create', {
       username: name,

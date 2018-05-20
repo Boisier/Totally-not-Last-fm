@@ -39,7 +39,6 @@ export default class extends Component {
     // Check validity of credentials against the server
     // if ok, a token will be retrieved from the server
     auth.i().signUp(this.state.name, this.state.email, this.state.password, this.state.confirmation).then(() => {
-      console.log('here')
       this.props.onLogin()
     }).catch(() => {
       this.setState({
