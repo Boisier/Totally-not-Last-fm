@@ -5,8 +5,9 @@ $stats-transition: $transition-duration ease-out;
   display: flex;
   flex-wrap: wrap;
 
-  width: 100%;
+  width: 90%;
   margin: 50px 0;
+  margin-left: 10rem;
 
   .stats-wrapper-animation
   {
@@ -55,6 +56,15 @@ $stats-transition: $transition-duration ease-out;
         font-weight: bold;
       }
     }
+  }
+
+  @media screen and (max-width: 1135px) {
+    position: relative;
+    left: 8vw;
+    width: 60%;
+  }
+
+  @media screen and (max-width: 815px) {
   }
 }
 
