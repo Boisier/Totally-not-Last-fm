@@ -28,7 +28,7 @@ $router->get('/user/{name}', function ($name) {
 Route::group([
   'prefix'=> 'albums'
 ],function($router){
-  Route::get('getAll','AlbumController@getAllAlbums');
+  Route::get('all','AlbumController@getAllAlbums');
   Route::post('create','AlbumController@createAlbum');
   Route::get('get/{album_id_album}','AlbumController@getAlbum');
 
@@ -100,7 +100,7 @@ Rules:
 Route::group([
   'prefix'=> 'artist'
 ],function($router){
-  Route::get('getAll','ArtistController@getAllArtists');
+  Route::get('all','ArtistController@getAllArtists');
   Route::post('create','ArtistController@createArtist');
   Route::get('get/{artist_id}','ArtistController@getArtist');
   Route::put('update/{artist_id}','ArtistController@updateArtist');
@@ -152,7 +152,7 @@ Rules:
 Route::group([
   'prefix'=> 'genre'
 ],function($router){
-  Route::get('getAll','GenreController@getAllGenres');
+  Route::get('all','GenreController@getAllGenres');
   Route::post('create','GenreController@createGenre');
   Route::get('get/{genre_id_genre}','GenreController@getGenre');
   Route::put('update/{genre_id_genre}','GenreController@updateGenre');
@@ -199,7 +199,7 @@ Rules:
 Route::group([
   'prefix'=> 'history'
 ],function($router){
-  Route::get('getAll','HistoryController@getAllHistories');
+  Route::get('all','HistoryController@getAllHistories');
   Route::post('create','HistoryController@createHistory');
   Route::get('get/{history_id_history}','HistoryController@getHistory');
   Route::put('update/{history_id_history}','HistoryController@updateHistory');
@@ -239,7 +239,7 @@ Rules:
 Route::group([
   'prefix'=> 'music'
 ],function($router){
-  Route::get('getAll','MusicController@getAllMusics');
+  Route::get('all','MusicController@getAllMusics');
   Route::post('create','MusicController@createMusic'); //To fix validate doesn't exist
   Route::get('get/{music_id_music}','MusicController@getMusic');
   Route::put('update/{music_id_music}','MusicController@updateMusic');
@@ -311,7 +311,7 @@ Rules:
 Route::group([
   'prefix'=> 'nationality'
 ],function($router){
-  Route::get('getAll','NationalityController@getAllNationalities');
+  Route::get('all','NationalityController@getAllNationalities');
   Route::post('create','NationalityController@createNationality');
   Route::get('get/{nationality_id_nationality}','NationalityController@getNationality');
   Route::put('update/{nationality_id_nationality}','NationalityController@updateNationality');
@@ -349,7 +349,7 @@ Rules:
 Route::group([
   'prefix'=> 'playlist'
 ],function($router){
-  Route::get('getAll','PlaylistController@getAllPlaylists');
+  Route::get('all','PlaylistController@getAllPlaylists');
   Route::post('create','PlaylistController@createPlaylist');  // Pb bc foreign keys
   Route::get('get/{playlist_id_playlist}','PlaylistController@getPlaylist');
   Route::put('update/{playlist_id_playlist}','PlaylistController@updatePlaylist');
@@ -390,7 +390,7 @@ Rules:
 Route::group([
   'prefix'=> 'spotify'
 ],function($router){
-  Route::get('getAll','SpotifyController@getAllSpotify');
+  Route::get('all','SpotifyController@getAllSpotify');
   Route::post('create','SpotifyController@createSpotify');
   Route::get('get/{spotify_id_spotify}','SpotifyController@getSpotify');
   Route::put('update/{spotify_id_spotify}','SpotifyController@updateSpotify');
@@ -431,7 +431,7 @@ Rules:
 Route::group([
   'prefix'=> 'user'
 ],function($router){
-  Route::get('getAll','UserController@getAllUsers');
+  Route::get('all','UserController@getAllUsers');
   Route::post('create','UserController@createUser');
   Route::get('get/{id}','UserController@getUser');
   Route::put('update/{id}','UserController@updateUser');
@@ -480,7 +480,7 @@ Route::group([
 
 ], function ($router) {
     Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
+    Route::get('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::get('me', 'AuthController@me');
 
