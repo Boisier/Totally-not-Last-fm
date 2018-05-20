@@ -173,8 +173,8 @@ class ArtistController extends Controller{
 			->select('artists.artist_name', DB::raw('SEC_TO_TIME(SUM(hour(music.music_duration)*3600 + minute(music.music_duration)*60 + second(music.music_duration))) as duration)');
 			->where('user.id', '=', $id)
 			->where('artists.artist_id', '=', $artist_id)
-			->whereBetween(DB::raw('MONTH(TIMESTAMP(histories.created_at)'), array(1, 2))
-			->orWhere(DB::raw('MONTH(TIMESTAMP(histories.created_at)'), '=', 12)
+			->whereBetween(DB::raw('MONTH(TIMESTAMP(histories.created_at))'), array(1, 2))
+			->orWhere(DB::raw('MONTH(TIMESTAMP(histories.created_at))'), '=', 12)
 			->get();
 		}
 		else{
@@ -199,7 +199,7 @@ class ArtistController extends Controller{
 			->select('artists.artist_name', DB::raw('SEC_TO_TIME(SUM(hour(music.music_duration)*3600 + minute(music.music_duration)*60 + second(music.music_duration))) as duration)');
 			->where('user.id', '=', $id)
 			->where('artists.artist_id', '=', $artist_id)
-			->whereBetween(DB::raw('MONTH(TIMESTAMP(histories.created_at)'), array($month1, $month2))
+			->whereBetween(DB::raw('MONTH(TIMESTAMP(histories.created_at))'), array($month1, $month2))
 			->get();
 		}
 	}
