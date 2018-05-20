@@ -176,6 +176,25 @@ class AlbumController extends Controller{
     return $this->success($albums, 200);
   }
 
+  //Get the total duration of listening of a specific album by a specific user
+  public function getListeningDurationOfAlbumByUser($id_album, $id_user){
+    $duration = DB::table('user')
+    ->join('histories', 'user.id', '=', 'histories.user_id_user')
+    ->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+    ->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+    ->join('include', 'music.music_id_music', '=', 'include.music_id_music')
+    ->join('albums', 'include.album_id_album', '=', 'albums.album_id_album')
+    ->select(DB::raw('sec_to_time(sum(hour(music.music_duration)*3600+minute(music.music_duration)*60+second(music.music_duration))) as time'), 'albums.album_title_album', 'user.username')
+    ->where([
+      ['user.id', '=', $id_user],
+      ['albums.album_id_album', '=', $id_album]
+    ])
+    ->get();
+
+    return $this->success($duration, 200);
+
+  }
+
 
   /*----------------------------Annex functions--------------------------*/
 

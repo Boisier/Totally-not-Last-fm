@@ -161,7 +161,10 @@ class ArtistController extends Controller{
 
 		return $this->success($artists, 200);
 	}
+	/*
+	public function getListeningDurationOfArtistBySeasonByUser($id_artist, $id_season, $id_user){
 
+	}*/
 	/*----------------------------Annex functions--------------------------*/
 
 	//validate request artist

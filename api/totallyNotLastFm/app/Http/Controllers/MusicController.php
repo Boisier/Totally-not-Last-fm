@@ -184,6 +184,21 @@ class MusicController extends Controller{
 		return $this->success($musics, 200);
 	}
 
+	//Get the number of listening of all musics by years by a specific user
+	public function getNbListeningMusicByYearByUser($id_user){
+		$music = DB::table('user')
+		->join('histories', 'user.id', '=', 'histories.user_id_user')
+		->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+		->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+		->select(DB::raw('count(music.music_id_music) as nbListening'), 'music.music_release_date as date')
+		->where('user.id', '=', $id_user)
+		->groupBy('music.music_release_date')
+		->orderBy('music.music_release_date')
+		->get();
+
+		return success($music, 200);
+	}
+
 	/*----------------------------Annex functions--------------------------*/
 
 
