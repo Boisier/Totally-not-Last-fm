@@ -6,6 +6,8 @@ import stats from 'library/stats'
 import StatBlock from '../StatBlock/StatBlock'
 import PeriodSections from '../PeriodSections/PeriodSections'
 
+// import api from 'library/api'
+
 export default class extends Component {
   constructor (props) {
     super(props)
