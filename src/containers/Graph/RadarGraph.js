@@ -7,14 +7,14 @@ import { radarTooltip } from './tooltips'
 import radarStyle from './styles/radar.json'
 
 export default class extends GraphEntity {
-  genData () {
+  genData (props) {
     // Create gradient
-    const gradient = this.getRadialGradient(this.props.toColor, this.props.fromColor, this.ctx.canvas.offsetWidth / 2, this.ctx.canvas.offsetHeight / 2)
+    const gradient = this.getRadialGradient(props.toColor, props.fromColor, this.ctx.canvas.offsetWidth / 2, this.ctx.canvas.offsetHeight / 2)
 
     this.setState({ graphData: {
-      labels: this.props.labels,
+      labels: props.labels,
       datasets: [{
-        data: _.take(this.props.data, this.props.labels.length),
+        data: _.take(props.data, props.labels.length),
         backgroundColor: gradient,
         pointBackgroundColor: 'transparent',
         pointBorderColor: 'transparent',
@@ -23,7 +23,7 @@ export default class extends GraphEntity {
       }]
     }})
 
-    document.getElementById('tooltip-' + this.props.graphID).style.backgroundColor = this.props.toColor
+    document.getElementById('tooltip-' + props.graphID).style.backgroundColor = props.toColor
   }
 
   getGraphOption () {
