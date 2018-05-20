@@ -8,7 +8,7 @@
         {
           "type": "line",
           "size": "wide",
-          "route": "/stats/listeningtime/day",
+          "route": "/history/get/{id}",
           "post": [{"key": "day", "value": "section"}],
           "name": "Listening history",
           "colors": {
@@ -19,7 +19,7 @@
         {
           "type": "doughnut",
           "size": "small",
-          "route": "/stats/albums/day",
+          "route": "/albums/userMostListened/{id}",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top albums",
           "colors": {
@@ -30,7 +30,7 @@
         {
           "type": "bar",
           "size": "small",
-          "route": "/stats/albums/times/day",
+          "route": "/albums/userMostListened/{id}",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top albums listening times",
           "colors": {
@@ -41,7 +41,7 @@
         {
           "type": "radar",
           "size": "small",
-          "route": "/stats/genres/day",
+          "route": "/genre/userMostListened/{id}",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top genres",
           "colors": {
@@ -52,7 +52,7 @@
         {
           "type": "pie",
           "size": "small",
-          "route": "/stats/artists/day",
+          "route": "/artist/userMostListened/{id}",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top artists",
           "colors": {
@@ -74,7 +74,7 @@
         {
           "type": "doughnut",
           "size": "small",
-          "route": "/stats/albums/day",
+          "route": "/albums/artistMostListened/{artist_id}",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top albums per artists",
           "colors": {
