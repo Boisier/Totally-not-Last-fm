@@ -19,8 +19,8 @@ export default class extends Component {
               </div>
             )
           }
-          <div className="about-information-box">
-            Ecole d'ingénieur IMAC
+          <div className="about-information-box imac">
+            école d'ingénieur IMAC
           </div>
         </div>
       </section>
