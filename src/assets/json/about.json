@@ -3,15 +3,16 @@
         "name": "Laure Issa",
         "urlImg": "laure.png",
         "role": "project jeffe",
-        "music": [ "Tapping sounds on glass - GentleWhispering" ]
+        "music": [ "This Is The Day - The The",
+          "I'm Only Sleeping - The Beatles"]
       },
       {
         "name": "Valentin Dufois",
-        "urlImg": "default.jpg",
+        "urlImg": "valentin.png",
         "role": "frontend manager",
         "music": [ "Resurrection - Son Lux",
-        "Grand Canyon - Kavinsky",
-        "I Love You but I'm Lost - Tears for Fears" ]
+          "Grand Canyon - Kavinsky",
+          "I Love You but I'm Lost - Tears for Fears" ]
       },
       {
         "name": "Marie-Lou Barbier",
@@ -19,13 +20,15 @@
         "role": "frontend developer",
         "music": [ "Romeo is Bleeding - Tom Waits",
           "Virgo's Maze - Part Time",
-          "L'Amour Looks Something Like You - Kate Bush" ]
+          "L'Amour Looks Something Like You - Kate Bush",
+          "New Kind Of Kick - The Cramps"]
       },
       {
         "name": "Guillaume Lollier",
-        "urlImg": "default.jpg",
+        "urlImg": "guillaume.png",
         "role": "backend manager",
-        "music": [ "Despacito" ]
+        "music": [ "Hilight Tribe - Free Tibet (Vini Vici Remix)",
+          "Sur Mon Nom - Caballero et Jean Jass" ]
       },
       {
         "name": "Stella Poulain",
@@ -36,14 +39,14 @@
       },
       {
         "name": "Nina De Castro",
-        "urlImg": "default.jpg",
+        "urlImg": "nina.png",
         "role": "backend developer",
-        "music": [ "Despacito" ]
+        "music": [ " The Magnificent Moon - Mildlife" ]
       },
       {
         "name": "Audrey Combe",
-        "urlImg": "default.jpg",
+        "urlImg": "audrey.png",
         "role": "backend developer",
-        "music": [ "Despacito" ]
+        "music": [ "LSD - Labrinth ft. Sia, Diplo" ]
       }
 ]

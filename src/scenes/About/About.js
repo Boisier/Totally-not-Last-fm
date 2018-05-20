@@ -9,6 +9,10 @@ export default class extends Component {
           made with <span>rythm</span> by
         </div>
         <div className="about-box">
+          <div className="about-information-box imac">
+            <img className="school-image about-image" alt="IMAC engineering school logo" src={require('assets/images/imac.png')} />
+            <div className="imac-text">IMAC<br />engineering school</div>
+          </div>
           {
             aboutInformation.map((info) =>
               <div className="about-information-box" key={info.name}>
@@ -19,9 +23,6 @@ export default class extends Component {
               </div>
             )
           }
-          <div className="about-information-box imac">
-            école d'ingénieur IMAC
-          </div>
         </div>
       </section>
     )
