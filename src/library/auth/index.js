@@ -62,7 +62,7 @@ export default class Auth {
    */
   setToken (token, expires = 0) {
     cookies.set('token', token, {
-      expires: expires // days
+      expires: expires / (3600 * 24) // days
     })
   }
 
@@ -78,7 +78,7 @@ export default class Auth {
       console.log(response)
       /*
       if (response.success === true) {
-        this.setToken(reponse.token)
+        this.setToken(reponse.t oken)
         this.onLogin()
         return true
       }
@@ -113,7 +113,7 @@ export default class Auth {
   }
 
   onLogout () {
-    return api.post('/auth/logout', {}).then(() => {
+    return api.get('/auth/logout', {}).then(() => {
       api.setToken('')
       cookies.erase('token')
       window.location.reload()
