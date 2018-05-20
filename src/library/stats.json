@@ -8,7 +8,7 @@
         {
           "type": "line",
           "size": "wide",
-          "route": "/stats/listeningtime/day",
+          "route": "/history",
           "post": [{"key": "day", "value": "section"}],
           "name": "Listening history",
           "colors": {
@@ -19,7 +19,7 @@
         {
           "type": "doughnut",
           "size": "small",
-          "route": "/stats/albums/day",
+          "route": "/stats/mostlistened/albums",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top albums",
           "colors": {
@@ -30,7 +30,7 @@
         {
           "type": "bar",
           "size": "small",
-          "route": "/stats/albums/times/day",
+          "route": "/stats/mostlistened/albums",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top albums listening times",
           "colors": {
@@ -41,7 +41,7 @@
         {
           "type": "radar",
           "size": "small",
-          "route": "/stats/genres/day",
+          "route": "/stats/mostlistened/genres",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top genres",
           "colors": {
@@ -52,7 +52,7 @@
         {
           "type": "pie",
           "size": "small",
-          "route": "/stats/artists/day",
+          "route": "/stats/mostlistened/artists",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top artists",
           "colors": {
@@ -61,20 +61,9 @@
           }
         },
         {
-          "type": "pie",
-          "size": "wide",
-          "route": "/stats/artists/day",
-          "post": [{"key": "day", "value": "section"}],
-          "name": "Top artists per seasons",
-          "colors": {
-            "from": "rgba(255, 150, 140, .4)",
-            "to": "rgba(255, 150, 140, 1)"
-          }
-        },
-        {
           "type": "doughnut",
           "size": "small",
-          "route": "/stats/albums/day",
+          "route": "/stats/mostlistened/albumsbyartists",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top albums per artists",
           "colors": {
@@ -85,7 +74,7 @@
         {
           "type": "horizontalBar",
           "size": "small",
-          "route": "/stats/tracks/day",
+          "route": "/stats/mostlistened/tracksbyartists",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top tracks per artists",
           "colors": {
@@ -96,7 +85,7 @@
         {
           "type": "bar",
           "size": "wide",
-          "route": "/stats/hours/day",
+          "route": "/stats/cumulatedtime",
           "post": [{"key": "day", "value": "section"}],
           "name": "Average listening hours",
           "colors": {
@@ -420,6 +409,17 @@
           "colors": {
             "from": "rgba(150, 220, 255, .4)",
             "to": "rgba(150, 220, 255, 1)"
+          }
+        },
+        {
+          "type": "pie",
+          "size": "wide",
+          "route": "/stats/mostlistened/artistsbyseason",
+          "post": [{"key": "day", "value": "section"}],
+          "name": "Top artists per seasons",
+          "colors": {
+            "from": "rgba(255, 150, 140, .4)",
+            "to": "rgba(255, 150, 140, 1)"
           }
         }
       ]

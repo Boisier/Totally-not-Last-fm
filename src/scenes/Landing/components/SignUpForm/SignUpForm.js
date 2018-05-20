@@ -8,9 +8,11 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      name: '',
       email: this.props.email,
       password: '',
-      confirmation: ''
+      confirmation: '',
+      badSignup: false
     }
   }
 
@@ -21,7 +23,7 @@ export default class extends Component {
   }
 
   onInputUpdate = (field, event) => {
-    if (field !== 'email' && field !== 'password' && field !== 'confirmation') {
+    if (field !== 'email' && field !== 'password' && field !== 'confirmation' && field !== 'name') {
       return
     }
 
@@ -34,13 +36,15 @@ export default class extends Component {
 
   signUp = (e) => {
     e.preventDefault()
-
     // Check validity of credentials against the server
     // if ok, a token will be retrieved from the server
-    if (auth.signUp(this.state.email, this.state.password, this.state.confirmation)) {
-      auth.setToken('testtoken')
+    auth.i().signUp(this.state.name, this.state.email, this.state.password, this.state.confirmation).then(() => {
       this.props.onLogin()
-    }
+    }).catch(() => {
+      this.setState({
+        badSignup: true
+      })
+    })
   }
 
   render = () => {
@@ -50,7 +54,13 @@ export default class extends Component {
       <section id="signup-form" className={displayClass}>
         <div className="access-form">
           <h5 className="caption">Join us</h5>
-          <form method="post" action="" onSubmit={this.signUp}>
+          <form onSubmit={this.signUp}>
+            <FieldInput
+              type="text"
+              className="input-signup-pseudo"
+              label="Enter your name"
+              value={this.state.name}
+              onChange={this.onInputUpdate.bind(this, 'name')}/>
             <FieldInput
               type="email"
               className="input-signup-email"
@@ -69,6 +79,7 @@ export default class extends Component {
               label="Confirm your password"
               value={this.state.confirmation}
               onChange={this.onInputUpdate.bind(this, 'confirmation')} />
+            { this.state.badSignup ? (<p className="login-msg">Bad credentials</p>) : null }
             <input
               type="submit"
               value="Sign up"

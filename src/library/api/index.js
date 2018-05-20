@@ -23,7 +23,7 @@ class API {
     return {
       baseURL: settings.baseURL,
       headers: {
-        'auth-token': this.authToken
+        'Authorization': 'Bearer ' + this.authToken
       }
     }
   }
@@ -53,12 +53,11 @@ class API {
    * @return Promise
    */
   sendComplex (url, data, multipart, method) {
-    const headers = multipart ? {'content-type': 'application/x-www-form-urlencoded'} : {}
     return this.sendRequest({
+      ...this.getDefaults(),
       url: url,
       method: method,
-      data: qs.stringify(data),
-      headers: headers
+      data: qs.stringify(data)
     })
   }
 

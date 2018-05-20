@@ -26,7 +26,56 @@ menu
       &:hover
       {
         color: $main-color;
-        font-size: 8em;
+        font-size: 8rem;
+
+        .user-name
+        {
+          font-size: 4rem;
+        }
+      }
+    }
+  }
+
+  .account-line
+  {
+    display: none;
+
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+
+    width: 100%;
+    padding: 25px;
+
+    .user-name
+    {
+      color: #FFF;
+      text-transform: uppercase;
+      font-family: Rubik;
+      font-weight: bold;
+      font-style: italic;
+      font-size: 2rem;
+    }
+
+    .log-out
+    {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      margin: 25px;
+
+      color: #FFF;
+      text-transform: uppercase;
+      font-family: Rubik;
+      font-weight: bold;
+      font-style: italic;
+      font-size: 2rem;
+
+      cursor: pointer;
+
+      &:hover
+      {
+        color: red;
       }
     }
   }

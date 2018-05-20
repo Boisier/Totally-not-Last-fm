@@ -14,7 +14,9 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      manager: GraphManager.getInstance()
+      graphID: GraphManager.getInstance().addGraph(),
+      data: [],
+      labels: []
     }
   }
 
@@ -25,6 +27,13 @@ export default class extends Component {
   static defaultProps = {
     type: 'list',
     data: []
+  }
+
+  componentWillReceiveProps (props) {
+    this.setState({
+      data: props.data,
+      labels: props.labels
+    })
   }
 
   graphs = {
@@ -39,9 +48,9 @@ export default class extends Component {
   render () {
     const Graph = this.graphs[this.props.type]
     return <Graph
-      data={this.props.data}
-      labels={this.props.labels}
-      graphID={this.state.manager.addGraph()}
+      data={this.state.data}
+      labels={this.state.labels}
+      graphID={this.state.graphID}
       toColor={this.props.toColor}
       fromColor={this.props.fromColor}
       size={this.props.size}
