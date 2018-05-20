@@ -137,6 +137,15 @@ class UserController extends Controller{
 
     return response()->json(['data' => "The user with id {$id} has been deleted"], 200);
   }
+
+  //check existence of user mail
+  public function mailExist($mail){
+    $user = User::wher('mail', '=', $id)->count();
+    if ($user == 0)
+        return response()->json(['message' => "The user with mail $mail doesn't exist"], 200);
+    return response()->json(['message' => "The user with mail $mail exist"], 404);
+  }
+  
   /*----------------------------Stats functions--------------------------*/
 
 
