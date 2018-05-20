@@ -145,7 +145,7 @@ class UserController extends Controller{
     $user = User::where('email', '=', $request->get('email'))->count();
     $response = ['email' => $request->get('email')];
 
-    $response['exists'] = $user === 0 ? false : true;
+    $response['exists'] = $user == 0 ? false : true;
     return response()->json($response, 200);
   }
 
