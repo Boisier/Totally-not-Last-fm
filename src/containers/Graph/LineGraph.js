@@ -10,10 +10,18 @@ export default class extends GraphEntity {
     // Create gradient
     const gradient = this.getLinearGradient(props.toColor, props.fromColor, this.ctx.canvas.offsetHeight)
 
+    let labels = props.labels
+    let data = props.data
+
+    if (labels.length === 1) {
+      labels[1] = labels[0]
+      data[1] = data[0]
+    }
+
     this.setState({ graphData: {
-      labels: props.labels,
+      labels: labels,
       datasets: [{
-        data: props.data,
+        data: data,
         backgroundColor: gradient,
         pointBackgroundColor: 'transparent',
         borderColor: 'transparent'
