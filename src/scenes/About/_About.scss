@@ -3,19 +3,19 @@
   font-family:'Rubik', sans-serif;
   width: 1200px;
   margin: 30px auto auto auto;
-  height:90vh;
 
   .about-message {
-    z-index:999;
-    float:right;
-    width:800px;
-    padding-top:0.4em;
-    font-size:120px;
-    font-weight:600;
-    letter-spacing:-0.07em;
+    position: absolute;
+    right: 15vw;
+    width: 550px;
+    z-index: 999;
+    margin-top: 0.2em;
+    font-size: 7vw;
+    font-weight: 600;
+    letter-spacing: -0.07em;
     word-spacing: 0.2em;
-    color:black;
-    text-align:right;
+    color: black;
+    text-align: right;
     line-height: 0.8em;
     margin-bottom: -.4rem;
 
@@ -27,8 +27,10 @@
   .about-box {
     z-index:0;
     display: inline-grid;
-    grid-template-columns: auto auto auto auto;
-    background-color:white;
+    grid-template-columns: 22vw 22vw 22vw 22vw;
+    background-color: white;
+    grid-template-rows: 30% 30%;
+    margin-top: 12.3vw;
     
     .about-information-box {
         padding:10px;
@@ -41,10 +43,11 @@
         }
         h4 {
           white-space: nowrap;
-          font-weight:400;
-          padding:0;
-          margin-bottom:10px;
-          text-transform:lowercase;
+          font-weight: 400;
+          padding: 0;
+          margin: 10px 0;
+          text-transform: lowercase;
+          font-size: 1.18vw;
         }
 
         h3 {
@@ -52,12 +55,16 @@
           font-weight:500;
           padding:0;
           margin:0;
+          font-size: 1.3vw;
         }
 
         h5 {
-          width:200px;
           font-weight: 400;
-          font-style:italic;
+          font-style: italic;
+          position: relative;
+          display: inline-block;
+          font-size: 0.95vw;
+
           span {
             color:red;
           }
