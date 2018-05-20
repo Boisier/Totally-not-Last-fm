@@ -31,12 +31,13 @@
     background-color: white;
     grid-template-rows: 30% 30%;
     margin-top: 12.3vw;
+    padding-top: 15px;
+    width: 90vw;
     
     .about-information-box {
         padding:10px;
         margin:20px;
         .about-image {
-
           width:50%;
           float:left;
           padding-right:10px;
@@ -73,7 +74,24 @@
         &.imac {
           color:red;
           text-align:right;
-          margin-top:100px;
+          font-weight: 700;
+          font-style: italic;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          text-align: center;
+          margin: 0;
+          box-sizing: border-box;
+          margin-top: 5px;
+        }
+        .imac-text {
+
+        }
+
+        .school-image {
+          margin: 0 auto;
+          width: 60%;
+          display: block;
         }
     }
   }
