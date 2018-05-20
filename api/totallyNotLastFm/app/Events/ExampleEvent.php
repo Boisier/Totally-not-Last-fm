@@ -5,7 +5,7 @@ namespace App\Events;
 class ExampleEvent extends Event
 {
     /**
-     * Create a new event _instance.
+     * Create a new event instance.
      *
      * @return void
      */

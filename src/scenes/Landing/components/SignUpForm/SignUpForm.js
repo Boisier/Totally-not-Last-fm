@@ -8,7 +8,7 @@ export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      pseudo: '',
+      name: '',
       email: this.props.email,
       password: '',
       confirmation: '',
@@ -23,7 +23,7 @@ export default class extends Component {
   }
 
   onInputUpdate = (field, event) => {
-    if (field !== 'email' && field !== 'password' && field !== 'confirmation') {
+    if (field !== 'email' && field !== 'password' && field !== 'confirmation' && field !== 'name') {
       return
     }
 
@@ -36,11 +36,10 @@ export default class extends Component {
 
   signUp = (e) => {
     e.preventDefault()
-
     // Check validity of credentials against the server
     // if ok, a token will be retrieved from the server
-    auth.i().signUp(this.state.pseudo, this.state.email, this.state.password, this.state.confirmation).then(() => {
-      auth.setToken('testtoken')
+    auth.i().signUp(this.state.name, this.state.email, this.state.password, this.state.confirmation).then(() => {
+      console.log("here")
       this.props.onLogin()
     }).catch(() => {
       this.setState({
@@ -60,9 +59,9 @@ export default class extends Component {
             <FieldInput
               type="text"
               className="input-signup-pseudo"
-              label="Enter your pseudo"
-              value={this.state.pseudo}
-              onChange={this.onInputUpdate.bind(this, 'pseudo')}/>
+              label="Enter your name"
+              value={this.state.name}
+              onChange={this.onInputUpdate.bind(this, 'name')}/>
             <FieldInput
               type="email"
               className="input-signup-email"

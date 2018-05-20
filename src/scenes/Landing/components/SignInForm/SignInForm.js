@@ -33,9 +33,7 @@ export default class extends Component {
     e.preventDefault()
     // Check validity of credentials against the server
     // if ok, a token will be retrived from the server
-    auth.i().signIn(this.state.email, this.state.password).then(success => {
-      if (!success) return
-
+    auth.i().signIn(this.state.email, this.state.password).then(() => {
       this.props.onLogin()
     }).catch(() => {
       this.setState({

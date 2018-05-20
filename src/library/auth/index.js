@@ -66,29 +66,21 @@ export default class Auth {
     })
   }
 
-  signUp (pseudo, email, password, confirmation) {
-    if (password === confirmation) return false
+  signUp (name, email, password, confirmation) {
+    if (password !== confirmation) return Promise.reject(new Error('Password and confiramtion doesn\'t match'))
 
-    api.post('/auth', {
-      username: pseudo,
+    return api.post('/user/create', {
+      username: name,
       email: email,
       password: password,
-      birthday: 0
+      user_birthday: '1970-01-01'
     }).then(response => {
-      console.log(response)
-      /*
-      if (response.success === true) {
-        this.setToken(reponse.t oken)
-        this.onLogin()
-        return true
+      if (response.status === 201) {
+        return this.signIn(email, password)
       }
 
-      return false */
-      return true
+      return Promise.reject(new Error(response.data.data))
     })
-
-    this.onLogin()
-    return true
   }
 
   signIn (email, password) {
