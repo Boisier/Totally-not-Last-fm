@@ -139,13 +139,13 @@ class UserController extends Controller{
   }
 
   //check existence of user mail
-  public function mailExist($mail){
-    $user = User::wher('mail', '=', $id)->count();
+  public function mailExist(Request $request){
+    $user = User::wher('email', '=', $request->get('email'))->count();
     if ($user == 0)
-        return response()->json(['message' => "The user with mail $mail doesn't exist"], 200);
-    return response()->json(['message' => "The user with mail $mail exist"], 404);
+        return response()->json(['message' => "The user with email $mail doesn't exist"], 200);
+    return response()->json(['message' => "The user with email $mail exist"], 404);
   }
-  
+
   /*----------------------------Stats functions--------------------------*/
 
 

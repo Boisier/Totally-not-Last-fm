@@ -439,7 +439,7 @@ Route::group([
   Route::put('password/{id}','UserController@changeUserPassword');
   Route::put('email/{id}','UserController@changeUserEmail');
   Route::delete('delete/{id}','UserController@deleteUser');
-  Route::post('mailExist/{mail}', 'UserController@mailExist');
+  Route::post('mailExist', 'UserController@mailExist');
 });
 /* GetAllUsers
  * return all the users
