@@ -32,10 +32,12 @@ class UserController extends Controller{
   public function createUser(Request $request){
     $this->validateRequestUser($request);
 
+    // echo '<pre>'; print_r([$request->get('username'), $request->get('user_birthday'), $request->get('email'), Hash::make($request->get('password'))]); echo '</pre>';
+
     $user = User::create([
       'username' => $request->get('username'),
       'user_birthday' => $request->get('user_birthday'),
-      'mail' => $request->get('mail'),
+      'email' => $request->get('email'),
       'password' => Hash::make($request->get('password'))
     ]);
 

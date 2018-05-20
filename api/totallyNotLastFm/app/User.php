@@ -20,19 +20,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
   protected $fillable = [
-    'id', 'email', 'username', 'user_birthday'
+    'id', 'email', 'username', 'user_birthday', 'password'
   ];
-  protected $hidden = ['updated_at','created_at','password'];
 
   /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
+  protected $hidden = ['updated_at','created_at','password'];
 
-  /**
-     * An history can have one user
-     */
   public function getJWTIdentifier()
   {
     return $this->getKey();
@@ -43,6 +40,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     return [];
   }
 
+  /**
+  * An history can have one user
+  */
   public function history(){
     return $this->hasOne('App/History.php');
   }

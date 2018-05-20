@@ -10,7 +10,7 @@ class CorsMiddleware
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @return mixed
+     * @return nmixed
      */
     public function handle($request, Closure $next)
     {
