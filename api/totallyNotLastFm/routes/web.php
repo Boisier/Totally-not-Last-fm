@@ -112,7 +112,7 @@ Route::group([
   Route::get('userMostListened/{id}','ArtistController@getArtistsMostListenedByUser');
   Route::get('genreMostListened/{genre_id_genre}','ArtistController@getArtistsMostListenedOfGenre');
   Route::get('suggestions/{genre_id_genre}','ArtistController@suggestArtistsOfGenre');
-
+  Route::get('season/{$artist_id}/{$id_season}/{$id}', 'ArtistController@getListeningDurationOfArtistBySeasonByUser');
 });
 
 
