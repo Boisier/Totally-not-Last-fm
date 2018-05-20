@@ -94,7 +94,9 @@ class Header extends Component {
         </h5>
         <Menu
           isOpen={this.state.menuIsOpen}
-          closeMenu={this.closeMenu} />
+          closeMenu={this.closeMenu}
+          userInfos={this.props.userInfos}
+        />
       </header>
     )
   }

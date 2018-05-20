@@ -63,7 +63,7 @@
         {
           "type": "pie",
           "size": "wide",
-          "route": "/stats/artists/day",
+          "route": "/stats/artists/seasons",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top artists per seasons",
           "colors": {
@@ -74,7 +74,7 @@
         {
           "type": "doughnut",
           "size": "small",
-          "route": "/stats/albums/day",
+          "route": "/stats/albums/artists/day",
           "post": [{"key": "day", "value": "section"}],
           "name": "Top albums per artists",
           "colors": {

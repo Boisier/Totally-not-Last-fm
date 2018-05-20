@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class ExampleController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Create a new controller _instance.
      *
      * @return void
      */

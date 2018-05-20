@@ -12,7 +12,7 @@ try {
 | Create The Application
 |--------------------------------------------------------------------------
 |
-| Here we will load the environment and create the application instance
+| Here we will load the environment and create the application _instance
 | that serves as the central piece of this framework. We'll use this
 | application as an "IoC" container and router for this framework.
 |

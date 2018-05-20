@@ -5,83 +5,35 @@
 import cookies from 'browser-cookies'
 import api from '../api'
 
-/**
- * Tell if we are facing a user (true) or a visitor (false)
- * @return {boolean}
- */
-class Auth {
-  userInfos = {}
+export default class Auth {
+  static _instance = null
+
+  static instance () {
+    if (Auth._instance == null) {
+      Auth._instance = new Auth()
+    }
+
+    return this._instance
+  }
+
+  static i = () => Auth.instance()
 
   constructor () {
-    if (!this.isUser()) {
-      return
-    }
-
-    api.setToken(this.getToken())
-
-    this.userInfos = {
-      id: -1,
-      email: '',
-      username: ''
-    }
-  }
-
-  setUserInfos (infos) {
-    this.userInfos = infos
-  }
-
-  removeUserInfos () {
-    this.userInfos = {
-      id: -1,
-      email: '',
-      username: ''
-    }
-  }
-
-  isUser () {
+    // Check if we already have a token
     const token = this.getToken()
+    if (!token) return
 
-    if (!token) { // missing token
-      return false
-    }
+    api.setToken(token)
 
     // Token found, let's validate it
-    /* if (!this.tokenIsValid()) {
-      cookies.erase('token')
-      return false
-    } */
-
-    // if the token is OK, let's store it in the app state
-    // The token will be send with every request to prove identity
-    // Refresh the token
-    this.setToken(token)
-
-    if (this.getID() !== -1) return true
-
-    return api.get('/auth/me').then(response => {
-      this.setUserInfos(response.data)
-      return true
+    this.tokenIsValid().then(valid => {
+      if (!valid) return cookies.erase('token')
+      api.setToken(token)
     })
   }
 
-  /**
-   * Tell if we are facing a visitor (true) or a user (false)
-   * @return {boolean}
-   */
-  isVisitor () {
-    return !this.isUser()
-  }
-
-  getID () {
-    return this.userInfos.id
-  }
-
-  getEmail () {
-    return this.userInfos.email
-  }
-
-  getName () {
-    return this.userInfos.username
+  userInfos () {
+    return api.get('/auth/me').then(reponse => reponse.data)
   }
 
   /**
@@ -89,7 +41,9 @@ class Auth {
    * @return {boolean}
    */
   tokenIsValid () {
-    return true
+    return this.userInfos().then(infos => {
+      return !!infos.id
+    })
   }
 
   /**
@@ -155,21 +109,14 @@ class Auth {
 
   onLogin () {
     api.setToken(this.getToken())
-
-    return api.get('/auth/me').then(response => {
-      this.setUserInfos(response.data)
-    })
+    return this.userInfos()
   }
 
   onLogout () {
     return api.post('/auth/logout', {}).then(() => {
       api.setToken('')
       cookies.erase('token')
-      this.removeUserInfos()
       window.location.reload()
     })
   }
 }
-
-const auth = new Auth()
-export default auth

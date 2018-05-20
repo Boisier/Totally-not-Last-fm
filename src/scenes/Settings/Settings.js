@@ -4,6 +4,9 @@ import EditableFieldInput from 'containers/EditableFieldInput/EditableFieldInput
 import LinkToSpotify from './scenes/LinkToSpotify/LinkToSpotify'
 import LinkedSpotify from './scenes/LinkedSpotify/LinkedSpotify'
 
+import auth from 'library/auth'
+import api from 'library/api'
+
 export default class extends Component {
   constructor (props) {
     super(props)
@@ -12,19 +15,29 @@ export default class extends Component {
      */
     this.state = {
       user: {
-        email: 'test@test.fr',
+        name: this.props.userInfos.username,
+        email: this.props.userInfos.email,
         spotify: null
       }
     }
   }
+
+  updateName= (newName) => {
+    return api.put('/user/update/name/' + auth.getID(), {
+      email: newName
+    })
+  }
+
   updateEmail = (newEmail) => {
-    console.log(newEmail)
-    return newEmail
+    return api.put('/user/update/email/' + auth.getID(), {
+      email: newEmail
+    })
   }
 
   updatePassword = (newPassword) => {
-    console.log(newPassword)
-    return newPassword
+    return api.put('/user/update/password/' + auth.getID(), {
+      email: newPassword
+    })
   }
 
   render = () => {
@@ -32,6 +45,12 @@ export default class extends Component {
       <section className="settings-page">
         <h2>Profile</h2>
         <div className="settings-section">
+          <h3>Name</h3>
+          <EditableFieldInput
+            type="text"
+            label="Name"
+            value={this.state.user.name}
+            onConfirm={this.updateName} />
           <h3>E-mail</h3>
           <EditableFieldInput
             type="email"
