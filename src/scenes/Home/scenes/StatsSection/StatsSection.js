@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import uuidv4 from 'uuid/v4'
 
 import stats from 'library/stats'
 
@@ -58,7 +59,7 @@ export default class extends Component {
                   {...graph}
                   period={stats.periods[this.props.period]}
                   section={this.state.currentSection}
-                  key={this.state.period + '-' + this.state.currentSection + '-' + graph.route}
+                  key={uuidv4()}
                 />
               ))
             }

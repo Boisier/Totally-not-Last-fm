@@ -20,13 +20,13 @@ export function getMostListenedAlbums (/* options */) {
 }
 
 export function getMostListenedGenres (/* options */) {
-  const itemsNbr = Math.floor(Math.random() * 8) + 3
+  const itemsNbr = Math.floor(Math.random() * 5) + 5
 
   const data = []
   const labels = []
 
   for (let i = 1; i < itemsNbr; ++i) {
-    data[i] = (Math.floor(Math.random() * 58)) + 7
+    data[i] = (Math.floor(Math.random() * 30)) + 10
     labels[i] = genres[Math.floor(Math.random() * genres.length)]
   }
 

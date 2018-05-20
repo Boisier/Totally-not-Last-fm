@@ -3,12 +3,16 @@ import GraphEntity from './GraphEntity'
 
 import {HorizontalBar} from 'react-chartjs-2'
 import barStyle from './styles/bar.json'
-import { graphTooltip } from './tooltips'
+import { horizontalTooltip } from './tooltips'
 
 export default class extends GraphEntity {
   genData (props) {
     // Create gradient
     const gradient = this.getLinearGradient(props.toColor, props.fromColor, this.ctx.canvas.offsetHeight)
+
+    // YoU R NoT sUpPoSeD To UnDeRsTaNd ThIs
+    props.labels.shift()
+    props.data.shift()
 
     this.setState({ graphData: {
       labels: props.labels,
@@ -25,7 +29,7 @@ export default class extends GraphEntity {
 
   getGraphOption () {
     let graphOptions = barStyle
-    graphOptions.tooltips.custom = graphTooltip
+    graphOptions.tooltips.custom = horizontalTooltip
 
     return graphOptions
   }

@@ -71,7 +71,7 @@ class Header extends Component {
       (this.state.animateClosing ? 'closing-animation' : '')
 
     return (
-      <header className={headerClass}>
+      <header className={headerClass} ref="top">
         <h3>
           <Link
             to={'/home'}>

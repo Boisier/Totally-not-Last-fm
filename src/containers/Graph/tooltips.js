@@ -22,6 +22,26 @@ export function graphTooltip (tooltipModel) {
   })
 }
 
+export function horizontalTooltip (tooltipModel) {
+  const tooltip = document.getElementById('tooltip-' + this._chart.id)
+
+  if (!tooltip) return
+
+  if (!tooltipModel || !tooltipModel.opacity) return
+  if (!tooltipModel.dataPoints.length) return
+
+  tooltipModel.dataPoints.forEach(datapoint => {
+    const content = `<span class="label">` + datapoint.yLabel + `</span>
+                     <span class="value">` + datapoint.xLabel + `</span>`
+    tooltip.innerHTML = content
+
+    const posX = _.clamp(datapoint.x, 60, this._chart.canvas.offsetWidth - 60)
+
+    tooltip.style.left = posX + 'px'
+    tooltip.style.opacity = 1
+  })
+}
+
 export function doughnutTooltip (tooltipModel) {
   const tooltip = document.getElementById('tooltip-' + this._chart.id)
 

@@ -67,7 +67,7 @@ class App extends Component {
     }
 
     return (
-      <Structure userInfos={this.state.user}>
+      <Structure ref="structure" userInfos={this.state.user}>
         <Switch >
           <Route
             path={'/about'}

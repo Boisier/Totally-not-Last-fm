@@ -20,17 +20,19 @@ export default class extends Component {
     event.stopPropagation()
     switch (event.keyCode) {
       case 38 : this.setState(this.state.period > 0 ? this.showPeriodStats(this.state.period - 1) : this.showPeriodStats(this.state.period))
-        window.scrollTo(0, ReactDOM.findDOMNode(this.refs.stat))
+        window.scrollTo(0, ReactDOM.findDOMNode(this.refs.top))
+        event.preventDefault()
         break
       case 40 : this.setState(this.state.period < 3 ? this.showPeriodStats(this.state.period + 1) : this.showPeriodStats(this.state.period))
-        window.scrollTo(0, ReactDOM.findDOMNode(this.refs.stat))
+        window.scrollTo(0, ReactDOM.findDOMNode(this.refs.top))
+        event.preventDefault()
         break
       default:break
     }
   }
   render = () => (
     <section className="home-page">
-      <StatsPeriodesNavBar ref="stat" showPeriodStats={this.showPeriodStats} currentPeriod={this.state.period} handleKeyPress={this.handleKeyPress}/>
+      <StatsPeriodesNavBar showPeriodStats={this.showPeriodStats} currentPeriod={this.state.period} handleKeyPress={this.handleKeyPress}/>
       <section className="home-stats">
         <StatsSection period={this.state.period} />
       </section>
