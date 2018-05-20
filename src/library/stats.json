@@ -98,7 +98,7 @@
           "size": "wide",
           "route": "/stats/hours/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Listening hours",
+          "name": "Average listening hours",
           "colors": {
             "from": "rgba(150, 220, 255, .4)",
             "to": "rgba(150, 220, 255, 1)"
@@ -204,7 +204,7 @@
           "size": "wide",
           "route": "/stats/hours/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Listening hours",
+          "name": "Average listening hours",
           "colors": {
             "from": "rgba(150, 220, 255, .4)",
             "to": "rgba(150, 220, 255, 1)"
@@ -310,7 +310,7 @@
           "size": "wide",
           "route": "/stats/hours/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Listening hours",
+          "name": "Average listening hours",
           "colors": {
             "from": "rgba(150, 220, 255, .4)",
             "to": "rgba(150, 220, 255, 1)"
@@ -416,7 +416,7 @@
           "size": "wide",
           "route": "/stats/hours/day",
           "post": [{"key": "day", "value": "section"}],
-          "name": "Listening hours",
+          "name": "Average listening hours",
           "colors": {
             "from": "rgba(150, 220, 255, .4)",
             "to": "rgba(150, 220, 255, 1)"

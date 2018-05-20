@@ -1,7 +1,7 @@
 .about-page
 {
   font-family:'Rubik', sans-serif;
-  width: 1200px;
+  width: 90vw;
   margin: 30px auto auto auto;
 
   .about-message {
@@ -37,6 +37,8 @@
     .about-information-box {
         padding:10px;
         margin:20px;
+        box-sizing: border-box;
+
         .about-image {
           width:50%;
           float:left;
@@ -85,7 +87,7 @@
           margin-top: 5px;
         }
         .imac-text {
-
+          font-size: 1.2vw;
         }
 
         .school-image {
