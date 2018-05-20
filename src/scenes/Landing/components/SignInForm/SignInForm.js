@@ -9,13 +9,15 @@ export default class extends Component {
     super(props)
     this.state = {
       email: this.props.email,
-      password: ''
+      password: '',
+      badLogin: false
     }
   }
 
   componentWillReceiveProps (nextProps) {
     this.setState({
-      email: nextProps.email
+      email: nextProps.email,
+      password: ''
     })
   }
 
@@ -27,13 +29,17 @@ export default class extends Component {
     this.setState({ [field]: event.target.value })
   }
 
-  signIn = () => {
+  signIn = (e) => {
+    e.preventDefault()
     // Check validity of credentials against the server
     // if ok, a token will be retrived from the server
-    if (auth.signIn(this.state.email, this.state.password)) {
-      auth.setToken('testtoken')
+    auth.i().signIn(this.state.email, this.state.password).then(() => {
       this.props.onLogin()
-    }
+    }).catch(() => {
+      this.setState({
+        badLogin: true
+      })
+    })
   }
 
   render = () => {
@@ -43,7 +49,7 @@ export default class extends Component {
       <section id="signin-form" className={displayClass}>
         <div className="access-form">
           <h5 className="caption">Plug in </h5>
-          <form method="post" action="" onSubmit={this.signUp}>
+          <form onSubmit={this.signIn}>
             <FieldInput
               type="email"
               className="input-signin-email"
@@ -55,7 +61,8 @@ export default class extends Component {
               className="input-signin-password"
               label="Enter your password"
               value={this.state.password}
-              onChange={this.onInputUpdate(this, 'password')} />
+              onChange={this.onInputUpdate.bind(this, 'password')} />
+            { this.state.badLogin ? (<p className="login-msg">Bad credentials</p>) : null }
             <input
               type="submit"
               value="Sign in"

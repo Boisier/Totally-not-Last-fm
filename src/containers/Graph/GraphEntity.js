@@ -29,7 +29,11 @@ export default class GraphEntity extends Component {
   }
 
   componentDidMount () {
-    this.genData() // Generate data only when graph has been mounted
+    this.genData(this.props) // Generate data only when graph has been mounted
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.genData(newProps)
   }
 
   onMouseOut = () => {

@@ -1,6 +1,6 @@
 // React
 import React, { Component } from 'react'
-import { Route, withRouter } from 'react-router-dom'
+import { Link, Route, withRouter } from 'react-router-dom'
 
 // Scene dependencies
 import pages from 'library/pagesList'
@@ -73,7 +73,10 @@ class Header extends Component {
     return (
       <header className={headerClass}>
         <h3>
-          Totally not <span className="red">Last fm</span>
+          <Link
+            to={'/home'}>
+            Totally not <span className="red">Last fm</span>
+          </Link>
           <Route path="/:pageName" render={this.mapUrlToPageName} />
         </h3>
         <h5 className="menu-button">
@@ -89,7 +92,11 @@ class Header extends Component {
             <span className="hamburger-label">Menu</span>
           </button>
         </h5>
-        <Menu isOpen={this.state.menuIsOpen} closeMenu={this.closeMenu} />
+        <Menu
+          isOpen={this.state.menuIsOpen}
+          closeMenu={this.closeMenu}
+          userInfos={this.props.userInfos}
+        />
       </header>
     )
   }

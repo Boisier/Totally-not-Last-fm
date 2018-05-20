@@ -62,7 +62,7 @@ function yearly (section) {
 
   if (section === 0) numOfMonths = moment().month()
 
-  for (let i = 0; i <= numOfMonths; ++i) {
+  for (let i = 0; i < numOfMonths; ++i) {
     labels[i] = moment().month(i).format('MMMM')
   }
 

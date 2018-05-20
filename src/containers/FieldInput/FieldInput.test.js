@@ -34,7 +34,7 @@ describe('Field input', () => {
     const { wrapper } = setup()
     const testValue = 'testValue'
 
-    wrapper.instance().componentWillReceiveProps({value: testValue})
+    wrapper._instance().componentWillReceiveProps({value: testValue})
     expect(wrapper.state().value).toBe(testValue)
   })
 

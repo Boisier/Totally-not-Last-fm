@@ -3,49 +3,39 @@
  */
 
 import cookies from 'browser-cookies'
-import settings from '../settings'
 import api from '../api'
 
-/**
- * Tell if we are facing a user (true) or a visitor (false)
- * @return {boolean}
- */
-class Auth {
-  constructor () {
-    if (!this.isUser()) {
-      return
+export default class Auth {
+  static _instance = null
+
+  static instance () {
+    if (Auth._instance == null) {
+      Auth._instance = new Auth()
     }
 
-    api.setToken(this.getToken())
+    return this._instance
   }
 
-  isUser () {
-    const token = this.getToken()
+  static i = () => Auth.instance()
 
-    if (!token) { // missing token
-      return false
-    }
+  constructor () {
+    // Check if we already have a token
+    const token = this.getToken()
+    if (!token) return
+
+    api.setToken(token)
 
     // Token found, let's validate it
-    /* if (!this.tokenIsValid()) {
-      cookies.erase('token')
-      return false
-    } */
-
-    // if the token is OK, let's store it in the app state
-    // The token will be send with every request to prove identity
-    // Refresh the token
-    this.setToken(token)
-
-    return true
+    this.tokenIsValid().then(valid => {
+      if (!valid) return cookies.erase('token')
+      api.setToken(token)
+    })
   }
 
-  /**
-   * Tell if we are facing a visitor (true) or a user (false)
-   * @return {boolean}
-   */
-  isVisitor () {
-    return !this.isUser()
+  userInfos () {
+    return api.get('/auth/me')
+      .then(reponse => reponse.data)
+      .catch(() => ({id: 1, username: 'Kevin Tester', email: 'kevindu69@hotmail.fr'}))
   }
 
   /**
@@ -53,7 +43,9 @@ class Auth {
    * @return {boolean}
    */
   tokenIsValid () {
-    return true
+    return this.userInfos().then(infos => {
+      return !!infos.id
+    })
   }
 
   /**
@@ -68,42 +60,38 @@ class Auth {
   /**
    * Set the token with the given string
    * @param token
+   * @param expires Cookie duration
    */
-  setToken (token) {
+  setToken (token, expires = 0) {
     cookies.set('token', token, {
-      expires: settings.user.cookieDuration // days
+      expires: expires / (3600 * 24) // days
     })
   }
 
-  signUp (/* email, password, confirmation */) {
-    /*
-    TODO: Uncomment and replace with correct route once available
-    if (password === confirmation) return false
+  signUp (name, email, password, confirmation) {
+    if (password !== confirmation) return Promise.reject(new Error('Password and confirmation doesn\'t match'))
 
-    api.post('/auth', {
+    return api.post('/user/create', {
+      username: name,
+      email: email,
+      password: password,
+      user_birthday: '1970-01-01'
+    }).then(response => {
+      if (response.status === 201) {
+        return this.signIn(email, password)
+      }
+
+      return Promise.reject(new Error(response.data.data))
+    })
+  }
+
+  signIn (email, password) {
+    return api.post('/auth/login', {
       email: email,
       password: password
     }).then(response => {
-      if(reponse.success === true) {
-        this.setToken(reponse.token)
-        this.onLogin()
-        return true
-      }
-
-      return false
-    })
-    */
-
-    this.onLogin()
-    return true
-  }
-
-  signIn (/* email, password */) {
-    /*
-    TODO: Uncomment and replace with correct route once available
-    api.get('/auth').then(response => {
-      if(response.success === true) {
-        this.setToken(response.token)
+      if (response.status === 200) {
+        this.setToken(response.data.access_token, response.data.expires_in)
         this.onLogin()
 
         return true
@@ -111,27 +99,18 @@ class Auth {
 
       return false
     })
-     */
-    return true
   }
 
   onLogin () {
     api.setToken(this.getToken())
+    return this.userInfos()
   }
 
   onLogout () {
-    /*
-    TODO: Uncomment and replace with correct route once available
-    api.get('/auth/logout').then(() => {
+    return api.get('/auth/logout', {}).then(() => {
       api.setToken('')
       cookies.erase('token')
+      window.location.reload()
     })
-    */
-
-    api.setToken('')
-    cookies.erase('token')
   }
 }
-
-const auth = new Auth()
-export default auth

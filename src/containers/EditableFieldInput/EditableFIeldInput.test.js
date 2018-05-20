@@ -45,11 +45,11 @@ describe('Editable field input', () => {
     const { wrapper, inputNbr } = setup()
     expect(inputNbr).toBe(0) // No interactions
 
-    wrapper.instance().openEdit()
+    wrapper._instance().openEdit()
     wrapper.update()
     expect(wrapper.find('input').length).toBe(2) // input + btn
 
-    wrapper.instance().closeEdit()
+    wrapper._instance().closeEdit()
     wrapper.update()
     expect(wrapper.find('input').length).toBe(0)
   })

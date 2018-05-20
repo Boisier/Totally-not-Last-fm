@@ -1,7 +1,7 @@
 .about-page
 {
   font-family:'Rubik', sans-serif;
-  width: 1200px;
+  width: 90vw;
   margin: 30px auto auto auto;
 
   .about-message {
@@ -19,23 +19,32 @@
     line-height: 0.8em;
     margin-bottom: -.4rem;
 
+    @media screen and (min-width: 1350px) {
+      font-size: 130px;
+      width:800px;
+    }
+
     span {
       color:red;
     }
   }
 
   .about-box {
+    z-index:0;
     display: inline-grid;
     grid-template-columns: 22vw 22vw 22vw 22vw;
     background-color: white;
     grid-template-rows: 30% 30%;
     margin-top: 12.3vw;
+    padding-top: 15px;
+    width: 90vw;
     
     .about-information-box {
         padding:10px;
         margin:20px;
-        .about-image {
+        box-sizing: border-box;
 
+        .about-image {
           width:50%;
           float:left;
           padding-right:10px;
@@ -56,14 +65,7 @@
           margin:0;
           font-size: 1.3vw;
         }
-/*
-        &.plus {
-          grid-row-start: 2;
-          grid-row-end: 4;
-          grid-column-start: 2;
-          grid-column-end: 4;
-        }
-*/
+
         h5 {
           font-weight: 400;
           font-style: italic;
@@ -74,6 +76,29 @@
           span {
             color:red;
           }
+        }
+
+        &.imac {
+          color:red;
+          text-align:right;
+          font-weight: 700;
+          font-style: italic;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          text-align: center;
+          margin: 0;
+          box-sizing: border-box;
+          margin-top: 5px;
+        }
+        .imac-text {
+          font-size: 1.2vw;
+        }
+
+        .school-image {
+          margin: 0 auto;
+          width: 60%;
+          display: block;
         }
     }
   }
