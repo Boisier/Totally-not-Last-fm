@@ -435,8 +435,11 @@ Route::group([
   Route::post('create','UserController@createUser');
   Route::get('get/{id}','UserController@getUser');
   Route::put('update/{id}','UserController@updateUser');
+  Route::put('name/{id}','UserController@changeUserName');
+  Route::put('password/{id}','UserController@changeUserPassword');
+  Route::put('email/{id}','UserController@changeUserEmail');
   Route::delete('delete/{id}','UserController@deleteUser');
-
+  Route::post('mailExist', 'UserController@mailExist');
 });
 /* GetAllUsers
  * return all the users
