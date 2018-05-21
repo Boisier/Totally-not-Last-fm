@@ -6,7 +6,9 @@ matrix:
         - node
       cache:
         directories:
+          - $HOME/.node-gyp
           - $HOME/.npm
+          - node_modules
       script:
         - npm run coverage
     -

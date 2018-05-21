@@ -7,13 +7,12 @@ import { BrowserRouter } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 
 // Page structure imports
-import './index.css'
 import App from './App'
 
 // Create the dom
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <App isConnected={false} />
   </BrowserRouter>, document.getElementById('root'))
 
 registerServiceWorker()

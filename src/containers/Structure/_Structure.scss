@@ -1,0 +1,5 @@
+#page-structure
+{
+  padding-top: $header-height;
+  min-height:calc(100% - #{$header-height} );
+}
