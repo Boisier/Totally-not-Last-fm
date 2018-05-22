@@ -46,7 +46,7 @@
     cursor: pointer;
   }
 
-  .caption, .field-input, input[type=button]
+  .caption, .field-input
   {
     display: block;
     width: calc(100% - 40px);
@@ -56,6 +56,11 @@
   {
     display: block;
     width: 80%;
+
+    .login-msg
+    {
+      padding: 0 10%;
+    }
 
     input[type=submit]
     {

@@ -485,6 +485,6 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::get('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+    Route::get('me', 'AuthController@me');
 
 });

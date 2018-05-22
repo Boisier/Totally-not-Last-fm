@@ -9,15 +9,21 @@ export default class extends Component {
 
     this.state = {
       period: this.props.period,
-      sections: this.genSections(),
       currentSection: this.props.section
     }
   }
-  
+
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      period: nextProps.period,
+      currentSection: 0
+    })
+  }
+
   genSections () {
     const sections = []
 
-    switch (stats.periods[this.props.period].key) {
+    switch (stats.periods[this.state.period].key) {
       case 'DAILY':
         sections[0] = 'today'
         sections[1] = 'yesterday'
@@ -58,12 +64,12 @@ export default class extends Component {
     return (
       <ul className="period-sections">
         {
-          this.state.sections.map((section, index) => (
+          this.genSections().map((section, index) => (
             <li
               key={section}
               className={this.state.currentSection === index ? 'selected' : ''}
               onClick={this.setSection.bind(this, index)}>
-              { section }
+              {section}
             </li>
           ))
         }

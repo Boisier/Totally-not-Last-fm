@@ -1,9 +1,9 @@
 import React from 'react'
 import GraphEntity from './GraphEntity'
 
-import {Bar} from 'react-chartjs-2'
+import {HorizontalBar} from 'react-chartjs-2'
 import barStyle from './styles/bar.json'
-import { graphTooltip } from './tooltips'
+import { horizontalTooltip } from './tooltips'
 
 export default class extends GraphEntity {
   genData (props) {
@@ -24,17 +24,17 @@ export default class extends GraphEntity {
       }]
     }})
 
-    document.getElementById('tooltip-' + props.graphID).style.backgroundColor = props.toColor
+    document.getElementById('tooltip-' + props.graphID).style.backgroundColor = this.props.toColor
   }
 
   getGraphOption () {
     let graphOptions = barStyle
-    graphOptions.tooltips.custom = graphTooltip
+    graphOptions.tooltips.custom = horizontalTooltip
 
     return graphOptions
   }
 
   render = () => {
-    return super.render(Bar, 'bar')
+    return super.render(HorizontalBar, 'bar')
   }
 }

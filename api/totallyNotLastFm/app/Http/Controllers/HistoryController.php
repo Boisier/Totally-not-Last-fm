@@ -97,10 +97,10 @@ class HistoryController extends Controller{
 	}
 
 	//Get average, earliest and latest listening periods of a specific user
-	public function getListeningPeriodsOfUser($id_user){  //TO DO 
+	public function getListeningPeriodsOfUser($id_user){  //TO DO
 		$periods = DB::table('user')
 		->join('histories', 'user.id', '=', 'histories.user_id_user')
-		->select(DB::raw('SEC_TO_TIME(AVG(hour(histories.history_play_time)*3600+minute(histories.history_play_time)*60+second(histories.history_play_time))) as average'), DB::raw('MAX(histories.history_play_time) as lastest'), DB::raw('MIN(histories.history_play_time) as earliest'), 'user.username')
+		->select(DB::raw('sec_to_time(avg(hour(histories.history_play_time)*3600+minute(histories.history_play_time)*60+second(histories.history_play_time))) as average'), DB::raw('max(histories.history_play_time) as lastest'), DB::raw('min(histories.history_play_time) as earliest'), 'user.username')
 		->where('user.id', '=', $id_user)
 		->groupBy('user.id')
 		->get();

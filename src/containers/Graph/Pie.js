@@ -1,7 +1,7 @@
 import React from 'react'
 import GraphEntity from './GraphEntity'
 
-import {Doughnut} from 'react-chartjs-2'
+import {Pie} from 'react-chartjs-2'
 import doughnutStyle from './styles/doughnut.json'
 import { interpolateRgb } from 'd3-interpolate'
 import { doughnutTooltip } from './tooltips'
@@ -38,6 +38,6 @@ export default class extends GraphEntity {
   }
 
   render = () => {
-    return super.render(Doughnut, 'doughnut')
+    return super.render(Pie, 'doughnut')
   }
 }

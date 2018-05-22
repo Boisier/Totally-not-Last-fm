@@ -34,6 +34,6 @@ class AuthServiceProvider extends ServiceProvider
             print("buadibz");
             return User::where('email', $request->input('email'))->first();
         });
-        
+
     }
 }
