@@ -6,11 +6,10 @@
 
   overflow: hidden;
 
-  background-image: url('~assets/images/bg-headphones.jpg'), url('~assets/images/bg-cassette.jpg');
+  background-image: url('~assets/images/headphones.png'), url('~assets/images/earphones.png');
   background-size: 30%, 30%;
   background-position: top right, bottom left;
   background-repeat: no-repeat;
-  background-blend-mode: color-burn;
   background-color: $background-color;
 
   .top-part
@@ -114,5 +113,3 @@
     }
   }
 }
-
-@import 'SignForms';

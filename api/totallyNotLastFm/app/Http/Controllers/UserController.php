@@ -32,10 +32,12 @@ class UserController extends Controller{
   public function createUser(Request $request){
     $this->validateRequestUser($request);
 
+    // echo '<pre>'; print_r([$request->get('username'), $request->get('user_birthday'), $request->get('email'), Hash::make($request->get('password'))]); echo '</pre>';
+
     $user = User::create([
       'username' => $request->get('username'),
-      'birthday' => $request->get('birthday'),
-      'mail' => $request->get('mail'),
+      'user_birthday' => $request->get('user_birthday'),
+      'email' => $request->get('email'),
       'password' => Hash::make($request->get('password'))
     ]);
 
@@ -140,10 +142,11 @@ class UserController extends Controller{
 
   //check existence of user mail
   public function mailExist(Request $request){
-    $user = User::wher('email', '=', $request->get('email'))->count();
-    if ($user == 0)
-        return response()->json(['message' => "The user with email $mail doesn't exist"], 200);
-    return response()->json(['message' => "The user with email $mail exist"], 404);
+    $user = User::where('email', '=', $request->get('email'))->count();
+    $response = ['email' => $request->get('email')];
+
+    $response['exists'] = $user == 0 ? false : true;
+    return response()->json($response, 200);
   }
 
   /*----------------------------Stats functions--------------------------*/

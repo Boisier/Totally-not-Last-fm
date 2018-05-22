@@ -1,5 +1,5 @@
 {
-  "baseURL": "http://46.101.90.139/api/totally-not-last-fm/",
+  "baseURL": "http://localhost/api/totallyNotLastFm/public/index.php",
   "user": {
     "cookieDuration": 0
   }

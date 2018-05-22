@@ -1,5 +1,5 @@
 import React from 'react'
-import GraphEntity from 'Containers/Graph/GraphEntity'
+import GraphEntity from './GraphEntity'
 
 import {Doughnut} from 'react-chartjs-2'
 import doughnutStyle from './styles/doughnut.json'
@@ -7,17 +7,17 @@ import { interpolateRgb } from 'd3-interpolate'
 import { doughnutTooltip } from './tooltips'
 
 export default class extends GraphEntity {
-  genData = () => {
-    const getColor = interpolateRgb(this.props.toColor, this.props.fromColor)
-    const gradientStops = this.props.data.map((val, index, { length }) => {
+  genData = (props) => {
+    const getColor = interpolateRgb(props.toColor, props.fromColor)
+    const gradientStops = props.data.map((val, index, { length }) => {
       return getColor(index / length)
     })
 
     // Create gradient
     this.setState({ graphData: {
-      labels: this.props.labels,
+      labels: props.labels,
       datasets: [{
-        data: this.props.data,
+        data: props.data,
         backgroundColor: gradientStops,
         pointBackgroundColor: 'transparent',
         borderColor: '#FFF',
@@ -27,7 +27,7 @@ export default class extends GraphEntity {
       }]
     }})
 
-    document.getElementById('tooltip-' + this.props.graphID).style.backgroundColor = this.props.toColor
+    document.getElementById('tooltip-' + props.graphID).style.backgroundColor = props.toColor
   }
 
   getGraphOption () {

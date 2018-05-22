@@ -7,7 +7,7 @@ import Footer from 'scenes/Footer/Footer'
 export default class extends Component {
   render = () => (
     <section className='App'>
-      <Header />
+      <Header userInfos={this.props.userInfos}/>
       <section id="page-structure">
         {this.props.children}
       </section>

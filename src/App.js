@@ -1,6 +1,6 @@
 // React
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 
 // Scene dependencies
 import './style/App.scss'
@@ -14,15 +14,17 @@ import Home from './scenes/Home/Home'
 import About from './scenes/About/About'
 import Settings from './scenes/Settings/Settings'
 
-export default class extends Component {
+class App extends Component {
   constructor (props) {
     super(props)
     document.title = 'Totally not Last fm'
 
     // Set state as not logged in
     this.state = {
+      loaded: false,
       isUser: false,
-      token: ''
+      token: '',
+      user: {}
     }
   }
 
@@ -33,31 +35,53 @@ export default class extends Component {
       auth.setToken('testtoken')
     }
 
-    this.checkLogin()
+    this.updateUserState(false)
   }
 
-  checkLogin = () => {
-    if (auth.isUser() && !this.state.isUser) {
+  updateUserState = () => {
+    auth.i().userInfos().then(infos => {
+      if (infos.id) {
+        this.setState({
+          isUser: true,
+          user: infos,
+          loaded: true
+        })
+        return
+      }
+
       this.setState({
-        isUser: true,
-        token: auth.getToken()
+        isUser: false,
+        user: {},
+        loaded: true
       })
-    }
+    })
   }
 
   render = () => {
+    if (!this.state.loaded) {
+      return null
+    }
+
     if (!this.state.isUser) {
-      return <Landing checkLogin={this.checkLogin}/>
+      return <Landing checkLogin={this.updateUserState}/>
     }
 
     return (
-      <Structure>
+      <Structure ref="structure" userInfos={this.state.user}>
         <Switch >
-          <Route path={'/about'} component={About} />
-          <Route path={'/settings'} component={Settings} />
-          <Route path={'/'} component={Home} />
+          <Route
+            path={'/about'}
+            render={(props) => <About {...props} userInfos={this.state.user}/>} />
+          <Route
+            path={'/settings'}
+            render={(props) => <Settings {...props} userInfos={this.state.user}/>} />
+          <Route
+            path={'/'}
+            render={(props) => <Home {...props} userInfos={this.state.user}/>} />
         </Switch>
       </Structure>
     )
   }
 }
+
+export default withRouter(App)

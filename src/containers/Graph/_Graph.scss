@@ -8,8 +8,9 @@
     top: 0;
 
     display: inline-block;
-    width: 100px;
-    height: calc(1rem + 10px);
+    min-width: 100px;
+    /*height: calc(1rem + 10px);*/
+    height: auto;
     margin: -1.1rem 0 0 -50px;
     padding: 5px;
 
