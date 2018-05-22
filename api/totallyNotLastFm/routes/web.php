@@ -40,6 +40,8 @@ Route::group([
   Route::get('artistMostListened/{artist_id}','AlbumController@getAlbumsMostListenedOfArtist');
   Route::get('userMostListenedArtist/{artist_id}/{id}','AlbumController@getAlbumsMostListenedOfArtistByUser');
   Route::get('suggestion/{genre_id}','AlbumController@suggestAlbumsOfGenre');
+  Route::get('listeningDuration/{album_id_album}/{id}', 'AlbumController@getListeningDurationOfAlbumByUser');
+
 });
 
 /* GetAllAlbums
@@ -110,7 +112,7 @@ Route::group([
   Route::get('userMostListened/{id}','ArtistController@getArtistsMostListenedByUser');
   Route::get('genreMostListened/{genre_id_genre}','ArtistController@getArtistsMostListenedOfGenre');
   Route::get('suggestions/{genre_id_genre}','ArtistController@suggestArtistsOfGenre');
-
+  Route::get('season/{$artist_id}/{$id_season}/{$id}', 'ArtistController@getListeningDurationOfArtistBySeasonByUser');
 });
 
 
@@ -250,6 +252,7 @@ Route::group([
   Route::get('userMostListened/{id}','MusicController@getMusicsMostListenedByUser');
   Route::get('artistAllMostListened/{artist_id}','MusicController@getMusicsMostListenedOfArtist');
   Route::get('mostListenedOfArtistByUser/{artist_id}/{id}','MusicController@getMusicsMostListenedOfArtistByUser');
+  Route::get('nbListeningByYear/{id}', 'MusicController@getNbListeningMusicByYearByUser');
 });
 
 /* GetAllMusics

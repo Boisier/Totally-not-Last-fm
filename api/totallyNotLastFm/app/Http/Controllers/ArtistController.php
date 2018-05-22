@@ -162,6 +162,47 @@ class ArtistController extends Controller{
 		return $this->success($artists, 200);
 	}
 
+	public function getListeningDurationOfArtistBySeasonByUser($artist_id, $id_season, $id){
+		if ($id_season == 1){ /*HIVER */
+			$artists = DB::table('user')
+			->join('histories','user.id', '=', 'histories.user_id_user')
+			->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+			->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+			->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+			->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+			->select('artists.artist_name', DB::raw('SEC_TO_TIME(SUM(hour(music.music_duration)*3600 + minute(music.music_duration)*60 + second(music.music_duration))) as duration)');
+			->where('user.id', '=', $id)
+			->where('artists.artist_id', '=', $artist_id)
+			->whereBetween(DB::raw('MONTH(TIMESTAMP(histories.created_at))'), array(1, 2))
+			->orWhere(DB::raw('MONTH(TIMESTAMP(histories.created_at))'), '=', 12)
+			->get();
+		}
+		else{
+			if ($id_season == 2){ /* SPRING */
+				$month1 = 3;
+				$month2 = 5;
+			}
+			if ($id_season == 3){ /* SUMMER */
+				$month1 = 6;
+				$month2 = 8;
+			}
+			if ($id_season == 4){ /* AUTUMN */
+				$month1 = 9;
+				$month2 = 11;
+			}
+			$artists = DB::table('user')
+			->join('histories','user.id', '=', 'histories.user_id_user')
+			->join('contain', 'histories.history_id_history', '=', 'contain.history_id_history')
+			->join('music', 'contain.music_id_music', '=', 'music.music_id_music')
+			->join('compose', 'music.music_id_music', '=', 'compose.music_id_music')
+			->join('artists', 'compose.artist_id_artist', '=', 'artists.artist_id')
+			->select('artists.artist_name', DB::raw('SEC_TO_TIME(SUM(hour(music.music_duration)*3600 + minute(music.music_duration)*60 + second(music.music_duration))) as duration)');
+			->where('user.id', '=', $id)
+			->where('artists.artist_id', '=', $artist_id)
+			->whereBetween(DB::raw('MONTH(TIMESTAMP(histories.created_at))'), array($month1, $month2))
+			->get();
+		}
+	}
 	/*----------------------------Annex functions--------------------------*/
 
 	//validate request artist
