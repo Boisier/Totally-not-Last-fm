@@ -62,7 +62,7 @@ class App extends Component {
       return null
     }
 
-    if (!this.state.isUser) {
+    if (this.state.isUser) {
       return <Landing checkLogin={this.updateUserState}/>
     }
 

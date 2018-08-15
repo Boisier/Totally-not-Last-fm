@@ -5,8 +5,6 @@ import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen'
 import SignUpForm from './components/SignUpForm/SignUpForm'
 import SignInForm from './components/SignInForm/SignInForm'
 
-import api from 'library/api'
-
 export default class extends Component {
   constructor (props) {
     super(props)
@@ -52,17 +50,13 @@ export default class extends Component {
     // Sanitize email
     const email = validator.normalizeEmail(rawEmail)
 
+    // TODO:Check email status with server
+
     // Email unknown, display signUp form
-    api.post('/user/mailExist', {
+    this.setState({
       email: email
-    }).then(response => {
-      this.setState({
-        email: email
-      })
-      console.log(response.data.exists)
-      if (response.data.exists) return this.showSignIn()
-      this.showSignUp()
     })
+    this.showSignUp()
   }
 
   render = () => {

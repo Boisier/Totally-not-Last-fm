@@ -13,7 +13,7 @@ import User from './scenes/User/User'
 const setup = propOverrides => {
   const props = Object.assign({
     url: '/',
-    forceLogin: true
+    forceLogin: false
   }, propOverrides)
 
   const wrapper = mount(
